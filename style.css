@@ -110,6 +110,15 @@ body {
   margin: 10px;
 }
 
+#app .loader {
+  margin: 10px 0;
+  text-align: center;
+}
+
+#app .loader.hidden {
+  display: none;
+}
+
 @media (min-width: 650px) {
   #app .list .item {
     flex-direction: row;

@@ -1,3 +1,4 @@
+const loaderEle = document.querySelector("#app .loader");
 const listEle = document.querySelector("#app .list");
 const filterFormEle = document.querySelector("#app .filter-form");
 const sortSelectEle = document.querySelector("#app .sort-select");
@@ -167,11 +168,28 @@ class List {
   }
 }
 
+class Loader {
+  constructor(element) {
+    this.element = element;
+  }
+
+  show() {
+    this.element.classList.remove("hidden");
+  }
+
+  hide() {
+    this.element.classList.add("hidden");
+  }
+}
+
 let dhatupatha = [];
 
 const list = new List(listEle);
+const loader = new Loader(loaderEle);
 
 (async () => {
+  loader.show();
+
   const result = await fetch("dhatupatha.json");
 
   const data = await result.json();
@@ -179,6 +197,8 @@ const list = new List(listEle);
   dhatupatha = data;
 
   list.setData(dhatupatha);
+
+  loader.hide();
 })();
 
 filterFormEle.addEventListener("submit", (e) => e.preventDefault());
