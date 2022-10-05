@@ -1,3 +1,7 @@
+:root {
+  --bg-color: #f0f0f0;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -13,7 +17,7 @@ body {
   padding: 0;
   font-family: sans-serif;
   font-size: 16px;
-  background-color: #f0f0f0;
+  background-color: var(--bg-color);
 }
 
 #app {
@@ -23,9 +27,13 @@ body {
 }
 
 #app .filter-form {
-  /* height: 45px; */
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-color);
+  width: 100%;
   display: flex;
   align-items: center;
+  padding: 10px 5px;
 }
 
 #app .filter-form .search-container {
@@ -37,6 +45,7 @@ body {
 
 #app .filter-form .search-container input {
   width: 100%;
+  min-width: none;
   padding: 5px;
   outline: none;
   border: none;
@@ -45,14 +54,14 @@ body {
 }
 
 #app .filter-form .sort-container {
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* border-left: 1px solid gray; */
-  padding: 5px;
+  display: flex;
+  align-items: center;
   margin-left: 5px;
 }
 
 #app .filter-form .sort-container label {
+  padding: 5px;
+  display: block;
   text-transform: uppercase;
   font-size: 0.7em;
   font-weight: bold;
@@ -66,6 +75,7 @@ body {
 
 #app .list {
   width: 100%;
+  padding: 5px;
 }
 
 #app .list .item {
@@ -88,7 +98,6 @@ body {
 #app .list .item .vritti-details {
   margin-top: 5px;
   display: flex;
-  justify-content: space-between;
 }
 
 #app .list .item .dhatu,
@@ -103,6 +112,16 @@ body {
 
 #app .list .item .dhatu .dhatu-name {
   font-weight: bold;
+}
+
+#app .list .item .dhatu-details {
+  justify-content: space-between;
+}
+
+#app .list .item .vritti-details {
+  width: 100%;
+  border-top: 1px solid gray;
+  justify-content: space-evenly;
 }
 
 #app .list .item .vritti-details .vritti-name {
@@ -137,5 +156,6 @@ body {
   #app .list .item .vritti-details {
     margin-top: 0;
     margin-left: 10px;
+    border-top: 0;
   }
 }
