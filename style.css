@@ -79,23 +79,29 @@ body {
   align-items: center;
 }
 
-#app .list .item .dhatu-details,
-#app .list .item .vritti-details {
-  display: flex;
-  justify-content: space-between;
+#app .list .item > div {
+  text-align: center;
   /* border: 1px solid red; */
 }
 
+#app .list .item .dhatu-details,
+#app .list .item .vritti-details {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#app .list .item .dhatu,
 #app .list .item .dhatu-details {
   font-size: 1.1em;
 }
 
-#app .list .item .vritti-details {
-  margin-top: 10px;
-  text-align: center;
+#app .list .item .dhatu {
+  padding: 5px;
+  min-width: 30%;
 }
 
-#app .list .item .dhatu-details .dhatu {
+#app .list .item .dhatu .dhatu-name {
   font-weight: bold;
 }
 

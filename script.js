@@ -19,11 +19,11 @@ const ganas = {
 
 const createItem = (dhatuDetails) =>
   `<div class="item">
+    <div class="dhatu">
+      <span class="dhatu-name">${dhatuDetails.dhatu}</span>
+      <span>${dhatuDetails.meaning}</span>
+    </div>
     <div class="dhatu-details">
-      <div class="dhatu-container">
-        <span class="dhatu">${dhatuDetails.dhatu}</span>
-        <span>${dhatuDetails.meaning}</span>
-      </div>
       <div>${dhatuDetails.gana}</div>
       <div>${dhatuDetails.it}</div>
       <div>${dhatuDetails.padi}</div>
