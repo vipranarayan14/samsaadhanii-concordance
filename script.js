@@ -43,6 +43,8 @@ const createItem = (dhatuDetails) =>
     </div>
    </div>`;
 
+let dhatupathaSortedByDhatu, dhatupathaSortedByGana, dhatupathaSortedByArtha;
+
 const sortByArtha = (dhatuList) =>
   [...dhatuList].sort((dhatuDetailsA, dhatuDetailsB) =>
     new Intl.Collator().compare(dhatuDetailsA.meaning, dhatuDetailsB.meaning)
@@ -54,7 +56,20 @@ const sortByGana = (dhatuList) =>
       ganas[dhatuDetailsA.gana] - ganas[dhatuDetailsB.gana]
   );
 
+const sortByDhatu = (dhatuList) =>
+  [...dhatuList].sort((dhatuDetailsA, dhatuDetailsB) =>
+    new Intl.Collator().compare(dhatuDetailsA.dhatu, dhatuDetailsB.dhatu)
+  );
+
 const sortDhatupatha = (dhatuList, sortBy) => {
+  if (sortBy === "dhatu") {
+    if (dhatupathaSortedByDhatu) return dhatupathaSortedByDhatu;
+
+    dhatupathaSortedByDhatu = sortByDhatu(dhatuList);
+
+    return dhatupathaSortedByDhatu;
+  }
+
   if (sortBy === "gana") {
     if (dhatupathaSortedByGana) return dhatupathaSortedByGana;
 
@@ -85,14 +100,14 @@ const filterDhatupatha = (dhatuList, keywordsSets) =>
   });
 
 const getFilterKeywords = (searchStr) => {
-  const keywordsSets = [];
+  const searchStrFromWx = Sanscript.t(searchStr, "wx", "devanagari");
+  const searchStrFromItrans = Sanscript.t(searchStr, "itrans", "devanagari");
 
-  keywordsSets.push(searchStr.split(" "));
-  keywordsSets.push(Sanscript.t(searchStr, "wx", "devanagari").split(" "));
-  keywordsSets.push(Sanscript.t(searchStr, "itrans", "devanagari").split(" "));
+  const keywordsSets = [searchStr, searchStrFromWx, searchStrFromItrans].map(
+    (str) => str.split(" ").filter((keyword) => !!keyword)
+  );
 
   return keywordsSets;
-  // .split(" ").filter((keyword) => !!keyword);
 };
 
 class List {
@@ -152,9 +167,7 @@ class List {
   }
 }
 
-let dhatupatha = [],
-  dhatupathaSortedByGana,
-  dhatupathaSortedByArtha;
+let dhatupatha = [];
 
 const list = new List(listEle);
 
@@ -179,7 +192,7 @@ sortSelectEle.addEventListener("change", (e) => {
 });
 
 searchInputEle.addEventListener("input", (e) => {
-  const searchStr = searchInputEle.value;
+  const searchStr = e.target.value;
 
   if (!searchStr) return list.setData(dhatupatha);
 
