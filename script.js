@@ -129,12 +129,14 @@ const createTags = (dhatuDetails) => {
   return tags;
 };
 
+const createURL = (endpoint, path) => (path ? `${endpoint}${path}` : "/#");
+
 const addProperties = (dhatuList) =>
   dhatuList.map((dhatuDetails, id) => ({
     id: makeId(dhatuDetails, id),
     ...dhatuDetails,
-    formsURL: `${FORMS_ENDPOINT}${dhatuDetails.formsURL}`,
-    graphURL: `${GRAPH_ENDPOINT}${dhatuDetails.graphURL}`,
+    formsURL: createURL(FORMS_ENDPOINT, dhatuDetails.formsURL),
+    graphURL: createURL(GRAPH_ENDPOINT, dhatuDetails.graphURL),
     tags: createTags(dhatuDetails),
   }));
 
