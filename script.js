@@ -5,8 +5,12 @@ const sortSelectEle = document.querySelector("#app .sort-select");
 const searchInputEle = document.querySelector("#app .search-input");
 const modalEle = document.querySelector("#app .modal");
 
-const VRITTI_ENDPOINT =
-  "https://cdn.jsdelivr.net/gh/samsaadhanii/scl/dhaatupaatha/files";
+const DHATUPATHA_PATH = "dhatupatha2.json";
+
+const CDN = "https://cdn.jsdelivr.net/gh/samsaadhanii/scl/dhaatupaatha";
+const VRITTI_ENDPOINT = `${CDN}/files`;
+const GRAPH_ENDPOINT = CDN;
+const FORMS_ENDPOINT = "https://sanskrit.uohyd.ac.in";
 
 const ganas = {
   भ्वादिः: 1,
@@ -129,6 +133,8 @@ const addProperties = (dhatuList) =>
   dhatuList.map((dhatuDetails, id) => ({
     id: makeId(dhatuDetails, id),
     ...dhatuDetails,
+    formsURL: `${FORMS_ENDPOINT}${dhatuDetails.formsURL}`,
+    graphURL: `${GRAPH_ENDPOINT}${dhatuDetails.graphURL}`,
     tags: createTags(dhatuDetails),
   }));
 
@@ -169,17 +175,17 @@ const createDhatuModalContent = (details) => `
   <section class="chart">
     <h3>रूपाणि</h3>
     <div class="content">
-      <a class="link" href="${details.formsLink}" target="_blank">Show forms</a>
+      <a class="link" href="${details.formsURL}" target="_blank">Show forms</a>
     </div>
   </section>
 
   <section class="chart">
     <h3>Chart</h3>
     <div class="content">
-      <a href="${details.imageLink}" target="_blank">
+      <a href="${details.graphURL}" target="_blank">
         <span class="link">Show full size</span>
         <div class="image">
-          <img src="${details.imageLink}" alt="Chart" loading="lazy" />
+          <img src="${details.graphURL}" alt="Chart" loading="lazy" />
         </div>
       </a>
     </div>
@@ -342,7 +348,7 @@ const showDhatuDetails = (dhatuDetails) => {
 (async () => {
   loader.show();
 
-  const result = await fetch("dhatupatha.json");
+  const result = await fetch(DHATUPATHA_PATH);
 
   const data = await result.json();
 
