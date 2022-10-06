@@ -182,12 +182,10 @@ const createDhatuModalContent = (details) => `
   <section class="chart">
     <h3>Chart</h3>
     <div class="content">
-      <a href="${details.graphURL}" target="_blank">
-        <span class="link">Show full size</span>
+      <a class="link" href="${details.graphURL}" target="_blank">Show full size</a>
         <div class="image">
           <img src="${details.graphURL}" alt="Chart" loading="lazy" />
         </div>
-      </a>
     </div>
   </section>
 </div>`;
