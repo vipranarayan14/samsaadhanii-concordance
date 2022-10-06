@@ -105,13 +105,20 @@ const filterDhatupatha = (dhatuList, keywordsSets) =>
     )
   );
 
+const removeLastVirama = (keyword) => keyword.replace(/्$/, "");
+
 const getKeywords = (query) => {
   const queryFromWx = Sanscript.t(query, "wx", "devanagari");
   const queryFromItrans = Sanscript.t(query, "itrans", "devanagari");
 
   const keywordsSets = [query, queryFromWx, queryFromItrans].map((str) =>
-    str.split(" ").filter((keyword) => !!keyword)
+    str
+      .split(" ")
+      .filter((keyword) => !!keyword)
+      .map(removeLastVirama)
   );
+
+  console.log(keywordsSets);
 
   return keywordsSets;
 };
