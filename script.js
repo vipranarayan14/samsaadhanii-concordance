@@ -5,6 +5,9 @@ const sortSelectEle = document.querySelector("#app .sort-select");
 const searchInputEle = document.querySelector("#app .search-input");
 const modalEle = document.querySelector("#app .modal");
 
+const VRITTI_ENDPOINT =
+  "https://cdn.jsdelivr.net/gh/samsaadhanii/scl/dhaatupaatha/files";
+
 const ganas = {
   भ्वादिः: 1,
   अदादिः: 2,
@@ -312,14 +315,12 @@ const vrittiCodes = {
 };
 
 const loadVrittis = (dhatuDetails) => {
-  const vrittiEndpoint = "/data/vrittis";
-
   Object.entries(vrittiCodes).forEach(async ([vrittiName, vrittiCode]) => {
     const id = dhatuDetails[`${vrittiName}Id`];
 
     if (!id || id === "-") return setVritti(vrittiName, "N/A");
 
-    const vrittiURL = `${vrittiEndpoint}/${vrittiCode}${id}.html`;
+    const vrittiURL = `${VRITTI_ENDPOINT}/${vrittiCode}${id}.html`;
 
     const result = await fetch(vrittiURL);
 
