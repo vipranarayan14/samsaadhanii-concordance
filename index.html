@@ -7,9 +7,16 @@
     <title>Dhatupatha - Test</title>
 
     <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div id="app">
+    <main id="app">
       <form class="filter-form">
         <div class="search-container">
           <input
@@ -36,7 +43,24 @@
       <div class="list"></div>
 
       <div class="loader">Loading...</div>
-    </div>
+
+      <div class="modal hidden">
+        <div class="window">
+          <div class="header">
+            <h2 class="title"></h2>
+            <button class="close-btn">
+              <svg width="24" height="24">
+                <path
+                  fill="currentColor"
+                  d="M5.146 5.146a.5.5 0 0 1 .708 0L12 11.293l6.146-6.147a.5.5 0 0 1 .638-.057l.07.057a.5.5 0 0 1 0 .708L12.707 12l6.147 6.146a.5.5 0 0 1 .057.638l-.057.07a.5.5 0 0 1-.708 0L12 12.707l-6.146 6.147a.5.5 0 0 1-.638.057l-.07-.057a.5.5 0 0 1 0-.708L11.293 12 5.146 5.854a.5.5 0 0 1-.057-.638z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div class="content"></div>
+        </div>
+      </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@indic-transliteration/sanscript@1.2/sanscript.min.js"></script>
     <script src="script.js"></script>

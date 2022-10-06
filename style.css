@@ -1,5 +1,12 @@
 :root {
-  --bg-color: #f0f0f0;
+  --bg: #f0f0f0;
+  --card-bg: #fff;
+  /* --bg-card-hover: #f8f9fa; */
+  --card-hover-bg: rgb(244, 245, 247);
+  /* --card-hover-bg: rgb(238, 238, 238); */
+  --card-corner-radius: 3px;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --divider-color: #e7e7e7;
 }
 
 * {
@@ -15,21 +22,27 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  /* font-family: "Noto Sans Devanagari", sans-serif; */
+  font-family: "Noto Sans", sans-serif;
   font-size: 16px;
-  background-color: var(--bg-color);
+  background-color: var(--bg);
+}
+
+body.modal-open {
+  overflow: hidden;
 }
 
 #app {
   max-width: 700px;
   margin: auto;
   padding: 5px;
+  position: relative;
 }
 
 #app .filter-form {
   position: sticky;
   top: 0;
-  background-color: var(--bg-color);
+  background-color: var(--bg);
   width: 100%;
   display: flex;
   align-items: center;
@@ -37,20 +50,19 @@ body {
 }
 
 #app .filter-form .search-container {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: #fff;
+  box-shadow: var(--card-shadow);
+  background: var(--card-bg);
   flex-grow: 1;
-  border-radius: 3px;
+  border-radius: var(--card-corner-radius);
 }
 
 #app .filter-form .search-container input {
   width: 100%;
-  min-width: none;
   padding: 5px;
   outline: none;
   border: none;
   margin: 0 auto;
-  border-radius: 3px;
+  border-radius: var(--card-corner-radius);
 }
 
 #app .filter-form .sort-container {
@@ -79,14 +91,20 @@ body {
 }
 
 #app .list .item {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: var(--card-shadow);
   margin: 8px 0;
-  background-color: #fff;
-  border-radius: 3px;
+  background-color: var(--card-bg);
+  border-radius: var(--card-corner-radius);
   padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+#app .list .item:hover {
+  background-color: var(--card-hover-bg);
 }
 
 #app .list .item > div {
@@ -107,7 +125,7 @@ body {
 
 #app .list .item .dhatu {
   padding: 5px;
-  min-width: 30%;
+  width: 50%;
 }
 
 #app .list .item .dhatu .dhatu-name {
@@ -120,7 +138,7 @@ body {
 
 #app .list .item .vritti-details {
   width: 100%;
-  border-top: 1px solid gray;
+  border-top: 1px solid var(--divider-color);
   justify-content: space-evenly;
 }
 
@@ -144,12 +162,162 @@ body {
   display: none;
 }
 
+#app .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  overflow-y: auto;
+  background-color: #000000aa;
+  align-items: flex-start;
+  z-index: 20;
+}
+
+#app .modal.hidden {
+  display: none;
+}
+
+/* #app .modal .overlay {
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  background-color: #000000aa;
+} */
+
+#app .modal .window {
+  width: 100%;
+  max-width: 800px;
+  margin: 70px auto;
+  background-color: var(--card-bg);
+  border-radius: var(--card-corner-radius);
+  box-shadow: var(--card-shadow);
+  position: relative;
+}
+
+#app .modal .window .header {
+  display: flex;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  background-color: var(--card-bg);
+  border-top-left-radius: var(--card-corner-radius);
+  border-top-right-radius: var(--card-corner-radius);
+  border-bottom: 1px solid #e7e7e7;
+}
+
+#app .modal .window .header .title {
+  flex-grow: 1;
+  font-size: 20px;
+  margin: 0;
+}
+
+#app .modal .window .header .close-btn {
+  background-color: transparent;
+  border: none;
+  height: 30px;
+  width: 30px;
+  border-radius: var(--card-corner-radius);
+  transition: background-color 0.3s;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+#app .modal .window .header .close-btn:hover {
+  background-color: rgb(238, 238, 238);
+}
+
+#app .modal .window > .content {
+  margin: 20px;
+}
+
+#app .dhatu-all-details h3 {
+  padding: 5px 0;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+#app .dhatu-all-details .content .link {
+  padding: 10px;
+  display: inline-block;
+  border: 1px solid #aaa;
+  border-radius: var(--card-corner-radius);
+  margin: 5px;
+  font-size: 0.9em;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+#app .dhatu-all-details .content .link:hover {
+  background-color: var(--card-hover-bg);
+}
+
+#app .dhatu-all-details .basic-info {
+  font-size: 1.1em;
+}
+
+#app .dhatu-all-details .basic-info > * {
+  margin: 10px 0;
+}
+
+#app .dhatu-all-details .basic-info .name {
+  font-weight: bold;
+  margin-right: 10px;
+  min-width: 10%;
+  display: inline-block;
+}
+
+#app .dhatu-all-details .vrittis details {
+  border: 1px solid #aaa;
+  border-radius: var(--card-corner-radius);
+  margin: 5px auto;
+  padding: 10px 10px 0;
+  word-break: break-word;
+}
+
+#app .dhatu-all-details .vrittis summary {
+  font-weight: bold;
+  margin: -10px -10px 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#app .dhatu-all-details .vrittis details[open] {
+  padding: 10px;
+}
+
+#app .dhatu-all-details .vrittis details[open] summary {
+  border-bottom: 1px solid #aaa;
+  margin-bottom: 10px;
+}
+
+#app .dhatu-all-details .chart .content {
+  text-align: center;
+}
+
+#app .dhatu-all-details .chart .content .image {
+  max-height: 500px;
+}
+
+#app .dhatu-all-details .chart .content .image img {
+  max-height: inherit;
+  width: auto;
+  padding: 10px 0;
+}
+
 @media (min-width: 650px) {
   #app .list .item {
     flex-direction: row;
   }
 
   #app .list .item .dhatu-details {
+    margin-top: 0;
     flex-grow: 1;
   }
 
