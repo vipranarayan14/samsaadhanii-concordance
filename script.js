@@ -4,6 +4,7 @@ const filterFormEle = document.querySelector("#app .filter-form");
 const sortSelectEle = document.querySelector("#app .sort-select");
 const searchInputEle = document.querySelector("#app .search-input");
 const modalEle = document.querySelector("#app .modal");
+const scrollToTopEle = document.querySelector(".scroll-to-top");
 
 const DHATUPATHA_PATH = "dhatupatha2.json";
 
@@ -199,6 +200,47 @@ const createDhatuModalContent = (details) => `
   </section>
 </div>`;
 
+const setVritti = (vrittiName, content) => {
+  const vrittiEle = document.querySelector(
+    `.dhatu-all-details .${vrittiName}-info`
+  );
+
+  if (!vrittiEle) return;
+
+  vrittiEle.innerHTML = content;
+};
+
+const vrittiCodes = {
+  madhaviya: "mA",
+  kshiratarangini: "kRi",
+  dhatupradipa: "XA",
+};
+
+const loadVrittis = (dhatuDetails) => {
+  Object.entries(vrittiCodes).forEach(async ([vrittiName, vrittiCode]) => {
+    const id = dhatuDetails[`${vrittiName}Id`];
+
+    if (!id || id === "-") return setVritti(vrittiName, "N/A");
+
+    const vrittiURL = `${VRITTI_ENDPOINT}/${vrittiCode}${id}.html`;
+
+    const result = await fetch(vrittiURL);
+
+    const content = await result.text();
+
+    setVritti(vrittiName, content);
+  });
+};
+
+const showDhatuDetails = (dhatuDetails) => {
+  modal.setTitle(createDhatuModalTitle(dhatuDetails));
+  modal.setContent(createDhatuModalContent(dhatuDetails));
+
+  modal.show();
+
+  loadVrittis(dhatuDetails);
+};
+
 class List {
   constructor(element) {
     this.element = element;
@@ -311,47 +353,6 @@ const list = new List(listEle);
 const loader = new Loader(loaderEle);
 const modal = new Modal(modalEle);
 
-const setVritti = (vrittiName, content) => {
-  const vrittiEle = document.querySelector(
-    `.dhatu-all-details .${vrittiName}-info`
-  );
-
-  if (!vrittiEle) return;
-
-  vrittiEle.innerHTML = content;
-};
-
-const vrittiCodes = {
-  madhaviya: "mA",
-  kshiratarangini: "kRi",
-  dhatupradipa: "XA",
-};
-
-const loadVrittis = (dhatuDetails) => {
-  Object.entries(vrittiCodes).forEach(async ([vrittiName, vrittiCode]) => {
-    const id = dhatuDetails[`${vrittiName}Id`];
-
-    if (!id || id === "-") return setVritti(vrittiName, "N/A");
-
-    const vrittiURL = `${VRITTI_ENDPOINT}/${vrittiCode}${id}.html`;
-
-    const result = await fetch(vrittiURL);
-
-    const content = await result.text();
-
-    setVritti(vrittiName, content);
-  });
-};
-
-const showDhatuDetails = (dhatuDetails) => {
-  modal.setTitle(createDhatuModalTitle(dhatuDetails));
-  modal.setContent(createDhatuModalContent(dhatuDetails));
-
-  modal.show();
-
-  loadVrittis(dhatuDetails);
-};
-
 (async () => {
   loader.show();
 
@@ -398,4 +399,11 @@ listEle.addEventListener("click", (e) => {
   const dhatuDetails = getDhatuDetails(id);
 
   showDhatuDetails(dhatuDetails);
+});
+
+scrollToTopEle.addEventListener("click", (e) => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 });

@@ -173,20 +173,12 @@ body.modal-open {
   overflow-y: auto;
   background-color: #000000aa;
   align-items: flex-start;
-  z-index: 20;
+  z-index: 3;
 }
 
 #app .modal.hidden {
   display: none;
 }
-
-/* #app .modal .overlay {
-  position: absolute;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-  background-color: #000000aa;
-} */
 
 #app .modal .window {
   width: 100%;
@@ -308,6 +300,24 @@ body.modal-open {
   max-height: inherit;
   width: auto;
   padding: 10px 0;
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 2;
+  font-size: 1.1rem;
+  border: none;
+  outline: none;
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 3px;
+  color: #0e0e0e;
+  border: 1px solid #aaa;
+  background-color: #aaa;
+  font-family: inherit;
 }
 
 @media (min-width: 650px) {
