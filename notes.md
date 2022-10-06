@@ -9,4 +9,5 @@
 7. X improve search
     1. X remove svara marks in tags
     2. X remove halanta in keywords
-8. scroll to top
+8. X scroll to top
+9. close modal on overlay click
