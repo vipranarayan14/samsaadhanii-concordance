@@ -117,14 +117,14 @@ const getKeywords = (query) => {
 };
 
 const makeId = (dhatuDetails, index) => {
-  // const cleanDhatu = dhatuDetails.dhatuId.replace(/[\(\)\s]/g, "_");
-
   return `${dhatuDetails.dhatuId}_${index}`;
 };
 
+const cleanDhatu = (dhatu) => dhatu.replace(/[॒॑]/g, "");
+
 const createTags = (dhatuDetails) => {
   const { dhatu, meaning, gana, padi, it } = dhatuDetails;
-  const tags = [dhatu, meaning, gana, padi, it].join(" ");
+  const tags = [cleanDhatu(dhatu), meaning, gana, padi, it].join(" ");
 
   return tags;
 };
