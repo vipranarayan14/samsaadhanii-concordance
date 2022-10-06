@@ -125,7 +125,6 @@ body.modal-open {
 
 #app .list .item .dhatu {
   padding: 5px;
-  width: 50%;
 }
 
 #app .list .item .dhatu .dhatu-name {
@@ -314,6 +313,10 @@ body.modal-open {
 @media (min-width: 650px) {
   #app .list .item {
     flex-direction: row;
+  }
+
+  #app .list .item .dhatu {
+    width: 100%;
   }
 
   #app .list .item .dhatu-details {
