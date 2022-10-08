@@ -46,3 +46,4 @@
     - Vrittis & graphs are loaded asyncronously. (directly from samsaadhini GitHub repo)
 - Development
     - Only pure HTML, CSS and JS. No frameworks.
+    - Web fonts: Same font is used whether the system has it or not.
