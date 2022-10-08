@@ -288,15 +288,16 @@ body.modal-open {
   margin-bottom: 10px;
 }
 
-#app .dhatu-all-details .chart .content {
+#app .dhatu-all-details .graph .content,
+#app .dhatu-all-details .forms .content {
   text-align: center;
 }
 
-#app .dhatu-all-details .chart .content .image {
+#app .dhatu-all-details .graph .content .image {
   max-height: 500px;
 }
 
-#app .dhatu-all-details .chart .content .image img {
+#app .dhatu-all-details .graph .content .image img {
   max-height: inherit;
   width: auto;
   padding: 10px 0;

@@ -177,19 +177,19 @@ const createDhatuModalContent = (details) => {
     </div>
   </section>
 
-  <section class="chart">
+  <section class="forms">
     <h3>रूपाणि</h3>
     <div class="content">
       <a class="link" href="${formsURL}" target="_blank">Show forms</a>
     </div>
   </section>
 
-  <section class="chart">
-    <h3>Chart</h3>
+  <section class="graph">
+    <h3>Graph</h3>
     <div class="content">
       <a class="link" href="${graphURL}" target="_blank">Show full size</a>
         <div class="image">
-          <img src="${graphURL}" alt="Chart" loading="lazy" />
+          <img src="${graphURL}" alt="Graph" loading="lazy" />
         </div>
     </div>
   </section>
