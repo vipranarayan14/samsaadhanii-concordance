@@ -43,6 +43,6 @@
         - Persistent header with Dhatu info (when scrolling).
 - Data (later, backend)
     - all dhatu info in a single JSON file loaded asyncronously.
-    - Vrittis are loaded asyncronously. (directly from samsaadhini GitHub repo)
+    - Vrittis & graphs are loaded asyncronously. (directly from samsaadhini GitHub repo)
 - Development
     - Only pure HTML, CSS and JS. No frameworks.
