@@ -53,8 +53,6 @@ const createItem = (dhatuDetails) =>
     </div>
    </div>`;
 
-let dhatupathaSortedByDhatu, dhatupathaSortedByGana, dhatupathaSortedByArtha;
-
 const collator = new Intl.Collator();
 
 const sortByArtha = (dhatuList) =>
@@ -75,24 +73,18 @@ const sortByDhatu = (dhatuList) =>
 
 const sortDhatupatha = (dhatuList, sortBy) => {
   if (sortBy === "dhatu") {
-    if (dhatupathaSortedByDhatu) return dhatupathaSortedByDhatu;
-
     dhatupathaSortedByDhatu = sortByDhatu(dhatuList);
 
     return dhatupathaSortedByDhatu;
   }
 
   if (sortBy === "gana") {
-    if (dhatupathaSortedByGana) return dhatupathaSortedByGana;
-
     dhatupathaSortedByGana = sortByGana(dhatuList);
 
     return dhatupathaSortedByGana;
   }
 
   if (sortBy === "artha") {
-    if (dhatupathaSortedByArtha) return dhatupathaSortedByArtha;
-
     dhatupathaSortedByArtha = sortByArtha(dhatuList);
 
     return dhatupathaSortedByArtha;
@@ -145,8 +137,6 @@ const addProperties = (dhatuList) =>
   dhatuList.map((dhatuDetails, id) => ({
     id: makeId(dhatuDetails, id),
     ...dhatuDetails,
-    formsURL: createURL(FORMS_ENDPOINT, dhatuDetails.formsURL),
-    graphURL: createURL(GRAPH_ENDPOINT, dhatuDetails.graphURL),
     tags: createTags(dhatuDetails),
   }));
 
@@ -156,8 +146,11 @@ const getDhatuDetails = (id) =>
 const createDhatuModalTitle = (dhatuDetails) =>
   `${dhatuDetails.dhatu} ${dhatuDetails.meaning}`;
 
-const createDhatuModalContent = (details) => `
-<div class="dhatu-all-details">
+const createDhatuModalContent = (details) => {
+  const formsURL = createURL(FORMS_ENDPOINT, details.formsURL);
+  const graphURL = createURL(GRAPH_ENDPOINT, details.graphURL);
+
+  return `<div class="dhatu-all-details">
   <section class="basic-info">
     <div><span class="name">धातुः</span><span>${details.dhatu}</span></div>
     <div><span class="name">अर्थः</span><span>${details.meaning}</span></div>
@@ -187,20 +180,21 @@ const createDhatuModalContent = (details) => `
   <section class="chart">
     <h3>रूपाणि</h3>
     <div class="content">
-      <a class="link" href="${details.formsURL}" target="_blank">Show forms</a>
+      <a class="link" href="${formsURL}" target="_blank">Show forms</a>
     </div>
   </section>
 
   <section class="chart">
     <h3>Chart</h3>
     <div class="content">
-      <a class="link" href="${details.graphURL}" target="_blank">Show full size</a>
+      <a class="link" href="${graphURL}" target="_blank">Show full size</a>
         <div class="image">
-          <img src="${details.graphURL}" alt="Chart" loading="lazy" />
+          <img src="${graphURL}" alt="Chart" loading="lazy" />
         </div>
     </div>
   </section>
 </div>`;
+};
 
 const setVritti = (vrittiName, content) => {
   const vrittiEle = document.querySelector(
