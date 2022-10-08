@@ -55,9 +55,11 @@ const createItem = (dhatuDetails) =>
 
 let dhatupathaSortedByDhatu, dhatupathaSortedByGana, dhatupathaSortedByArtha;
 
+const collator = new Intl.Collator();
+
 const sortByArtha = (dhatuList) =>
   [...dhatuList].sort((dhatuDetailsA, dhatuDetailsB) =>
-    new Intl.Collator().compare(dhatuDetailsA.meaning, dhatuDetailsB.meaning)
+    collator.compare(dhatuDetailsA.meaning, dhatuDetailsB.meaning)
   );
 
 const sortByGana = (dhatuList) =>
@@ -68,7 +70,7 @@ const sortByGana = (dhatuList) =>
 
 const sortByDhatu = (dhatuList) =>
   [...dhatuList].sort((dhatuDetailsA, dhatuDetailsB) =>
-    new Intl.Collator().compare(dhatuDetailsA.dhatu, dhatuDetailsB.dhatu)
+    collator.compare(dhatuDetailsA.dhatu, dhatuDetailsB.dhatu)
   );
 
 const sortDhatupatha = (dhatuList, sortBy) => {
