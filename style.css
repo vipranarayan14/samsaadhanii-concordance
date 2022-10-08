@@ -302,6 +302,7 @@ body.modal-open {
 }
 
 .scroll-to-top {
+  display: flex;
   position: fixed;
   bottom: 15px;
   right: 15px;
@@ -314,8 +315,7 @@ body.modal-open {
   padding: 10px;
   border-radius: 3px;
   color: #0e0e0e;
-  border: 1px solid #aaa;
-  background-color: #aaa;
+  background-color: #c9c9c9;
   font-family: inherit;
 }
 
