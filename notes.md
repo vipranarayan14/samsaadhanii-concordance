@@ -36,7 +36,7 @@
     - List
         - Interactive list of dhatu entries. 
         - Infinite scrolling: Loads more item as user scrolls.
-        - 
+        - Scroll to top.
     - Modal
         - Vrittis, graph and link to forms shown in a modal when an entry is clicked.
         - All vrittis on the same page (not a separate window).
@@ -44,5 +44,5 @@
 - Data (later, backend)
     - all dhatu info in a single JSON file loaded asyncronously.
     - Vrittis are loaded asyncronously. (directly from samsaadhini GitHub repo)
-- Design
+- Development
     - Only pure HTML, CSS and JS. No frameworks.
