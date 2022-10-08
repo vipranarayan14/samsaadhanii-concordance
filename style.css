@@ -35,6 +35,11 @@ input,
 select,
 button {
   font-family: inherit;
+  font-size: inherit;
+}
+
+header {
+  text-align: center;
 }
 
 #app {
