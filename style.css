@@ -35,7 +35,6 @@ body.modal-open {
 #app {
   max-width: 700px;
   margin: auto;
-  padding: 5px;
   position: relative;
 }
 
@@ -85,8 +84,7 @@ body.modal-open {
   font-size: 1em;
 }
 
-#app .list {
-  width: 100%;
+#app .list-container {
   padding: 5px;
 }
 
