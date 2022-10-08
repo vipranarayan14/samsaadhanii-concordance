@@ -237,6 +237,12 @@ const showDhatuDetails = (dhatuDetails) => {
   loadVrittis(dhatuDetails);
 };
 
+const scrollToTop = () =>
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+
 class List {
   constructor(element) {
     this.element = element;
@@ -255,6 +261,8 @@ class List {
     this.lastLoadedId = 0;
     this.clearContent();
     this.loadNext();
+
+    scrollToTop();
   }
 
   setContent(fromId, toId) {
@@ -397,9 +405,5 @@ listEle.addEventListener("click", (e) => {
   showDhatuDetails(dhatuDetails);
 });
 
-scrollToTopEle.addEventListener("click", (e) => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-});
+scrollToTopEle.addEventListener("click", scrollToTop);
+
