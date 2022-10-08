@@ -113,8 +113,6 @@ const getKeywords = (query) => {
       .map(removeLastVirama)
   );
 
-  console.log(keywordsSets);
-
   return keywordsSets;
 };
 
