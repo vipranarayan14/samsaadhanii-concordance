@@ -407,3 +407,10 @@ listEle.addEventListener("click", (e) => {
 
 scrollToTopEle.addEventListener("click", scrollToTop);
 
+// TEMP: Theme testing
+
+const searchParams = new URLSearchParams(document.location.search);
+
+const themeParam = searchParams.get("theme");
+
+if (themeParam) listEle.classList.add(themeParam);
