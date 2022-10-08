@@ -325,6 +325,7 @@ body.modal-open {
 #app .dhatu-all-details .graph .content .image img {
   max-height: inherit;
   width: auto;
+  max-width: 100%;
   padding: 10px 0;
 }
 
