@@ -42,6 +42,10 @@ header {
   text-align: center;
 }
 
+header h1 {
+  font-size: 1.5em;
+}
+
 #app {
   max-width: 700px;
   margin: auto;
@@ -357,6 +361,10 @@ header {
 }
 
 @media (min-width: 650px) {
+  header h1 {
+    font-size: 1.8em;
+  }
+
   #app .list .item {
     flex-direction: row;
   }
