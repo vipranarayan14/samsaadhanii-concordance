@@ -361,6 +361,13 @@ class Modal {
     this.contentEle = element.querySelector(".content");
 
     this.closeBtn.addEventListener("click", () => this.hide());
+    this.element.addEventListener("click", (e) => this.handleOverlayClick(e));
+  }
+
+  handleOverlayClick(e) {
+    if (e.target !== e.currentTarget) return;
+
+    this.hide();
   }
 
   setTitle(html) {
