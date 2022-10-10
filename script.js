@@ -31,7 +31,9 @@ const ganas = {
 const createItem = (dhatuDetails) =>
   `<div class="item" data-id="${dhatuDetails.id}">
     <div class="dhatu">
-      <span class="dhatu-name">${dhatuDetails.dhatu}</span>
+      <span class="dhatu-name">
+      ${dhatuDetails.muladhatu} (${dhatuDetails.dhatu})
+      </span>
       <span>${dhatuDetails.meaning}</span>
     </div>
     <div class="dhatu-details">
@@ -144,7 +146,7 @@ const getDhatuDetails = (id) =>
   dhatupatha.find((dhatuDetails) => dhatuDetails.id === id);
 
 const createDhatuModalTitle = (dhatuDetails) =>
-  `${dhatuDetails.dhatu} ${dhatuDetails.meaning}`;
+  `${dhatuDetails.muladhatu} (${dhatuDetails.dhatu}) ${dhatuDetails.meaning}`;
 
 const createDhatuModalContent = (details) => {
   const formsURL = createURL(FORMS_ENDPOINT, details.formsURL);
@@ -152,6 +154,7 @@ const createDhatuModalContent = (details) => {
 
   return `<div class="dhatu-all-details">
   <section class="basic-info">
+    <div><span class="name">मूलधातुः</span><span>${details.muladhatu}</span></div>
     <div><span class="name">धातुः</span><span>${details.dhatu}</span></div>
     <div><span class="name">अर्थः</span><span>${details.meaning}</span></div>
     <div><span class="name">गणः</span><span>${details.gana}</span></div>
