@@ -33,7 +33,9 @@
     - Instant: Filters as you type.
     - Compound: Each keyword (space-seperated) makes the results more specific.
     - Any encoding: Currently - WX/ITRANS/Deva
-    - Stricks to top when scrolled.
+    - (New) Results highlighted.
+    - (New) Searches all fields - dhatu/meaning/gana/padi/it and vritti numbers.
+    - Sticks to top when scrolled.
 - Sort
     - Sort by dhatu, artha or gana.
     - Sort happens on the client-side.
@@ -58,8 +60,3 @@
     - Web fonts: Same font is used whether the system has it or not.
 
 
-
-const sortDhatupatha = (dhatuList, sortBy) =>
-  ({ dhatu: sortByDhatu, gana: sortByGana, artha: sortByArtha }\[sortBy]?.(
-    dhatuList
-  ) ?? dhatuList);
