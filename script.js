@@ -179,17 +179,17 @@ const createDhatuModalContent = (details) => {
   <section class="vrittis">
     <h3>वृत्तयः</h3>
     <div>
-      <details>
+      <details class="madhaviya-details">
         <summary>माधवीयधातुवृत्तिः (${details.madhaviyaId})</summary>
-        <span class="madhaviya-info">Loading...</span>
+        <div class="content">Loading...</div>
       </details>
-      <details>
+      <details class="kshiratarangini-details">
         <summary>क्षीरतरङ्गिणी (${details.kshirataranginiId})</summary>
-        <span class="kshiratarangini-info">Loading...</span>
+        <div class="content">Loading...</div>
       </details>
-      <details>
+      <details class="dhatupradipa-details">
         <summary>धातुप्रदीपः (${details.dhatupradipaId})</summary>
-        <span class="dhatupradipa-info">Loading...</span>
+        <div class="content">Loading...</div>
       </details>
     </div>
   </section>`;
@@ -235,7 +235,7 @@ const createDhatuModalContent = (details) => {
 
 const setVritti = (vrittiName, content) => {
   const vrittiEle = document.querySelector(
-    `.dhatu-all-details .${vrittiName}-info`
+    `.dhatu-all-details .${vrittiName}-details .content`
   );
 
   if (!vrittiEle) return;
