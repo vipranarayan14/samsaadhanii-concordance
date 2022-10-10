@@ -8,10 +8,12 @@ const scrollToTopEle = document.querySelector(".scroll-to-top");
 
 const DHATUPATHA_PATH = "dhatupatha2.json";
 
-const CDN = "https://cdn.jsdelivr.net/gh/samsaadhanii/scl/dhaatupaatha";
-const VRITTI_ENDPOINT = `${CDN}/files`;
-const GRAPH_ENDPOINT = CDN;
-const FORMS_ENDPOINT = "https://sanskrit.uohyd.ac.in";
+const DHATUPATHA_ENDPOINT =
+  "https://cdn.jsdelivr.net/gh/samsaadhanii/scl/dhaatupaatha";
+const VRITTI_ENDPOINT = `${DHATUPATHA_ENDPOINT}/files`;
+const GRAPH_ENDPOINT = `${DHATUPATHA_ENDPOINT}/graphs`;
+const FORMS_ENDPOINT =
+  "https://sanskrit.uohyd.ac.in//cgi-bin/scl/skt_gen/verb/verb_gen_web.cgi";
 
 const ganas = {
   भ्वादिः: 1,
