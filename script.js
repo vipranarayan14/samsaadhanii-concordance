@@ -6,7 +6,7 @@ const searchInputEle = document.querySelector("#app .search-input");
 const modalEle = document.querySelector("#app .modal");
 const scrollToTopEle = document.querySelector(".scroll-to-top");
 
-const DHATUPATHA_PATH = "dhatupatha2.json";
+const DHATUPATHA_PATH = "dhatupatha.json";
 
 const DHATUPATHA_ENDPOINT =
   "https://cdn.jsdelivr.net/gh/samsaadhanii/scl/dhaatupaatha";
