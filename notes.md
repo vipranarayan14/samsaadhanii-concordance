@@ -11,6 +11,13 @@
     2. X remove halanta in keywords
 8. X scroll to top
 9. close modal on overlay click
+10. search muladhatu - vritti number
+11. hilite
+12. graph meaning
+13. english meaning (amba)
+14. no forms - no url (amba)
+15. graph section title (shylaja)
+16. details set overflow
 
 ===
 
