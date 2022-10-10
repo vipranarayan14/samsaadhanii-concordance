@@ -75,26 +75,12 @@ const sortByDhatu = (dhatuList) =>
     collator.compare(dhatuDetailsA.dhatu, dhatuDetailsB.dhatu)
   );
 
-const sortDhatupatha = (dhatuList, sortBy) => {
-  if (sortBy === "dhatu") {
-    dhatupathaSortedByDhatu = sortByDhatu(dhatuList);
+const sortDhatupatha = (dhatupatha, sortBy) => {
+  const sort = { dhatu: sortByDhatu, gana: sortByGana, artha: sortByArtha }[
+    sortBy
+  ];
 
-    return dhatupathaSortedByDhatu;
-  }
-
-  if (sortBy === "gana") {
-    dhatupathaSortedByGana = sortByGana(dhatuList);
-
-    return dhatupathaSortedByGana;
-  }
-
-  if (sortBy === "artha") {
-    dhatupathaSortedByArtha = sortByArtha(dhatuList);
-
-    return dhatupathaSortedByArtha;
-  }
-
-  return dhatuList;
+  return sort ? sort(dhatupatha) : dhatupatha;
 };
 
 const hiliteResults = (filteredList, keywordsSets) => {
@@ -117,7 +103,7 @@ const hiliteResults = (filteredList, keywordsSets) => {
   }));
 };
 
-const filterDhatupatha = (dhatuList, keywordsSets) =>
+const filterList = (dhatuList, keywordsSets) =>
   dhatuList.filter(({ tags }) =>
     keywordsSets.some((keywordsSet) =>
       keywordsSet.every((keyword) => tags.includes(keyword))
@@ -175,8 +161,8 @@ const addProperties = (dhatuList) =>
     tags: createTags(dhatuDetails),
   }));
 
-const getDhatuDetails = (id) =>
-  dhatupatha.find((dhatuDetails) => dhatuDetails.id === id);
+const getDhatuDetails = (dhatuList, id) =>
+  dhatuList.find((dhatuDetails) => dhatuDetails.id === id);
 
 const createDhatuModalTitle = (dhatuDetails) =>
   `${dhatuDetails.muladhatu} (${dhatuDetails.dhatu}) ${dhatuDetails.meaning}`;
@@ -415,7 +401,8 @@ class Modal {
   }
 }
 
-let dhatupatha = [];
+let $dhatupatha = [],
+  $dhatuList = [];
 
 const list = new List(listEle);
 const loader = new Loader(loaderEle);
@@ -428,9 +415,9 @@ const modal = new Modal(modalEle);
 
   const data = await result.json();
 
-  dhatupatha = addProperties(data);
+  $dhatupatha = $dhatuList = addProperties(data);
 
-  list.setData(dhatupatha);
+  list.setData($dhatuList);
 
   loader.hide();
 })();
@@ -440,19 +427,19 @@ filterFormEle.addEventListener("submit", (e) => e.preventDefault());
 sortSelectEle.addEventListener("change", (e) => {
   const sortBy = e.target.value;
 
-  const sortedList = sortDhatupatha(dhatupatha, sortBy);
+  $dhatuList = sortDhatupatha($dhatupatha, sortBy);
 
-  list.setData(sortedList);
+  list.setData($dhatuList);
 });
 
 searchInputEle.addEventListener("input", (e) => {
   const query = e.target.value;
 
-  if (!query) return list.setData(dhatupatha);
+  if (!query) return list.setData($dhatuList);
 
   const keywords = getKeywords(query);
 
-  const results = filterDhatupatha(dhatupatha, keywords);
+  const results = filterList($dhatuList, keywords);
 
   const hilitedResults = hiliteResults(results, keywords);
 
@@ -466,7 +453,7 @@ listEle.addEventListener("click", (e) => {
 
   const { id } = item.dataset;
 
-  const dhatuDetails = getDhatuDetails(id);
+  const dhatuDetails = getDhatuDetails($dhatuList, id);
 
   showDhatuDetails(dhatuDetails);
 });
