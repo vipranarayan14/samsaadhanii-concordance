@@ -106,15 +106,19 @@ const filterDhatupatha = (dhatuList, keywordsSets) =>
 
 const removeLastVirama = (keyword) => keyword.replace(/्$/, "");
 
-const getKeywords = (query) => {
-  const queryFromWx = Sanscript.t(query, "wx", "devanagari");
-  const queryFromItrans = Sanscript.t(query, "itrans", "devanagari");
+const removeSvaras = (dhatu) => dhatu.replace(/[॒॑]/g, "");
 
-  const keywordsSets = [query, queryFromWx, queryFromItrans].map((str) =>
-    str
-      .split(" ")
-      .filter((keyword) => !!keyword)
-      .map(removeLastVirama)
+const getKeywords = (query) => {
+  const simplifiedQuery = removeSvaras(query);
+  const queryFromWx = Sanscript.t(simplifiedQuery, "wx", "devanagari");
+  const queryFromItrans = Sanscript.t(simplifiedQuery, "itrans", "devanagari");
+
+  const keywordsSets = [simplifiedQuery, queryFromWx, queryFromItrans].map(
+    (str) =>
+      str
+        .split(" ")
+        .filter((keyword) => !!keyword)
+        .map(removeLastVirama)
   );
 
   return keywordsSets;
@@ -124,11 +128,10 @@ const makeId = (dhatuDetails, index) => {
   return `${dhatuDetails.dhatuId}_${index}`;
 };
 
-const cleanDhatu = (dhatu) => dhatu.replace(/[॒॑]/g, "");
-
 const createTags = (dhatuDetails) => {
-  const { dhatu, meaning, gana, padi, it } = dhatuDetails;
-  const tags = [cleanDhatu(dhatu), meaning, gana, padi, it].join(" ");
+  const { muladhatu, dhatu, meaning, gana, padi, it } = dhatuDetails;
+  const simplifiedMuladhatu = removeSvaras(muladhatu);
+  const tags = [simplifiedMuladhatu, dhatu, meaning, gana, padi, it].join(" ");
 
   return tags;
 };
