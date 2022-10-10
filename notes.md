@@ -11,7 +11,7 @@
     2. X remove halanta in keywords
 8. X scroll to top
 9. close modal on overlay click
-10. search muladhatu - vritti number
+10. X search muladhatu - vritti number
 11. hilite
 12. graph meaning
 13. english meaning (amba)
