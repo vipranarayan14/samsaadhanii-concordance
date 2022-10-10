@@ -133,7 +133,7 @@ const createTags = (dhatuDetails) => {
   return tags;
 };
 
-const createURL = (endpoint, path) => (path ? `${endpoint}${path}` : "/#");
+const createURL = (endpoint, path) => (path ? `${endpoint}${path}` : "");
 
 const addProperties = (dhatuList) =>
   dhatuList.map((dhatuDetails, id) => ({
@@ -152,7 +152,7 @@ const createDhatuModalContent = (details) => {
   const formsURL = createURL(FORMS_ENDPOINT, details.formsURL);
   const graphURL = createURL(GRAPH_ENDPOINT, details.graphURL);
 
-  return `<div class="dhatu-all-details">
+  const basicInfoSection = `
   <section class="basic-info">
     <div><span class="name">मूलधातुः</span><span>${details.muladhatu}</span></div>
     <div><span class="name">धातुः</span><span>${details.dhatu}</span></div>
@@ -160,8 +160,9 @@ const createDhatuModalContent = (details) => {
     <div><span class="name">गणः</span><span>${details.gana}</span></div>
     <div><span class="name">पदि</span><span>${details.padi}</span></div>
     <div><span class="name">इट्</span><span>${details.it}</span></div>
-  </section>
+  </section>`;
 
+  const vrittisSection = `
   <section class="vrittis">
     <h3>वृत्तयः</h3>
     <div>
@@ -178,25 +179,45 @@ const createDhatuModalContent = (details) => {
         <span class="dhatupradipa-info">Loading...</span>
       </details>
     </div>
-  </section>
+  </section>`;
 
+  const formsContent = !formsURL
+    ? "N/A"
+    : `<a class="link" href="${formsURL}" target="_blank">Show forms</a>`;
+
+  const formsSection = `
   <section class="forms">
     <h3>रूपाणि</h3>
     <div class="content">
-      <a class="link" href="${formsURL}" target="_blank">Show forms</a>
+      ${formsContent}
     </div>
-  </section>
+  </section>`;
 
+  const graphContent = !graphURL
+    ? "N/A"
+    : `
+    <a class="link" href="${graphURL}" target="_blank">Show full size</a>
+    <div class="image">
+      <img src="${graphURL}" alt="Graph" loading="lazy" />
+    </div>`;
+
+  const graphSection = `
   <section class="graph">
     <h3>Graph</h3>
     <div class="content">
-      <a class="link" href="${graphURL}" target="_blank">Show full size</a>
-        <div class="image">
-          <img src="${graphURL}" alt="Graph" loading="lazy" />
-        </div>
+      ${graphContent}
     </div>
-  </section>
-</div>`;
+  </section>`;
+
+  const modalContent = `
+  <div class="dhatu-all-details">
+    ${basicInfoSection}
+    ${vrittisSection}
+    ${formsSection}
+    ${graphSection}
+  </div>`;
+
+  return modalContent;
 };
 
 const setVritti = (vrittiName, content) => {
