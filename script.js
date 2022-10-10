@@ -128,10 +128,20 @@ const makeId = (dhatuDetails, index) => {
   return `${dhatuDetails.dhatuId}_${index}`;
 };
 
-const createTags = (dhatuDetails) => {
-  const { muladhatu, dhatu, meaning, gana, padi, it } = dhatuDetails;
-  const simplifiedMuladhatu = removeSvaras(muladhatu);
-  const tags = [simplifiedMuladhatu, dhatu, meaning, gana, padi, it].join(" ");
+const createTags = (details) => {
+  const simplifiedMuladhatu = removeSvaras(details.muladhatu);
+
+  const tags = [
+    simplifiedMuladhatu,
+    details.dhatu,
+    details.meaning,
+    details.gana,
+    details.padi,
+    details.it,
+    `m${details.madhaviyaId}`,
+    `k${details.kshirataranginiId}`,
+    `d${details.dhatupradipaId}`,
+  ].join(" ");
 
   return tags;
 };
