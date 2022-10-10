@@ -12,12 +12,14 @@
 8. X scroll to top
 9. X close modal on overlay click
 10. X search muladhatu - vritti number
-11. hilite
-12. graph meaning
-13. english meaning (amba)
-14. no forms - no url (amba)
-15. graph section title (shylaja)
-16. X details set overflow
+11. X details set overflow
+12. X hilite
+13. clear btn in filter
+14. fix modal scroll position
+15. graph meaning
+16. english meaning (amba)
+17. no forms - no url (amba)
+18. graph section title (shylaja)
 
 ===
 
@@ -54,3 +56,10 @@
 - Development
     - Only pure HTML, CSS and JS. No frameworks.
     - Web fonts: Same font is used whether the system has it or not.
+
+
+
+const sortDhatupatha = (dhatuList, sortBy) =>
+  ({ dhatu: sortByDhatu, gana: sortByGana, artha: sortByArtha }\[sortBy]?.(
+    dhatuList
+  ) ?? dhatuList);
