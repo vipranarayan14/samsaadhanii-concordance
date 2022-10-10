@@ -385,8 +385,8 @@ class Modal {
   }
 
   reset() {
-    this.titleEle.innerHTML = "";
-    this.contentEle.innerHTML = "";
+    this.setTitle("");
+    this.setContent("");
   }
 
   show() {
@@ -397,7 +397,8 @@ class Modal {
   hide() {
     this.element.classList.add("hidden");
     document.body.classList.remove("modal-open");
-    // this.reset();
+
+    this.reset();
   }
 }
 
