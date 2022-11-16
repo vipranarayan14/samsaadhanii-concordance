@@ -20,6 +20,9 @@
 16. english meaning (amba)
 17. no forms - no url (amba)
 18. graph section title (shylaja)
+19. Use component library like bootstrap. Why? a11y, quick/easy creating new comps, avoid reinventing wheel (in production 😉).
+20. Apply theme - yellow? (amba suggestion)
+21. Add anchors to filter results so that they can go the original list for comparing with nearby dhatus/dhatupathas.
 
 ===
 
