@@ -139,6 +139,7 @@ const createTags = (details) => {
 
   const tags = [
     simplifiedMuladhatu,
+    details.dhatuId,
     details.dhatu,
     details.meaning,
     details.gana,
