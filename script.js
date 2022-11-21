@@ -6,7 +6,7 @@ const searchInputEle = document.querySelector("#app .search-input");
 const modalEle = document.querySelector("#app .modal");
 const scrollToTopEle = document.querySelector(".scroll-to-top");
 
-const DHATUPATHA_PATH = "dhatupatha.json";
+const DHATUPATHA_URL = require("url:./dhatupatha.json");
 
 const DHATUPATHA_ENDPOINT =
   "https://cdn.jsdelivr.net/gh/samsaadhanii/scl/dhaatupaatha";
@@ -412,7 +412,7 @@ const modal = new Modal(modalEle);
 (async () => {
   loader.show();
 
-  const result = await fetch(DHATUPATHA_PATH);
+  const result = await fetch(DHATUPATHA_URL);
 
   const data = await result.json();
 

@@ -1,5 +1,13 @@
 {
   "name": "samsaadhanii-concordance",
   "version": "0.3.0",
-  "description": "A new UI for Samsaadhanii Concordance"
+  "description": "A new UI for Samsaadhanii Concordance",
+  "source": "index.html",
+  "scripts": {
+    "start": "parcel --port 3000",
+    "build": "parcel build"
+  },
+  "devDependencies": {
+    "parcel": "^2.8.0"
+  }
 }
