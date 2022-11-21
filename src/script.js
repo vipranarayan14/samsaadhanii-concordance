@@ -139,7 +139,6 @@ const createTags = (details) => {
 
   const tags = [
     simplifiedMuladhatu,
-    details.dhatuId,
     details.dhatu,
     details.meaning,
     details.gana,
@@ -148,6 +147,7 @@ const createTags = (details) => {
     `m${details.madhaviyaId}`,
     `k${details.kshirataranginiId}`,
     `d${details.dhatupradipaId}`,
+    details.dhatuId,
   ].join(" ");
 
   return tags;
