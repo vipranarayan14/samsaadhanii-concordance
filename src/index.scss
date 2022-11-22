@@ -26,7 +26,6 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: "Noto Sans", sans-serif;
   font-size: 16px;
   background-color: var(--bg);
 }
@@ -49,10 +48,6 @@ mark {
 
 header {
   text-align: center;
-}
-
-header h1 {
-  font-size: 1.5em;
 }
 
 #app {
@@ -370,10 +365,6 @@ header h1 {
 }
 
 @media (min-width: 650px) {
-  header h1 {
-    font-size: 1.8em;
-  }
-
   #app .list .item {
     flex-direction: row;
   }
