@@ -8,6 +8,11 @@
     "build": "parcel build"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.0",
     "parcel": "^2.8.0"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.6",
+    "bootstrap": "^5.2.3"
   }
 }

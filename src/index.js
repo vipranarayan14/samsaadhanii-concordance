@@ -1,3 +1,5 @@
+import "./bootstrap";
+
 import { filterList } from "./utils/filterList";
 import { hiliteResults } from "./utils/hiliteResults";
 import { sortDhatupatha } from "./utils/sortDhatupatha";
