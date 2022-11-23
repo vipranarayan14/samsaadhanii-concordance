@@ -16,26 +16,41 @@
     />
   </head>
   <body>
-    <header>
-      <h1 class="display-1 my-4">Concordance of Paninian&nbsp;Dhatuvrittis</h1>
+    <header class="text-center">
+      <h1 class="display-1 my-4 fw-bold">
+        Concordance of Paninian&nbsp;Dhatuvrittis
+      </h1>
     </header>
 
     <main id="app">
-      <form class="filter-form">
-        <div class="search-container">
+      <form
+        id="filter-form"
+        class="bg-background align-items-center d-flex position-sticky py-2 px-1 top-0"
+      >
+        <div class="bg-surface flex-fill rounded shadow">
           <input
             type="text"
             name="search"
-            class="search-input"
             placeholder="Type to filter..."
+            id="search-input"
+            class="bg-transparent border border-0 form-control p-2"
           />
         </div>
-        <div class="sort-container">
+        <div class="align-items-center d-flex ms-1">
           <div>
-            <label for="sort-select">Sort&nbsp;by</label>
+            <label
+              for="sort-select"
+              class="p-1 fw-bold text-uppercase"
+              style="font-size: 0.7em"
+              >Sort&nbsp;by</label
+            >
           </div>
           <div>
-            <select name="sort-select" class="sort-select">
+            <select
+              name="sort-select"
+              id="sort-select"
+              class="bg-surface form-select rounded"
+            >
               <option value="gana" selected>गणः</option>
               <option value="dhatu">धातुः</option>
               <option value="artha">अर्थः</option>

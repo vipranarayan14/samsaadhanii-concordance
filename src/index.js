@@ -19,9 +19,9 @@ const Globals = { CACHE: {} };
 
 const loaderEle = document.querySelector("#app .loader");
 const listEle = document.querySelector("#app .list");
-const filterFormEle = document.querySelector("#app .filter-form");
-const sortSelectEle = document.querySelector("#app .sort-select");
-const searchInputEle = document.querySelector("#app .search-input");
+const filterFormEle = document.querySelector("#app #filter-form");
+const sortSelectEle = document.querySelector("#app #sort-select");
+const searchInputEle = document.querySelector("#app #search-input");
 const modalEle = document.querySelector("#app .modal");
 const scrollToTopEle = document.querySelector(".scroll-to-top");
 

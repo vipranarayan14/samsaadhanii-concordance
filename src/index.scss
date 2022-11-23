@@ -23,19 +23,10 @@ body {
   height: 100%;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  background-color: var(--bg);
-}
-
 body.modal-open {
   overflow: hidden;
 }
 
-input,
-select,
 button {
   font-family: inherit;
   font-size: inherit;
@@ -46,60 +37,10 @@ mark {
   color: var(--mark-text);
 }
 
-header {
-  text-align: center;
-}
-
 #app {
   max-width: 700px;
   margin: auto;
   position: relative;
-}
-
-#app .filter-form {
-  position: sticky;
-  top: 0;
-  background-color: var(--bg);
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 10px 5px;
-}
-
-#app .filter-form .search-container {
-  box-shadow: var(--card-shadow);
-  background: var(--card-bg);
-  flex-grow: 1;
-  border-radius: var(--card-corner-radius);
-}
-
-#app .filter-form .search-container input {
-  width: 100%;
-  padding: 5px;
-  outline: none;
-  border: none;
-  margin: 0 auto;
-  border-radius: var(--card-corner-radius);
-}
-
-#app .filter-form .sort-container {
-  display: flex;
-  align-items: center;
-  margin-left: 5px;
-}
-
-#app .filter-form .sort-container label {
-  padding: 5px;
-  display: block;
-  text-transform: uppercase;
-  font-size: 0.7em;
-  font-weight: bold;
-}
-
-#app .filter-form .search-container input,
-#app .filter-form .sort-container select {
-  height: 40px;
-  font-size: 1em;
 }
 
 #app .list-container {
