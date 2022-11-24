@@ -18,7 +18,7 @@ import { setupThemeTester } from "./utils/setThemeTester";
 const Globals = { CACHE: {} };
 
 const loaderEle = document.querySelector("#app .loader");
-const listEle = document.querySelector("#app .list");
+const listEle = document.querySelector("#app #dhatu-list");
 const filterFormEle = document.querySelector("#app #filter-form");
 const sortSelectEle = document.querySelector("#app #sort-select");
 const searchInputEle = document.querySelector("#app #search-input");
@@ -62,13 +62,15 @@ const handleSearchInputEleInput = (e) => {
 };
 
 const handleListEleClick = (e) => {
-  const item = e.target.closest(".item");
+  const item = e.target.closest("[data-item-id]");
 
   if (!listEle.contains(item)) return;
 
-  const { id } = item.dataset;
+  e.preventDefault();
 
-  const dhatuDetails = getDhatuDetails(Globals.listData, id);
+  const { itemId } = item.dataset;
+
+  const dhatuDetails = getDhatuDetails(Globals.listData, itemId);
 
   const modalData = createDhatuModalData({
     ...dhatuDetails,

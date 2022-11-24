@@ -1,33 +1,42 @@
 import { scrollToTop } from "../utils/scrollToTop";
 
+const createVrittiInfo = (name, id) =>
+  `<div class="m-2">
+    <div class="vritti-name mb-1 text-on-surface" style="font-size: 0.9rem">
+      ${name}
+    </div>
+    <div>${id}</div>
+  </div>`;
+
 export const createItem = (dhatuDetails) =>
-  `<div class="item" data-id="${dhatuDetails.id}">
-    <div class="dhatu">
-      <span class="dhatu-name">
-      ${dhatuDetails.muladhatu} (${dhatuDetails.dhatu})
-      </span>
-      <span>${dhatuDetails.meaning}</span>
-    </div>
-    <div class="dhatu-details">
-      <div>${dhatuDetails.gana}</div>
-      <div>${dhatuDetails.padi}</div>
-      <div>${dhatuDetails.it}</div>
-    </div>
-    <div class="vritti-details">
-      <div>
-        <div class="vritti-name">माधवीयधातुवृत्तिः</div>
-        <div>${dhatuDetails.madhaviyaId}</div>
+  `<a 
+      href="#" 
+      data-item-id="${dhatuDetails.id}" 
+      class="list-group-item list-group-item-action p-1"
+    >
+    <div class="align-items-center d-flex flex-column flex-md-row text-center">
+      <div class="p-1 w-100" style="font-size: 1.1rem">
+        <span class="fw-bold">
+          ${dhatuDetails.muladhatu} (${dhatuDetails.dhatu})
+        </span>
+        <span>${dhatuDetails.meaning}</span>
       </div>
-      <div>
-        <div class="vritti-name">क्षीरतरङ्गिणी</div>
-        <div>${dhatuDetails.kshirataranginiId}</div>
+      
+      <div class="d-flex justify-content-between" style="font-size: 1.1rem">
+        <div class="m-2">${dhatuDetails.gana}</div>
+        <div class="m-2">${dhatuDetails.padi}</div>
+        <div class="m-2">${dhatuDetails.it}</div>
       </div>
-      <div>
-        <div class="vritti-name">धातुप्रदीपः</div>
-        <div>${dhatuDetails.dhatupradipaId}</div>
+
+      <hr class="border-secondary d-block d-md-none m-0 w-75">
+
+      <div class="d-flex justify-content-evenly ms-2 w-100">
+        ${createVrittiInfo("माधवीयधातुवृत्तिः", dhatuDetails.madhaviyaId)}
+        ${createVrittiInfo("क्षीरतरङ्गिणी", dhatuDetails.kshirataranginiId)}
+        ${createVrittiInfo("धातुप्रदीपः", dhatuDetails.dhatupradipaId)}
       </div>
     </div>
-   </div>`;
+  </a>`;
 
 export class List {
   constructor(element) {

@@ -22,45 +22,52 @@
       </h1>
     </header>
 
-    <main id="app">
-      <form
-        id="filter-form"
-        class="bg-background align-items-center d-flex position-sticky py-2 px-1 top-0"
-      >
-        <div class="bg-surface flex-fill rounded shadow">
-          <input
-            type="text"
-            name="search"
-            placeholder="Type to filter..."
-            id="search-input"
-            class="bg-transparent border border-0 form-control p-2"
-          />
-        </div>
-        <div class="align-items-center d-flex ms-1">
-          <div>
-            <label
-              for="sort-select"
-              class="p-1 fw-bold text-uppercase"
-              style="font-size: 0.7em"
-              >Sort&nbsp;by</label
-            >
-          </div>
-          <div>
-            <select
-              name="sort-select"
-              id="sort-select"
-              class="bg-surface form-select rounded"
-            >
-              <option value="gana" selected>गणः</option>
-              <option value="dhatu">धातुः</option>
-              <option value="artha">अर्थः</option>
-            </select>
-          </div>
-        </div>
-      </form>
+    <main id="app" class="container-sm p-0">
+      <div class="row justify-content-center">
+        <div class="col-sm-12" style="max-width: 700px">
+          <form
+            id="filter-form"
+            class="bg-background align-items-center d-flex sticky-top py-2 px-1"
+          >
+            <div class="bg-surface flex-fill rounded shadow">
+              <input
+                type="text"
+                name="search"
+                placeholder="Type to filter..."
+                id="search-input"
+                class="bg-transparent border border-0 form-control p-2"
+              />
+            </div>
+            <div class="align-items-center d-flex ms-1">
+              <div>
+                <label
+                  for="sort-select"
+                  class="p-1 fw-bold text-uppercase"
+                  style="font-size: 0.7em"
+                  >Sort&nbsp;by</label
+                >
+              </div>
+              <div>
+                <select
+                  name="sort-select"
+                  id="sort-select"
+                  class="bg-surface form-select rounded"
+                >
+                  <option value="gana" selected>गणः</option>
+                  <option value="dhatu">धातुः</option>
+                  <option value="artha">अर्थः</option>
+                </select>
+              </div>
+            </div>
+          </form>
 
-      <div class="list-container">
-        <div class="list"></div>
+          <div class="px-1 py-2">
+            <div
+              id="dhatu-list"
+              class="bg-surface list-group list-group-flush my-2 rounded shadow"
+            ></div>
+          </div>
+        </div>
       </div>
 
       <div class="loader">Loading...</div>

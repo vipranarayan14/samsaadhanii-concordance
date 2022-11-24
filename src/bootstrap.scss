@@ -3,7 +3,8 @@
 
 // 2. Include any default variable overrides here
 $primary: #000000;
-$secondary: #e7e7e7;
+$secondary: #aaaaaa;
+// $secondary: #e7e7e7;
 $background: #f0f0f0;
 $surface: #ffffff;
 
@@ -16,6 +17,10 @@ $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 // Sets the border-radius of 'rounded' utility class
 $border-radius: 0.175rem;
 
+// Sets lists border
+$list-group-border-color: $secondary;
+$list-group-border-width: 1.5px;
+
 // 3. Include remainder of required Bootstrap stylesheets
 @import "~bootstrap/scss/variables";
 
@@ -23,6 +28,7 @@ $border-radius: 0.175rem;
 $custom-colors: (
   "background": $background,
   "surface": $surface,
+  "on-surface": $gray-600,
 );
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
@@ -42,8 +48,8 @@ $display-font-sizes: map-merge($display-font-sizes, $custom-display-font-sizes);
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/type";
 // @import "~bootstrap/scss/images";
-// @import "~bootstrap/scss/containers";
-// @import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
 // @import "~bootstrap/scss/tables";
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/buttons";
@@ -59,7 +65,7 @@ $display-font-sizes: map-merge($display-font-sizes, $custom-display-font-sizes);
 // @import "~bootstrap/scss/badge";
 // @import "~bootstrap/scss/alert";
 // @import "~bootstrap/scss/progress";
-// @import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/list-group";
 // @import "~bootstrap/scss/close";
 // @import "~bootstrap/scss/toasts";
 // @import "~bootstrap/scss/modal";
@@ -69,7 +75,7 @@ $display-font-sizes: map-merge($display-font-sizes, $custom-display-font-sizes);
 // @import "~bootstrap/scss/spinners";
 // @import "~bootstrap/scss/offcanvas";
 // @import "~bootstrap/scss/placeholders";
-// @import "~bootstrap/scss/helpers";
+@import "~bootstrap/scss/helpers";
 
 // 7. Optionally include utilities API (margin, padding, etc.)
 @import "~bootstrap/scss/utilities/api";
