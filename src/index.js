@@ -77,9 +77,9 @@ const handleModalShow = (e) => {
   const modalBody = modal.querySelector(".modal-body");
 
   modalTitle.textContent = modalData.title;
-  modalBody.innerHTML = modalData.content;
+  modalBody.replaceChildren(modalData.content);
 
-  loadVrittis({ ...dhatuDetails, VRITTI_ENDPOINT });
+  loadVrittis(modal, { ...dhatuDetails, VRITTI_ENDPOINT });
 };
 
 const handleScrollToTopClick = (e) => scrollToTop();

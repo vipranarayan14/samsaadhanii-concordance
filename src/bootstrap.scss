@@ -35,6 +35,12 @@ $custom-display-font-sizes: (
 );
 $display-font-sizes: map-merge($display-font-sizes, $custom-display-font-sizes);
 
+// Sets accordion component's styles
+$accordion-bg: $surface;
+$accordion-border-width: 1px;
+$accordion-border-color: $secondary;
+$accordion-border-radius: $border-radius-sm;
+
 // 5. Include remainder of required parts
 @import "~bootstrap/scss/maps";
 @import "~bootstrap/scss/mixins";
@@ -56,10 +62,10 @@ $display-font-sizes: map-merge($display-font-sizes, $custom-display-font-sizes);
 // @import "~bootstrap/scss/nav";
 // @import "~bootstrap/scss/navbar";
 // @import "~bootstrap/scss/card";
-// @import "~bootstrap/scss/accordion";
+@import "~bootstrap/scss/accordion";
 // @import "~bootstrap/scss/breadcrumb";
 // @import "~bootstrap/scss/pagination";
-// @import "~bootstrap/scss/badge";
+@import "~bootstrap/scss/badge";
 // @import "~bootstrap/scss/alert";
 // @import "~bootstrap/scss/progress";
 @import "~bootstrap/scss/list-group";
