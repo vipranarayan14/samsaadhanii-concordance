@@ -27,12 +27,7 @@ mark {
   color: var(--mark-text);
 }
 
-#app .loader {
-  margin: 10px 0;
-  text-align: center;
-}
-
-#app .loader.hidden {
+#app .hidden {
   display: none;
 }
 

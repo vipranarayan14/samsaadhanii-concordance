@@ -16,7 +16,7 @@ import { setupThemeTester } from "./utils/setThemeTester";
 
 const Globals = { CACHE: {} };
 
-const loaderEle = document.querySelector("#app .loader");
+const loaderEle = document.querySelector("#app #loader");
 const listEle = document.querySelector("#app #dhatu-list");
 const filterFormEle = document.querySelector("#app #filter-form");
 const sortSelectEle = document.querySelector("#app #sort-select");
