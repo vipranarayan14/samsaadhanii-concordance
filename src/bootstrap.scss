@@ -14,9 +14,6 @@ $body-color: $primary;
 // Sets the box-shadow of 'shadow' utility class
 $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
-// Sets the border-radius of 'rounded' utility class
-$border-radius: 0.175rem;
-
 // Sets lists border
 $list-group-border-color: $secondary;
 $list-group-border-width: 1.5px;
@@ -53,7 +50,7 @@ $display-font-sizes: map-merge($display-font-sizes, $custom-display-font-sizes);
 // @import "~bootstrap/scss/tables";
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/buttons";
-// @import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/transitions";
 // @import "~bootstrap/scss/dropdown";
 // @import "~bootstrap/scss/button-group";
 // @import "~bootstrap/scss/nav";
@@ -66,9 +63,9 @@ $display-font-sizes: map-merge($display-font-sizes, $custom-display-font-sizes);
 // @import "~bootstrap/scss/alert";
 // @import "~bootstrap/scss/progress";
 @import "~bootstrap/scss/list-group";
-// @import "~bootstrap/scss/close";
+@import "~bootstrap/scss/close";
 // @import "~bootstrap/scss/toasts";
-// @import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/modal";
 // @import "~bootstrap/scss/tooltip";
 // @import "~bootstrap/scss/popover";
 // @import "~bootstrap/scss/carousel";

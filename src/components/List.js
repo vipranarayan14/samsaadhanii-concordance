@@ -13,6 +13,8 @@ export const createItem = (dhatuDetails) =>
       href="#" 
       data-item-id="${dhatuDetails.id}" 
       class="list-group-item list-group-item-action p-1"
+      data-bs-toggle="modal"
+      data-bs-target="#dhatu-details-modal"
     >
     <div class="align-items-center d-flex flex-column flex-md-row text-center">
       <div class="p-1 w-100" style="font-size: 1.1rem">

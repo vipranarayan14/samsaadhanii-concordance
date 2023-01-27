@@ -7,7 +7,6 @@ import { getKeywords } from "./utils/getKeywords";
 import { addProperties } from "./utils/addProperties";
 import { Loader } from "./components/Loader";
 import { List } from "./components/List";
-import { Modal } from "./components/Modal";
 import { scrollToTop } from "./utils/scrollToTop";
 import { getDhatuDetails } from "./utils/getDhatuDetails";
 import { loadVrittis } from "./utils/loadVrittis";
@@ -22,7 +21,7 @@ const listEle = document.querySelector("#app #dhatu-list");
 const filterFormEle = document.querySelector("#app #filter-form");
 const sortSelectEle = document.querySelector("#app #sort-select");
 const searchInputEle = document.querySelector("#app #search-input");
-const modalEle = document.querySelector("#app .modal");
+const dhatuDetailsModal = document.querySelector("#dhatu-details-modal");
 const scrollToTopEle = document.querySelector(".scroll-to-top");
 
 const DHATUPATHA_URL = require("url:./dhatupatha.json");
@@ -35,7 +34,6 @@ const FORMS_ENDPOINT =
 
 const list = new List(listEle);
 const loader = new Loader(loaderEle);
-const modal = new Modal(modalEle);
 
 const handleFilterFormEleClick = (e) => e.preventDefault();
 
@@ -61,12 +59,8 @@ const handleSearchInputEleInput = (e) => {
   list.setData(hilitedResults);
 };
 
-const handleListEleClick = (e) => {
-  const item = e.target.closest("[data-item-id]");
-
-  if (!listEle.contains(item)) return;
-
-  e.preventDefault();
+const handleModalShow = (e) => {
+  const item = e.relatedTarget;
 
   const { itemId } = item.dataset;
 
@@ -78,9 +72,12 @@ const handleListEleClick = (e) => {
     GRAPH_ENDPOINT,
   });
 
-  modal.setData(modalData);
+  const modal = e.target;
+  const modalTitle = modal.querySelector(".modal-title");
+  const modalBody = modal.querySelector(".modal-body");
 
-  modal.show();
+  modalTitle.textContent = modalData.title;
+  modalBody.innerHTML = modalData.content;
 
   loadVrittis({ ...dhatuDetails, VRITTI_ENDPOINT });
 };
@@ -91,8 +88,8 @@ const initEventListeners = () => {
   filterFormEle.addEventListener("submit", handleFilterFormEleClick);
   sortSelectEle.addEventListener("change", handleSortSelectEleChange);
   searchInputEle.addEventListener("input", handleSearchInputEleInput);
-  listEle.addEventListener("click", handleListEleClick);
   scrollToTopEle.addEventListener("click", handleScrollToTopClick);
+  dhatuDetailsModal.addEventListener("show.bs.modal", handleModalShow);
 };
 
 loader.show();

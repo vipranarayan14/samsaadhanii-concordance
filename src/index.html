@@ -22,102 +22,105 @@
       </h1>
     </header>
 
-    <main id="app" class="container-sm p-0">
-      <div class="row justify-content-center">
-        <div class="col-sm-12" style="max-width: 700px">
-          <form
-            id="filter-form"
-            class="bg-background align-items-center d-flex sticky-top py-2 px-1"
-          >
-            <div class="bg-surface flex-fill rounded shadow">
-              <input
-                type="text"
-                name="search"
-                placeholder="Type to filter..."
-                id="search-input"
-                class="bg-transparent border border-0 form-control p-2"
-              />
-            </div>
-            <div class="align-items-center d-flex ms-1">
-              <div>
-                <label
-                  for="sort-select"
-                  class="p-1 fw-bold text-uppercase"
-                  style="font-size: 0.7em"
-                  >Sort&nbsp;by</label
-                >
-              </div>
-              <div>
-                <select
-                  name="sort-select"
-                  id="sort-select"
-                  class="bg-surface form-select rounded"
-                >
-                  <option value="gana" selected>गणः</option>
-                  <option value="dhatu">धातुः</option>
-                  <option value="artha">अर्थः</option>
-                </select>
-              </div>
-            </div>
-          </form>
-
-          <div class="px-1 py-2">
-            <div
-              id="dhatu-list"
-              class="bg-surface list-group list-group-flush my-2 rounded shadow"
-            ></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="loader">Loading...</div>
-
-      <div class="modal hidden">
-        <div class="window">
-          <div class="header">
-            <h2 class="title"></h2>
-            <button class="close-btn">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M6 18L18 6M6 6L18 18"
-                  stroke="#0F172A"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+    <main id="app">
+      <section class="container-sm p-0">
+        <div class="row justify-content-center">
+          <div class="col-sm-12" style="max-width: 700px">
+            <!-- Search & Filter -->
+            <form
+              id="filter-form"
+              class="bg-background align-items-center d-flex sticky-top py-2 px-1"
+            >
+              <div class="bg-surface flex-fill rounded-1 shadow">
+                <input
+                  type="text"
+                  name="search"
+                  placeholder="Type to filter..."
+                  id="search-input"
+                  class="bg-transparent border border-0 form-control p-2"
                 />
-                <!-- https://github.com/tailwindlabs/heroicons/blob/master/src/24/outline/x-mark.svg -->
-              </svg>
-            </button>
+              </div>
+              <div class="align-items-center d-flex ms-1">
+                <div>
+                  <label
+                    for="sort-select"
+                    class="p-1 fw-bold text-uppercase"
+                    style="font-size: 0.7em"
+                    >Sort&nbsp;by</label
+                  >
+                </div>
+                <div>
+                  <select
+                    name="sort-select"
+                    id="sort-select"
+                    class="bg-surface form-select rounded-1"
+                  >
+                    <option value="gana" selected>गणः</option>
+                    <option value="dhatu">धातुः</option>
+                    <option value="artha">अर्थः</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+
+            <!-- Dhatu List -->
+            <div class="px-1 py-2">
+              <div
+                id="dhatu-list"
+                class="bg-surface list-group list-group-flush my-2 rounded-1 shadow"
+              ></div>
+            </div>
           </div>
-          <div class="content"></div>
+        </div>
+
+        <!-- Loader -->
+        <div class="loader">Loading...</div>
+      </section>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="dhatu-details-modal"
+        tabindex="-1"
+        aria-labelledby="dhatu-details-modal-label"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content bg-surface rounded-1">
+            <div class="modal-header sticky-top bg-surface rounded-top-1">
+              <h1 class="modal-title fs-5" id="dhatu-details-modal-label"></h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body"></div>
+          </div>
         </div>
       </div>
-    </main>
 
-    <button class="scroll-to-top">
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.5 10.5L12 3M12 3L19.5 10.5M12 3V21"
-          stroke="#0F172A"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-        <!-- src: https://github.com/tailwindlabs/heroicons/blob/master/src/24/outline/arrow-up.svg -->
-      </svg>
-    </button>
+      <!-- Scroll-to-top -->
+      <button class="scroll-to-top">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4.5 10.5L12 3M12 3L19.5 10.5M12 3V21"
+            stroke="#0F172A"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <!-- src: https://github.com/tailwindlabs/heroicons/blob/master/src/24/outline/arrow-up.svg -->
+        </svg>
+      </button>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@indic-transliteration/sanscript@1.2/sanscript.min.js"></script>
     <script src="index.js" type="module"></script>
