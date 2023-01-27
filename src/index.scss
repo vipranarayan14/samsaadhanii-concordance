@@ -11,6 +11,7 @@
   --divider-color: #e7e7e7;
   --mark-bg: #ffff00;
   --mark-text: #000000;
+  --zindex-fixed: #{$zindex-fixed};
 }
 
 body.modal-open {
@@ -29,23 +30,6 @@ mark {
 
 #app .hidden {
   display: none;
-}
-
-.scroll-to-top {
-  display: flex;
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  z-index: 2;
-  font-size: 1.1rem;
-  border: none;
-  outline: none;
-  box-shadow: var(--card-shadow);
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 3px;
-  color: #0e0e0e;
-  background-color: #c9c9c9;
 }
 
 // @media (min-width: 650px) {

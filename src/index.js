@@ -22,7 +22,7 @@ const filterFormEle = document.querySelector("#app #filter-form");
 const sortSelectEle = document.querySelector("#app #sort-select");
 const searchInputEle = document.querySelector("#app #search-input");
 const dhatuDetailsModal = document.querySelector("#dhatu-details-modal");
-const scrollToTopEle = document.querySelector(".scroll-to-top");
+const scrollToTopEle = document.querySelector("#app #scroll-to-top");
 
 const DHATUPATHA_URL = require("url:./dhatupatha.json");
 const CONCORDANCE_ENDPOINT =
