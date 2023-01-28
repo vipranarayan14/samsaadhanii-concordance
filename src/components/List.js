@@ -1,44 +1,30 @@
 import { scrollToTop } from "../utils/scrollToTop";
 
-const createVrittiInfo = (name, id) =>
-  `<div class="m-2">
-    <div class="vritti-name mb-1 text-on-surface" style="font-size: 0.9rem">
-      ${name}
-    </div>
-    <div>${id}</div>
-  </div>`;
+const createDhatuListItem = (dhatuDetails) => {
+  const { id, muladhatu, dhatu, ...slotData } = dhatuDetails;
 
-export const createItem = (dhatuDetails) =>
-  `<a 
-      href="#" 
-      data-item-id="${dhatuDetails.id}" 
-      class="list-group-item list-group-item-action p-1"
-      data-bs-toggle="modal"
-      data-bs-target="#dhatu-details-modal"
-    >
-    <div class="align-items-center d-flex flex-column flex-md-row text-center">
-      <div class="p-1 w-100" style="font-size: 1.1rem">
-        <span class="fw-bold">
-          ${dhatuDetails.muladhatu} (${dhatuDetails.dhatu})
-        </span>
-        <span>${dhatuDetails.meaning}</span>
-      </div>
-      
-      <div class="d-flex justify-content-between" style="font-size: 1.1rem">
-        <div class="m-2">${dhatuDetails.gana}</div>
-        <div class="m-2">${dhatuDetails.padi}</div>
-        <div class="m-2">${dhatuDetails.it}</div>
-      </div>
+  const template = document.querySelector("#dhatu-list-item");
 
-      <hr class="border-secondary d-block d-md-none m-0 w-75">
+  const dhatuListItem = template.content.cloneNode(true);
 
-      <div class="d-flex justify-content-evenly ms-2 w-100">
-        ${createVrittiInfo("माधवीयधातुवृत्तिः", dhatuDetails.madhaviyaId)}
-        ${createVrittiInfo("क्षीरतरङ्गिणी", dhatuDetails.kshirataranginiId)}
-        ${createVrittiInfo("धातुप्रदीपः", dhatuDetails.dhatupradipaId)}
-      </div>
-    </div>
-  </a>`;
+  const getSlot = (query) => dhatuListItem.querySelector(query);
+
+  for (const [slotName, slotValue] of Object.entries(slotData)) {
+    const slot = getSlot(`[data-slot="${slotName}"]`);
+
+    if (slot) slot.innerHTML = slotValue;
+  }
+
+  const idSlot = getSlot('[data-slot="item-id"]');
+
+  idSlot.setAttribute("data-item-id", id);
+
+  const dhatuSlot = getSlot('[data-slot="dhatu"]');
+
+  dhatuSlot.innerHTML = `${muladhatu} (${dhatu})`;
+
+  return dhatuListItem;
+};
 
 export class List {
   constructor(element) {
@@ -63,9 +49,9 @@ export class List {
   }
 
   setContent(fromId, toId) {
-    const content = this.list.slice(fromId, toId).map(createItem).join("");
+    const items = this.list.slice(fromId, toId).map(createDhatuListItem);
 
-    this.element.insertAdjacentHTML("beforeend", content);
+    this.element.append(...items);
 
     this.lastLoadedId = toId;
   }

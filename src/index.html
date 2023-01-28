@@ -130,6 +130,65 @@
       </button>
     </main>
 
+    <template id="dhatu-list-item">
+      <a
+        href="#"
+        class="list-group-item list-group-item-action p-1"
+        data-slot="item-id"
+        data-bs-toggle="modal"
+        data-bs-target="#dhatu-details-modal"
+      >
+        <div
+          class="align-items-center d-flex flex-column flex-md-row text-center"
+        >
+          <div class="p-1 w-100" style="font-size: 1.1rem">
+            <span class="fw-bold" data-slot="dhatu">
+              ${dhatuDetails.muladhatu} (${dhatuDetails.dhatu})
+            </span>
+            <span data-slot="meaning">${dhatuDetails.meaning}</span>
+          </div>
+
+          <div class="d-flex justify-content-between" style="font-size: 1.1rem">
+            <div class="m-2" data-slot="gana">${dhatuDetails.gana}</div>
+            <div class="m-2" data-slot="padi">${dhatuDetails.padi}</div>
+            <div class="m-2" data-slot="it">${dhatuDetails.it}</div>
+          </div>
+
+          <hr class="border-secondary d-block d-md-none m-0 w-75" />
+
+          <div class="d-flex justify-content-evenly ms-2 w-100">
+            <div class="m-2">
+              <div
+                class="vritti-name mb-1 text-on-surface"
+                style="font-size: 0.9rem"
+              >
+                माधवीयधातुवृत्तिः
+              </div>
+              <div data-slot="madhaviyaId"></div>
+            </div>
+            <div class="m-2">
+              <div
+                class="vritti-name mb-1 text-on-surface"
+                style="font-size: 0.9rem"
+              >
+                क्षीरतरङ्गिणी
+              </div>
+              <div data-slot="kshirataranginiId"></div>
+            </div>
+            <div class="m-2">
+              <div
+                class="vritti-name mb-1 text-on-surface"
+                style="font-size: 0.9rem"
+              >
+                धातुप्रदीपः
+              </div>
+              <div data-slot="dhatupradipaId"></div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </template>
+
     <template id="dhatu-all-details">
       <div>
         <section class="container-fluid px-0" style="font-size: 1.1rem">
@@ -267,7 +326,7 @@
 
         <section class="forms">
           <h2 class="py-2 my-3 fs-5 fw-bold border-bottom">रूपाणि</h2>
-          <div class="text-center">
+          <div class="text-center" data-slot="forms">
             <a
               class="btn btn-outline-primary rounded-1"
               href="#"
