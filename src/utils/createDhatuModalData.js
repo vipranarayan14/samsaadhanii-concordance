@@ -4,72 +4,41 @@ const createDhatuModalTitle = (details) =>
   `${details.muladhatu} (${details.dhatu}) ${details.meaning}`;
 
 const createDhatuModalContent = (details, formsURL, graphURL) => {
-  const basicInfoSection = `
-  <section class="basic-info">
-    <div><span class="name">मूलधातुः</span><span>${details.muladhatu}</span></div>
-    <div><span class="name">धातुः</span><span>${details.dhatu}</span></div>
-    <div><span class="name">अर्थः</span><span>${details.meaning}</span></div>
-    <div><span class="name">गणः</span><span>${details.gana}</span></div>
-    <div><span class="name">पदि</span><span>${details.padi}</span></div>
-    <div><span class="name">इट्</span><span>${details.it}</span></div>
-  </section>`;
+  const slotData = details;
 
-  const vrittisSection = `
-  <section class="vrittis">
-    <h3>वृत्तयः</h3>
-    <div>
-      <details class="madhaviya-details">
-        <summary>माधवीयधातुवृत्तिः (${details.madhaviyaId})</summary>
-        <div class="content">Loading...</div>
-      </details>
-      <details class="kshiratarangini-details">
-        <summary>क्षीरतरङ्गिणी (${details.kshirataranginiId})</summary>
-        <div class="content">Loading...</div>
-      </details>
-      <details class="dhatupradipa-details">
-        <summary>धातुप्रदीपः (${details.dhatupradipaId})</summary>
-        <div class="content">Loading...</div>
-      </details>
-    </div>
-  </section>`;
+  const template = document.querySelector("#dhatu-all-details");
 
-  const formsContent = !formsURL
-    ? "N/A"
-    : `<a class="link" href="${formsURL}" target="_blank">Show forms</a>`;
+  const dhatuModalContent = template.content.cloneNode(true);
 
-  const formsSection = `
-  <section class="forms">
-    <h3>रूपाणि</h3>
-    <div class="content">
-      ${formsContent}
-    </div>
-  </section>`;
+  const getSlot = (query) => dhatuModalContent.querySelector(query);
 
-  const graphContent = !graphURL
-    ? "N/A"
-    : `
-    <a class="link" href="${graphURL}" target="_blank">Show full size</a>
-    <div class="image">
-      <img src="${graphURL}" alt="Graph" loading="lazy" />
-    </div>`;
+  for (const [slotName, slotValue] of Object.entries(slotData)) {
+    const slot = getSlot(`[data-slot="${slotName}"]`);
 
-  const graphSection = `
-  <section class="graph">
-    <h3>Graph</h3>
-    <div class="content">
-      ${graphContent}
-    </div>
-  </section>`;
+    if (slot) slot.textContent = slotValue;
+  }
 
-  const modalContent = `
-  <div class="dhatu-all-details">
-    ${basicInfoSection}
-    ${vrittisSection}
-    ${formsSection}
-    ${graphSection}
-  </div>`;
+  const formsSlot = getSlot('[data-slot="forms"]');
+  const formsLinkSlot = getSlot('[data-slot="formsLink"]');
 
-  return modalContent;
+  if (!formsURL) {
+    formsSlot.innerHTML = "N/A";
+  } else {
+    formsLinkSlot.href = formsURL;
+  }
+
+  const graphSlot = getSlot('[data-slot="graph"]');
+  const graphLinkSlot = getSlot('[data-slot="graphLink"]');
+  const graphImgSlot = getSlot('[data-slot="graphImg"]');
+
+  if (!graphURL) {
+    graphSlot.innerHTML = "N/A";
+  } else {
+    graphLinkSlot.href = graphURL;
+    graphImgSlot.src = graphURL;
+  }
+
+  return dhatuModalContent;
 };
 
 export const createDhatuModalData = (details) => {

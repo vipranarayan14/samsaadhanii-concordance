@@ -1,0 +1,33 @@
+@import "bootstrap.scss";
+
+:root {
+  --bg: #f0f0f0;
+  --card-bg: #ffffff;
+  /* --bg-card-hover: #f8f9fa; */
+  --card-hover-bg: #f4f5f7;
+  /* --card-hover-bg: rgb(238, 238, 238); */
+  --card-corner-radius: 3px;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --divider-color: #e7e7e7;
+  --mark-bg: #ffff00;
+  --mark-text: #000000;
+  --zindex-fixed: #{$zindex-fixed};
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+mark {
+  background-color: var(--mark-bg);
+  color: var(--mark-text);
+}
+
+#app .hidden {
+  display: none;
+}

@@ -1,7 +1,5 @@
-const setVritti = (vrittiName, content) => {
-  const vrittiEle = document.querySelector(
-    `.dhatu-all-details .${vrittiName}-details .content`
-  );
+const setVritti = (targetEle, vrittiName, content) => {
+  const vrittiEle = targetEle.querySelector(`[data-slot="${vrittiName}"]`);
 
   if (!vrittiEle) return;
 
@@ -14,11 +12,11 @@ const vrittiCodes = {
   dhatupradipa: "XA",
 };
 
-export const loadVrittis = (details) => {
+export const loadVrittis = (targetEle, details) => {
   Object.entries(vrittiCodes).forEach(async ([vrittiName, vrittiCode]) => {
     const id = details[`${vrittiName}Id`];
 
-    if (!id || id === "-") return setVritti(vrittiName, "N/A");
+    if (!id || id === "-") return setVritti(targetEle, vrittiName, "N/A");
 
     const vrittiURL = `${details.VRITTI_ENDPOINT}/${vrittiCode}${id}.html`;
 
@@ -26,6 +24,6 @@ export const loadVrittis = (details) => {
 
     const content = await result.text();
 
-    setVritti(vrittiName, content);
+    setVritti(targetEle, vrittiName, content);
   });
 };

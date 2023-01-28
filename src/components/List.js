@@ -1,33 +1,30 @@
 import { scrollToTop } from "../utils/scrollToTop";
 
-export const createItem = (dhatuDetails) =>
-  `<div class="item" data-id="${dhatuDetails.id}">
-    <div class="dhatu">
-      <span class="dhatu-name">
-      ${dhatuDetails.muladhatu} (${dhatuDetails.dhatu})
-      </span>
-      <span>${dhatuDetails.meaning}</span>
-    </div>
-    <div class="dhatu-details">
-      <div>${dhatuDetails.gana}</div>
-      <div>${dhatuDetails.padi}</div>
-      <div>${dhatuDetails.it}</div>
-    </div>
-    <div class="vritti-details">
-      <div>
-        <div class="vritti-name">माधवीयधातुवृत्तिः</div>
-        <div>${dhatuDetails.madhaviyaId}</div>
-      </div>
-      <div>
-        <div class="vritti-name">क्षीरतरङ्गिणी</div>
-        <div>${dhatuDetails.kshirataranginiId}</div>
-      </div>
-      <div>
-        <div class="vritti-name">धातुप्रदीपः</div>
-        <div>${dhatuDetails.dhatupradipaId}</div>
-      </div>
-    </div>
-   </div>`;
+const createDhatuListItem = (dhatuDetails) => {
+  const { id, muladhatu, dhatu, ...slotData } = dhatuDetails;
+
+  const template = document.querySelector("#dhatu-list-item");
+
+  const dhatuListItem = template.content.cloneNode(true);
+
+  const getSlot = (query) => dhatuListItem.querySelector(query);
+
+  for (const [slotName, slotValue] of Object.entries(slotData)) {
+    const slot = getSlot(`[data-slot="${slotName}"]`);
+
+    if (slot) slot.innerHTML = slotValue;
+  }
+
+  const idSlot = getSlot('[data-slot="item-id"]');
+
+  idSlot.setAttribute("data-item-id", id);
+
+  const dhatuSlot = getSlot('[data-slot="dhatu"]');
+
+  dhatuSlot.innerHTML = `${muladhatu} (${dhatu})`;
+
+  return dhatuListItem;
+};
 
 export class List {
   constructor(element) {
@@ -52,9 +49,9 @@ export class List {
   }
 
   setContent(fromId, toId) {
-    const content = this.list.slice(fromId, toId).map(createItem).join("");
+    const items = this.list.slice(fromId, toId).map(createDhatuListItem);
 
-    this.element.insertAdjacentHTML("beforeend", content);
+    this.element.append(...items);
 
     this.lastLoadedId = toId;
   }
