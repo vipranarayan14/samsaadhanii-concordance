@@ -18,6 +18,9 @@ $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 $list-group-border-color: $secondary;
 $list-group-border-width: 1.5px;
 
+// Sets modal component's styles
+$modal-header-padding-y: 0.75rem;
+
 // 3. Include remainder of required Bootstrap stylesheets
 @import "~bootstrap/scss/variables";
 
