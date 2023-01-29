@@ -8,6 +8,7 @@ const createTags = (details) => {
   const simplifiedMuladhatu = removeSvaras(details.muladhatu);
 
   const tags = [
+    details.dhatuId,
     simplifiedMuladhatu,
     details.dhatu,
     details.meaning,
@@ -17,7 +18,6 @@ const createTags = (details) => {
     `m${details.madhaviyaId}`,
     `k${details.kshirataranginiId}`,
     `d${details.dhatupradipaId}`,
-    details.dhatuId,
   ].join(" ");
 
   return tags;
