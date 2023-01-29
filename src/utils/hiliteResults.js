@@ -1,6 +1,17 @@
+import { svarasRegex } from "./utils";
+
+const fillSvaras = (keyword) => keyword.split("").join(`${svarasRegex}?`);
+
+const makeKeywordsRegex = (keywords) => {
+  const keywordsRegexStr = keywords.map(fillSvaras).join("|");
+
+  return new RegExp(keywordsRegexStr, "g");
+};
+
 export const hiliteResults = (filteredList, { keywordsSets }) => {
   const keywords = keywordsSets.flat(1);
-  const keywordsRegex = new RegExp(`${keywords.join("|")}`, "g");
+
+  const keywordsRegex = makeKeywordsRegex(keywords);
 
   const hilite = (text) => text.replace(keywordsRegex, "<mark>$&</mark>");
 
