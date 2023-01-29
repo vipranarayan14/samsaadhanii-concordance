@@ -3,7 +3,7 @@ import "./bootstrap";
 import { filterList } from "./utils/filterList";
 import { hiliteResults } from "./utils/hiliteResults";
 import { sortDhatupatha } from "./utils/sortDhatupatha";
-import { getKeywords } from "./utils/getKeywords";
+import { getQueryDetails } from "./utils/getQueryDetails";
 import { addProperties } from "./utils/addProperties";
 import { Loader } from "./components/Loader";
 import { List } from "./components/List";
@@ -53,11 +53,11 @@ const handleSearchInputEleInput = (e) => {
 
   if (!query) return resetList();
 
-  const keywords = getKeywords(query);
+  const queryDetails = getQueryDetails(query);
 
-  const results = filterList(Globals.listData, keywords);
+  const results = filterList(Globals.listData, queryDetails);
 
-  const hilitedResults = hiliteResults(results, keywords);
+  const hilitedResults = hiliteResults(results, queryDetails);
 
   list.setData(hilitedResults);
 };

@@ -1,4 +1,4 @@
-export const hiliteResults = (filteredList, keywordsSets) => {
+export const hiliteResults = (filteredList, { keywordsSets }) => {
   const keywords = keywordsSets.flat(1);
   const keywordsRegex = new RegExp(`${keywords.join("|")}`, "g");
 

@@ -8,7 +8,25 @@ const scoreItemWithKeywords = (keywordsSets) => (item) => {
   return { item, score };
 };
 
-export const filterList = (dhatuList, keywordsSets) => {
+const getListField = (queryField) =>
+  ({
+    id: "dhatuId",
+    m: "madhaviyaId",
+    k: "kshirataranginiId",
+    d: "dhatupradipaId",
+  }[queryField]);
+
+export const filterList = (dhatuList, queryDetails) => {
+  const { keywordsWithFields, keywordsSets } = queryDetails;
+
+  if (queryDetails.hasFields) {
+    return dhatuList.filter((item) =>
+      keywordsWithFields.every(
+        ({ field, value }) => item[getListField(field)] === value
+      )
+    );
+  }
+
   const listScored = dhatuList.map(scoreItemWithKeywords(keywordsSets));
 
   const listSortedByScore = listScored
