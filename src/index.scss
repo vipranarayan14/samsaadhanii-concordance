@@ -14,10 +14,6 @@
   --zindex-fixed: #{$zindex-fixed};
 }
 
-body.modal-open {
-  overflow: hidden;
-}
-
 button {
   font-family: inherit;
   font-size: inherit;
@@ -31,4 +27,10 @@ mark {
 
 #app .hidden {
   display: none;
+}
+
+#app .input-group:focus-within {
+  border-color: #{$input-focus-border-color};
+  box-shadow: #{$input-focus-box-shadow};
+  transition: #{$input-transition};
 }

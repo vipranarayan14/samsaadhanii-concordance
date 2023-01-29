@@ -44,6 +44,22 @@ $accordion-border-width: 1px;
 $accordion-border-color: $secondary;
 $accordion-border-radius: $border-radius-sm;
 
+// New utility classes for opacity with hover & focus states
+$utilities: (
+  "opacity": (
+    property: opacity,
+    class: opacity,
+    state: hover focus,
+    values: (
+      0: 0,
+      25: 0.25,
+      50: 0.5,
+      75: 0.75,
+      100: 1,
+    ),
+  ),
+);
+
 // 5. Include remainder of required parts
 @import "~bootstrap/scss/maps";
 @import "~bootstrap/scss/mixins";

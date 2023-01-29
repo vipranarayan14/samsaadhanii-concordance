@@ -21,7 +21,8 @@ const listEle = document.querySelector("#app #dhatu-list");
 const filterFormEle = document.querySelector("#app #filter-form");
 const sortSelectEle = document.querySelector("#app #sort-select");
 const searchInputEle = document.querySelector("#app #search-input");
-const dhatuDetailsModal = document.querySelector("#dhatu-details-modal");
+const clearSearchBtnEle = document.querySelector("#app #clear-search-btn");
+const dhatuDetailsModalEle = document.querySelector("#dhatu-details-modal");
 const scrollToTopEle = document.querySelector("#app #scroll-to-top");
 
 const DHATUPATHA_URL = require("url:./dhatupatha.json");
@@ -35,7 +36,9 @@ const FORMS_ENDPOINT =
 const list = new List(listEle);
 const loader = new Loader(loaderEle);
 
-const handleFilterFormEleClick = (e) => e.preventDefault();
+const resetList = () => list.setData(Globals.listData);
+
+const handleFilterFormEleSubmit = (e) => e.preventDefault();
 
 const handleSortSelectEleChange = (e) => {
   const sortBy = e.target.value;
@@ -48,7 +51,7 @@ const handleSortSelectEleChange = (e) => {
 const handleSearchInputEleInput = (e) => {
   const query = e.target.value;
 
-  if (!query) return list.setData(Globals.listData);
+  if (!query) return resetList();
 
   const keywords = getKeywords(query);
 
@@ -82,14 +85,22 @@ const handleModalShow = (e) => {
   loadVrittis(modal, { ...dhatuDetails, VRITTI_ENDPOINT });
 };
 
+const handleClearSearchBtnEleClick = (e) => {
+  searchInputEle.value = "";
+  searchInputEle.focus();
+
+  resetList();
+};
+
 const handleScrollToTopClick = (e) => scrollToTop();
 
 const initEventListeners = () => {
-  filterFormEle.addEventListener("submit", handleFilterFormEleClick);
+  filterFormEle.addEventListener("submit", handleFilterFormEleSubmit);
   sortSelectEle.addEventListener("change", handleSortSelectEleChange);
   searchInputEle.addEventListener("input", handleSearchInputEleInput);
+  clearSearchBtnEle.addEventListener("click", handleClearSearchBtnEleClick);
   scrollToTopEle.addEventListener("click", handleScrollToTopClick);
-  dhatuDetailsModal.addEventListener("show.bs.modal", handleModalShow);
+  dhatuDetailsModalEle.addEventListener("show.bs.modal", handleModalShow);
 };
 
 loader.show();
