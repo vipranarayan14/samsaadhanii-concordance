@@ -30,7 +30,7 @@ export const filterList = (dhatuList, queryDetails) => {
   const listScored = dhatuList.map(scoreItemWithKeywords(keywordsSets));
 
   const listSortedByScore = listScored
-    .filter(({ score }) => score > 0)
+    .filter(({ score }) => score > -1)
     .sort(({ score: scoreA }, { score: scoreB }) => scoreA - scoreB);
 
   return listSortedByScore.map(({ item }) => item);
