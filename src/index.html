@@ -37,6 +37,16 @@
             >
               <div class="bg-surface flex-fill rounded-1 shadow">
                 <div class="input-group rounded-1">
+                  <button
+                    type="button"
+                    class="btn btn-secondary bg-transparent border border-0 opacity-50 opacity-100-hover opacity-100-focus shadow-none"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#view-options"
+                    aria-controls="view-options"
+                    title="Sort/Filter"
+                  >
+                    <i class="bi bi-sliders"></i>
+                  </button>
                   <input
                     type="text"
                     name="search"
@@ -51,27 +61,6 @@
                   >
                     <i class="bi bi-x-lg"></i>
                   </button>
-                </div>
-              </div>
-              <div class="align-items-center d-flex ms-1">
-                <div>
-                  <label
-                    for="sort-select"
-                    class="p-1 fw-bold text-uppercase"
-                    style="font-size: 0.7em"
-                    >Sort&nbsp;by</label
-                  >
-                </div>
-                <div>
-                  <select
-                    name="sort-select"
-                    id="sort-select"
-                    class="bg-surface form-select rounded-1"
-                  >
-                    <option value="gana" selected>गणः</option>
-                    <option value="dhatu">धातुः</option>
-                    <option value="artha">अर्थः</option>
-                  </select>
                 </div>
               </div>
             </form>
@@ -93,6 +82,45 @@
           </div>
         </div>
       </section>
+
+      <div
+        class="offcanvas offcanvas-start"
+        style="max-width: 300px"
+        tabindex="-1"
+        id="view-options"
+        aria-labelledby="view-options-title"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="view-options-title">Sort/Filter</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="offcanvas-body">
+          <div>
+            <div class="align-items-center d-flex ms-1">
+              <div>
+                <label for="sort-select" class="me-2 fw-bold">Sort by</label>
+              </div>
+              <div>
+                <select
+                  name="sort-select"
+                  id="sort-select"
+                  class="form-select rounded-1"
+                >
+                  <option value="gana" selected>गणः</option>
+                  <option value="dhatu">धातुः</option>
+                  <option value="artha">अर्थः</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- Modal -->
       <div
@@ -155,16 +183,14 @@
           class="align-items-center d-flex flex-column flex-md-row text-center"
         >
           <div class="p-1 w-100" style="font-size: 1.1rem">
-            <span class="fw-bold" data-slot="dhatu">
-              ${dhatuDetails.muladhatu} (${dhatuDetails.dhatu})
-            </span>
-            <span data-slot="meaning">${dhatuDetails.meaning}</span>
+            <span class="fw-bold" data-slot="dhatu"> </span>
+            <span data-slot="meaning"></span>
           </div>
 
           <div class="d-flex justify-content-between" style="font-size: 1.1rem">
-            <div class="m-2" data-slot="gana">${dhatuDetails.gana}</div>
-            <div class="m-2" data-slot="padi">${dhatuDetails.padi}</div>
-            <div class="m-2" data-slot="it">${dhatuDetails.it}</div>
+            <div class="m-2" data-slot="gana"></div>
+            <div class="m-2" data-slot="padi"></div>
+            <div class="m-2" data-slot="it"></div>
           </div>
 
           <hr class="border-secondary d-block d-md-none m-0 w-75" />
