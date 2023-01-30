@@ -1,0 +1,171 @@
+<template id="dhatu-all-details">
+  <div>
+    <section class="container-fluid px-0" style="font-size: 1.1rem">
+      <div class="row py-1">
+        <span class="col col-sm-2 fw-bold">मूलधातुः</span
+        ><span class="col" data-slot="muladhatu"></span>
+      </div>
+      <div class="row py-1">
+        <span class="col col-sm-2 fw-bold">धातुः</span
+        ><span class="col" data-slot="dhatu"></span>
+      </div>
+      <div class="row py-1">
+        <span class="col col-sm-2 fw-bold">अर्थः</span
+        ><span class="col" data-slot="meaning"></span>
+      </div>
+      <div class="row py-1">
+        <span class="col col-sm-2 fw-bold">गणः</span
+        ><span class="col" data-slot="gana"></span>
+      </div>
+      <div class="row py-1">
+        <span class="col col-sm-2 fw-bold">पदि</span
+        ><span class="col" data-slot="padi"></span>
+      </div>
+      <div class="row py-1">
+        <span class="col col-sm-2 fw-bold">इट्</span
+        ><span class="col" data-slot="it"></span>
+      </div>
+    </section>
+
+    <section class="vrittis">
+      <h2 class="py-2 my-3 fs-5 fw-bold border-bottom">वृत्तयः</h2>
+      <div>
+        <div class="accordion" id="vrittis-accordion">
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="header-1">
+              <button
+                class="accordion-button collapsed fw-bold"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-1"
+                aria-expanded="false"
+                aria-controls="collapse-1"
+              >
+                <span>माधवीयधातुवृत्तिः</span>&nbsp;
+                <span class="badge bg-primary" data-slot="madhaviyaId"></span>
+              </button>
+            </h3>
+            <div
+              id="collapse-1"
+              class="accordion-collapse collapse"
+              aria-labelledby="header-1"
+              data-bs-parent="#vrittis-accordion"
+            >
+              <div
+                class="accordion-body text-break"
+                style="max-height: 400px; overflow-y: auto"
+                data-slot="madhaviya"
+              >
+                Loading...
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="header-2">
+              <button
+                class="accordion-button collapsed fw-bold"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-2"
+                aria-expanded="false"
+                aria-controls="collapse-2"
+              >
+                <span>क्षीरतरङ्गिणी</span>&nbsp;
+                <span
+                  class="badge bg-primary"
+                  data-slot="kshirataranginiId"
+                ></span>
+              </button>
+            </h3>
+            <div
+              id="collapse-2"
+              class="accordion-collapse collapse"
+              aria-labelledby="header-2"
+              data-bs-parent="#vrittis-accordion"
+            >
+              <div
+                class="accordion-body text-break"
+                style="max-height: 400px; overflow-y: auto"
+                data-slot="kshiratarangini"
+              >
+                Loading...
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="header-3">
+              <button
+                class="accordion-button collapsed fw-bold"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-3"
+                aria-expanded="false"
+                aria-controls="collapse-3"
+              >
+                <span>धातुप्रदीपः</span>&nbsp;
+                <span
+                  class="badge bg-primary"
+                  data-slot="dhatupradipaId"
+                ></span>
+              </button>
+            </h3>
+            <div
+              id="collapse-3"
+              class="accordion-collapse collapse"
+              aria-labelledby="header-3"
+              data-bs-parent="#vrittis-accordion"
+            >
+              <div
+                class="accordion-body text-break"
+                style="max-height: 400px; overflow-y: auto"
+                data-slot="dhatupradipa"
+              >
+                Loading...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="forms">
+      <h2 class="py-2 my-3 fs-5 fw-bold border-bottom">रूपाणि</h2>
+      <div class="text-center" data-slot="forms">
+        <a
+          class="btn btn-outline-primary rounded-1"
+          href="#"
+          target="_blank"
+          data-slot="formsLink"
+          >Show forms</a
+        >
+      </div>
+    </section>
+
+    <section class="graph">
+      <h2 class="py-2 my-3 fs-5 fw-bold border-bottom">चित्रम्</h2>
+      <div class="text-center" data-slot="graph">
+        <div class="border border-secondary rounded-1">
+          <div style="max-height: 500px">
+            <img
+              src="#"
+              alt="Graph"
+              loading="lazy"
+              data-slot="graphImg"
+              class="w-auto mw-100 p-2"
+              style="max-height: inherit"
+            />
+          </div>
+          <a
+            class="btn btn-outline-primary rounded-1 m-2"
+            href="#"
+            target="_blank"
+            data-slot="graphLink"
+            >Show full size</a
+          >
+        </div>
+      </div>
+    </section>
+  </div>
+</template>

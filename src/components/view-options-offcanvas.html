@@ -1,0 +1,38 @@
+<div
+  class="offcanvas offcanvas-start"
+  style="max-width: 300px"
+  tabindex="-1"
+  id="view-options"
+  aria-labelledby="view-options-title"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="view-options-title">Sort/Filter</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <div>
+      <div class="align-items-center d-flex ms-1">
+        <div>
+          <label for="sort-select" class="me-2 fw-bold">Sort by</label>
+        </div>
+        <div>
+          <select
+            name="sort-select"
+            id="sort-select"
+            class="form-select rounded-1"
+          >
+            <option value="gana" selected>गणः</option>
+            <option value="dhatu">धातुः</option>
+            <option value="artha">अर्थः</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
