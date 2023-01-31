@@ -1,0 +1,33 @@
+<form
+  id="filter-form"
+  class="bg-background align-items-center d-flex sticky-top py-2 px-1"
+>
+  <div class="bg-surface flex-fill rounded-1 shadow">
+    <div class="input-group rounded-1">
+      <button
+        type="button"
+        class="btn btn-secondary bg-transparent border border-0 opacity-50 opacity-100-hover opacity-100-focus shadow-none"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#view-options"
+        aria-controls="view-options"
+        title="Sort/Filter"
+      >
+        <i class="bi bi-sliders"></i>
+      </button>
+      <input
+        type="text"
+        name="search"
+        placeholder="Type to filter..."
+        id="search-input"
+        class="bg-transparent border border-0 form-control p-2 shadow-none"
+      />
+      <button
+        type="button"
+        id="clear-search-btn"
+        class="btn btn-secondary bg-transparent border border-0 opacity-25 opacity-100-hover opacity-100-focus shadow-none"
+      >
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+  </div>
+</form>
