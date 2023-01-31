@@ -6,6 +6,8 @@
       "attribute": "src",
       "attributeAsLocals": true
     },
-    "posthtml-expressions": {}
+    "posthtml-expressions": {
+      "removeScriptLocals": true
+    }
   }
 }
