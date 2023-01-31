@@ -8,7 +8,7 @@ const makeKeywordsRegex = (keywords) => {
   return new RegExp(keywordsRegexStr, "g");
 };
 
-export const hiliteResults = (filteredList, { keywordsSets }) => {
+export const hiliteMatches = (filteredList, { keywordsSets }) => {
   const keywords = keywordsSets.flat(1);
 
   const keywordsRegex = makeKeywordsRegex(keywords);

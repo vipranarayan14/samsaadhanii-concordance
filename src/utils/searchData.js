@@ -16,7 +16,7 @@ const getListField = (queryField) =>
     d: "dhatupradipaId",
   }[queryField]);
 
-export const filterList = (dhatuList, queryDetails) => {
+export const searchData = (dhatuList, queryDetails) => {
   const { keywordsWithFields, keywordsSets } = queryDetails;
 
   if (queryDetails.hasFields) {

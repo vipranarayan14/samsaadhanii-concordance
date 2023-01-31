@@ -1,9 +1,5 @@
 import "./bootstrap";
 
-import { filterList } from "./utils/filterList";
-import { hiliteResults } from "./utils/hiliteResults";
-import { sortDhatupatha } from "./utils/sortDhatupatha";
-import { getQueryDetails } from "./utils/getQueryDetails";
 import { addProperties } from "./utils/addProperties";
 import { Loader } from "./components/Loader";
 import { List } from "./components/List";
@@ -13,7 +9,13 @@ import { loadVrittis } from "./utils/loadVrittis";
 import { createDhatuModalData } from "./utils/createDhatuModalData";
 import { loadDhatupatha } from "./utils/loadDhatupatha";
 import { setupThemeTester } from "./utils/setThemeTester";
-import { filterDhatupatha } from "./utils/filterDhatupatha";
+import { getFilterQuery } from "./utils/getFilterQuery";
+import { searchData } from "./utils/searchData";
+import { hiliteMatches } from "./utils/hiliteMatches";
+import { sortData } from "./utils/sortData";
+import { getSearchQuery } from "./utils/getSearchQuery";
+import { filterData } from "./utils/filterData";
+import { getSortQuery } from "./utils/getSortQuery";
 
 const Globals = { CACHE: {} };
 
@@ -26,10 +28,10 @@ const clearSearchBtnEle = document.querySelector("#app #clear-search-btn");
 const dhatuDetailsModalEle = document.querySelector("#dhatu-details-modal");
 const scrollToTopEle = document.querySelector("#app #scroll-to-top");
 const viewFiltersEle = document.querySelector("#app #view-filters");
+const filterSelectEles = viewFiltersEle.querySelectorAll("select");
 const clearFilterBtnEle = viewFiltersEle.querySelector(
   "#app #clear-filters-btn"
 );
-const filterSelectEles = viewFiltersEle.querySelectorAll("select");
 
 const DHATUPATHA_URL = require("url:./dhatupatha.json");
 const CONCORDANCE_ENDPOINT =
@@ -42,43 +44,44 @@ const FORMS_ENDPOINT =
 const list = new List(listEle);
 const loader = new Loader(loaderEle);
 
-const resetList = () => list.setData(Globals.listData);
+export const updateList = () => {
+  const data = Globals.CACHE.DHATUPATHA;
+
+  const filterQuery = getFilterQuery(filterSelectEles);
+  const filteredData = filterData(data, filterQuery);
+
+  const sortQuery = getSortQuery(sortSelectEle);
+  const sortedData = sortData(filteredData, sortQuery);
+
+  const searchQuery = getSearchQuery(searchInputEle.value);
+  const searchedData = searchData(sortedData, searchQuery);
+
+  const hilitedData = hiliteMatches(searchedData, searchQuery);
+
+  list.setData(hilitedData);
+};
 
 const handleFilterFormEleSubmit = (e) => e.preventDefault();
 
-const handleSortSelectEleChange = (e) => {
-  const sortBy = e.target.value;
+const handleSortSelectEleChange = (e) => updateList();
 
-  Globals.listData = sortDhatupatha(Globals.CACHE.DHATUPATHA, sortBy);
+const handleViewFiltersEleChange = (e) => updateList();
 
-  list.setData(Globals.listData);
+const handleSearchInputEleInput = (e) => updateList();
+
+const handleScrollToTopClick = (e) => scrollToTop();
+
+const handleClearSearchBtnEleClick = (e) => {
+  searchInputEle.value = "";
+  searchInputEle.focus();
+
+  updateList();
 };
 
-const handleViewFiltersEleChange = (e) => {
-  const filterQuery = Object.fromEntries(
-    [...filterSelectEles].map((select) => [
-      select.dataset.filterBy,
-      select.value,
-    ])
-  );
+const handleClearFilterBtnEleClick = (e) => {
+  filterSelectEles.forEach((select) => (select.selectedIndex = 0));
 
-  Globals.listData = filterDhatupatha(Globals.CACHE.DHATUPATHA, filterQuery);
-
-  list.setData(Globals.listData);
-};
-
-const handleSearchInputEleInput = (e) => {
-  const query = e.target.value;
-
-  if (!query) return resetList();
-
-  const queryDetails = getQueryDetails(query);
-
-  const results = filterList(Globals.listData, queryDetails);
-
-  const hilitedResults = hiliteResults(results, queryDetails);
-
-  list.setData(hilitedResults);
+  updateList();
 };
 
 const handleModalShow = (e) => {
@@ -103,21 +106,6 @@ const handleModalShow = (e) => {
 
   loadVrittis(modal, { ...dhatuDetails, VRITTI_ENDPOINT });
 };
-
-const handleClearSearchBtnEleClick = (e) => {
-  searchInputEle.value = "";
-  searchInputEle.focus();
-
-  resetList();
-};
-
-const handleClearFilterBtnEleClick = (e) => {
-  filterSelectEles.forEach((select) => (select.selectedIndex = 0));
-
-  list.setData(Globals.CACHE.DHATUPATHA);
-};
-
-const handleScrollToTopClick = (e) => scrollToTop();
 
 const initEventListeners = () => {
   filterFormEle.addEventListener("submit", handleFilterFormEleSubmit);

@@ -9,7 +9,7 @@ const extractKeywordsWithFields = (query) =>
     return { field, value };
   });
 
-export const getQueryDetails = (query) => {
+export const getSearchQuery = (query) => {
   const hasFields = query.includes(":");
 
   let keywordsWithFields = null;

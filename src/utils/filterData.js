@@ -17,7 +17,7 @@ const filterByProp = (dhatupatha, propQuery) =>
     )
   );
 
-export const filterDhatupatha = (dhatupatha, filterQuery) => {
+export const filterData = (dhatupatha, filterQuery) => {
   const { vritti, ...propQuery } = filterQuery;
 
   const filteredByVritti = filterByVritti(dhatupatha, vritti);
