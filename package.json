@@ -1,6 +1,6 @@
 {
   "name": "samsaadhanii-concordance",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "A new UI for Samsaadhanii Concordance",
   "source": "src/index.html",
   "scripts": {
