@@ -1,8 +1,8 @@
 import "./bootstrap";
 
 import { addProperties } from "./utils/addProperties";
-import { Loader } from "./components/Loader";
-import { List } from "./components/List";
+import { Loader } from "./utils/Loader";
+import { List } from "./utils/List";
 import { scrollToTop } from "./utils/scrollToTop";
 import { getDhatuDetails } from "./utils/getDhatuDetails";
 import { loadVrittis } from "./utils/loadVrittis";

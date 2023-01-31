@@ -1,4 +1,4 @@
-import { scrollToTop } from "../utils/scrollToTop";
+import { scrollToTop } from "./scrollToTop";
 
 const createDhatuListItem = (dhatuDetails) => {
   const { id, muladhatu, dhatu, ...slotData } = dhatuDetails;
