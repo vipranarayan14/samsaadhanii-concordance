@@ -17,22 +17,12 @@
 
   <div class="offcanvas-body">
     <div>
-      <div class="align-items-center d-flex ms-1">
-        <div>
-          <label for="sort-select" class="me-2 fw-bold">Sort by</label>
-        </div>
-        <div>
-          <select
-            name="sort-select"
-            id="sort-select"
-            class="form-select rounded-1"
-          >
-            <option value="gana" selected>गणः</option>
-            <option value="dhatu">धातुः</option>
-            <option value="artha">अर्थः</option>
-          </select>
-        </div>
-      </div>
+      <component
+        src="/components/sort-select.html"
+        id="sort-select"
+        label="Sort by"
+        options='["गणः", "धातुः", "अर्थः"]'
+      ></component>
     </div>
   </div>
 </div>
