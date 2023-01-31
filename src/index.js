@@ -29,8 +29,8 @@ const dhatuDetailsModalEle = document.querySelector("#dhatu-details-modal");
 const scrollToTopEle = document.querySelector("#app #scroll-to-top");
 const viewFiltersEle = document.querySelector("#app #view-filters");
 const filterSelectEles = viewFiltersEle.querySelectorAll("select");
-const clearFilterBtnEle = viewFiltersEle.querySelector(
-  "#app #clear-filters-btn"
+const resetViewOptionsBtnEle = document.querySelector(
+  "#app #reset-view-options-btn"
 );
 
 const DHATUPATHA_URL = require("url:./dhatupatha.json");
@@ -78,8 +78,10 @@ const handleClearSearchBtnEleClick = (e) => {
   updateList();
 };
 
-const handleClearFilterBtnEleClick = (e) => {
-  filterSelectEles.forEach((select) => (select.selectedIndex = 0));
+const handleResetViewOptionsBtnEleClick = (e) => {
+  const viewOptionEles = [sortSelectEle, ...filterSelectEles];
+
+  viewOptionEles.forEach((select) => (select.selectedIndex = 0));
 
   updateList();
 };
@@ -115,7 +117,10 @@ const initEventListeners = () => {
   clearSearchBtnEle.addEventListener("click", handleClearSearchBtnEleClick);
   scrollToTopEle.addEventListener("click", handleScrollToTopClick);
   dhatuDetailsModalEle.addEventListener("show.bs.modal", handleModalShow);
-  clearFilterBtnEle.addEventListener("click", handleClearFilterBtnEleClick);
+  resetViewOptionsBtnEle.addEventListener(
+    "click",
+    handleResetViewOptionsBtnEleClick
+  );
 };
 
 loader.show();

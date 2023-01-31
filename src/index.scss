@@ -34,3 +34,7 @@ mark {
   box-shadow: #{$input-focus-box-shadow};
   transition: #{$input-transition};
 }
+
+.offcanvas-footer {
+  @extend .offcanvas-header;
+}

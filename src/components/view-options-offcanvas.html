@@ -27,15 +27,8 @@
     </div>
 
     <div id="view-filters" class="mt-4">
-      <div class="d-flex align-items-center">
-        <h2 class="fs-6 fw-bold flex-grow-1 m-0">Filter by</h2>
-        <button
-          type="button"
-          id="clear-filters-btn"
-          class="btn btn-sm btn-outline-primary mx-auto"
-        >
-          Clear
-        </button>
+      <div>
+        <h2 class="h6 fw-bold">Filter by</h2>
       </div>
 
       <component
@@ -69,5 +62,15 @@
         options='["सेट्", "अनिट्", "-"]'
       ></component>
     </div>
+  </div>
+
+  <div class="offcanvas-footer d-flex justify-content-stretch">
+    <button
+      type="button"
+      id="reset-view-options-btn"
+      class="btn btn-outline-primary flex-grow-1"
+    >
+      Reset
+    </button>
   </div>
 </div>
