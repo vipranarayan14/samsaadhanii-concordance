@@ -46,16 +46,16 @@ $accordion-border-radius: $border-radius-sm;
 
 // New utility classes for opacity with hover & focus states
 $utilities: (
-  "opacity": (
-    property: opacity,
-    class: opacity,
+  "text-opacity": (
+    property: color,
+    class: text-opacity,
     state: hover focus,
     values: (
-      0: 0,
-      25: 0.25,
-      50: 0.5,
-      75: 0.75,
-      100: 1,
+      0: rgba($black, 0),
+      25: rgba($black, 0.25),
+      50: rgba($black, 0.5),
+      75: rgba($black, 0.75),
+      100: rgba($black, 1),
     ),
   ),
 );
