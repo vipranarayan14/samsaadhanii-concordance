@@ -6,7 +6,8 @@
   aria-labelledby="view-options-title"
 >
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="view-options-title">Sort/Filter</h5>
+    <h1 class="offcanvas-title h5" id="view-options-title">Options</h1>
+
     <button
       type="button"
       class="btn-close"
@@ -21,7 +22,51 @@
         src="/components/sort-select.html"
         id="sort-select"
         label="Sort by"
-        options='["गणः", "धातुः", "अर्थः"]'
+        options='[["gana", "गणः"], ["dhatu", "धातु"], ["artha", "अर्थ"]]'
+      ></component>
+    </div>
+
+    <div id="view-filters" class="mt-4">
+      <div class="d-flex align-items-center">
+        <h2 class="fs-6 fw-bold flex-grow-1 m-0">Filter by</h2>
+        <button
+          type="button"
+          id="clear-filters-btn"
+          class="btn btn-sm btn-outline-primary mx-auto"
+        >
+          Clear
+        </button>
+      </div>
+
+      <component
+        src="/components/filter-select.html"
+        id="vritti"
+        label="वृत्तिः"
+        options='["माधवीयधातुवृत्तिः", "क्षीरतरङ्गिणी", "धातुप्रदीपः"]'
+      ></component>
+
+      <component
+        src="/components/filter-select.html"
+        id="gana"
+        label="गणः"
+        options='[
+          "भ्वादिः", "अदादिः", "जुहोत्यादिः", "दिवादिः", "स्वादिः",
+          "तुदादिः", "रुधादिः", "तनादिः", "क्र्यादिः", "चुरादिः"
+        ]'
+      ></component>
+
+      <component
+        src="/components/filter-select.html"
+        id="padi"
+        label="पदि"
+        options='["परस्मैपदी", "आत्मनेपदी", "उभयपदी"]'
+      ></component>
+
+      <component
+        src="/components/filter-select.html"
+        id="it"
+        label="इट्"
+        options='["सेट्", "अनिट्", "-"]'
       ></component>
     </div>
   </div>

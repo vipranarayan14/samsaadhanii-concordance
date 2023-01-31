@@ -1,10 +1,15 @@
 <div>
-  <label for="sort-select" class="d-block h6 fw-bold"> {{ label }} </label>
+  <label for="{{ id }}" class="d-block h6 fw-bold"> {{ label }} </label>
 
   <div>
-    <select id="{{ id }}" name="sort-select" class="form-select rounded-1">
+    <select id="{{ id }}" name="{{ id }}" class="form-select rounded-1">
       <each loop="option in {{{ options }}}">
-        <option value="{{ option }}">{{ option }}</option>
+        <if condition="loop.first">
+          <option value="{{ option[0] }}" selected>{{ option[1] }}</option>
+        </if>
+        <else>
+          <option value="{{ option[0] }}">{{ option[1] }}</option>
+        </else>
       </each>
     </select>
   </div>

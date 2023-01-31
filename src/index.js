@@ -13,6 +13,7 @@ import { loadVrittis } from "./utils/loadVrittis";
 import { createDhatuModalData } from "./utils/createDhatuModalData";
 import { loadDhatupatha } from "./utils/loadDhatupatha";
 import { setupThemeTester } from "./utils/setThemeTester";
+import { filterDhatupatha } from "./utils/filterDhatupatha";
 
 const Globals = { CACHE: {} };
 
@@ -24,6 +25,11 @@ const searchInputEle = document.querySelector("#app #search-input");
 const clearSearchBtnEle = document.querySelector("#app #clear-search-btn");
 const dhatuDetailsModalEle = document.querySelector("#dhatu-details-modal");
 const scrollToTopEle = document.querySelector("#app #scroll-to-top");
+const viewFiltersEle = document.querySelector("#app #view-filters");
+const clearFilterBtnEle = viewFiltersEle.querySelector(
+  "#app #clear-filters-btn"
+);
+const filterSelectEles = viewFiltersEle.querySelectorAll("select");
 
 const DHATUPATHA_URL = require("url:./dhatupatha.json");
 const CONCORDANCE_ENDPOINT =
@@ -44,6 +50,19 @@ const handleSortSelectEleChange = (e) => {
   const sortBy = e.target.value;
 
   Globals.listData = sortDhatupatha(Globals.CACHE.DHATUPATHA, sortBy);
+
+  list.setData(Globals.listData);
+};
+
+const handleViewFiltersEleChange = (e) => {
+  const filterQuery = Object.fromEntries(
+    [...filterSelectEles].map((select) => [
+      select.dataset.filterBy,
+      select.value,
+    ])
+  );
+
+  Globals.listData = filterDhatupatha(Globals.CACHE.DHATUPATHA, filterQuery);
 
   list.setData(Globals.listData);
 };
@@ -92,15 +111,23 @@ const handleClearSearchBtnEleClick = (e) => {
   resetList();
 };
 
+const handleClearFilterBtnEleClick = (e) => {
+  filterSelectEles.forEach((select) => (select.selectedIndex = 0));
+
+  list.setData(Globals.CACHE.DHATUPATHA);
+};
+
 const handleScrollToTopClick = (e) => scrollToTop();
 
 const initEventListeners = () => {
   filterFormEle.addEventListener("submit", handleFilterFormEleSubmit);
   sortSelectEle.addEventListener("change", handleSortSelectEleChange);
+  viewFiltersEle.addEventListener("change", handleViewFiltersEleChange);
   searchInputEle.addEventListener("input", handleSearchInputEleInput);
   clearSearchBtnEle.addEventListener("click", handleClearSearchBtnEleClick);
   scrollToTopEle.addEventListener("click", handleScrollToTopClick);
   dhatuDetailsModalEle.addEventListener("show.bs.modal", handleModalShow);
+  clearFilterBtnEle.addEventListener("click", handleClearFilterBtnEleClick);
 };
 
 loader.show();
