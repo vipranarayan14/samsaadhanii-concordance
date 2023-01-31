@@ -21,7 +21,7 @@ const Globals = { CACHE: {} };
 
 const loaderEle = document.querySelector("#app #loader");
 const listEle = document.querySelector("#app #dhatu-list");
-const filterFormEle = document.querySelector("#app #filter-form");
+const searchFormEle = document.querySelector("#app #search-form");
 const sortSelectEle = document.querySelector("#app #sort-select");
 const searchInputEle = document.querySelector("#app #search-input");
 const clearSearchBtnEle = document.querySelector("#app #clear-search-btn");
@@ -110,7 +110,7 @@ const handleModalShow = (e) => {
 };
 
 const initEventListeners = () => {
-  filterFormEle.addEventListener("submit", handleFilterFormEleSubmit);
+  searchFormEle.addEventListener("submit", handleFilterFormEleSubmit);
   sortSelectEle.addEventListener("change", handleSortSelectEleChange);
   viewFiltersEle.addEventListener("change", handleViewFiltersEleChange);
   searchInputEle.addEventListener("input", handleSearchInputEleInput);
