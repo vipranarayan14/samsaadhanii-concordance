@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <component
+      src="/commons/components/meta.html"
+      title="Concordance of Pāṇinian Dhātuvṛttis"
+    ></component>
+
+    <link rel="stylesheet" href="about.scss" />
+  </head>
+  <body>
+    <component src="/commons/components/nav.html" active="About"></component>
+
+    <section class="container-sm my-2">
+      <p>
+        This page provides the comparison of Pāṇinian Dhātuvṛttis. The three
+        vṛttis chosen are
+      </p>
+      <ul>
+        <li>
+          <span class="fw-bold">Mādhavīyā Dhātuvṛtti by Sāyaṇa </span><br />
+          Editor: Pandit Ananta Śāstri Phadake and Vyākaraṇācārya Pandit
+          Sadāśiva śarma Śāstri,<br />
+          Publisher: Jai Kṛṣṇadās-Haridās Gupta, The Caukhamba Samskrit Series
+          Office, Benares, 1934.<br />
+        </li>
+        <li>
+          <span class="fw-bold">Kṣīrataraṅgiṇī by Kṣīrasvāmin </span><br />
+          Editor: Yudhiṣṭhira Mīmāṃsaka<br />
+          Publisher: Rāmlāl Kapūr Trust, Revali, Sonipat (Haryana), 2005.<br />
+        </li>
+        <li>
+          <span class="fw-bold">Dhātupradīpa by Maitreyarakṣita </span><br />
+          Editor: Śīśacandracakravartī Bhaṭṭācārya.<br />
+          Publisher: Rāmlāl Kapūr Trust, Revali, Sahapuraturka, Sonipat
+          (Haryana), 1986.<br />
+        </li>
+      </ul>
+      The user interface displays the roots with various associated information
+      for three vṛttis.<br />
+      <ul>
+        <li>
+          The tables can be sorted in 3 different ways
+          <ul>
+            <li>according to the order of roots as in the Dhātupāṭha,</li>
+            <li>alphabetically in the order of the roots, and</li>
+            <li>alphabetically according to the meanings.</li>
+          </ul>
+        </li>
+        <li>
+          The reference numbers to the sūtras in the three vṛttis are sensitive
+          to mouse. When a user clicks a sūtra number, the corresponding part of
+          the commentary appears in the pop-up window.
+        </li>
+        <li>
+          The root is also linked with the existing generator. All the roots for
+          which a verb conjugator is available, are mouse clickable. When this
+          link is clicked, user gets the generated forms of the verb.
+        </li>
+        <li>
+          The meaning is also sensitive to the mouse. When a cursor is brought
+          over the meaning, if any of the vṛttis provide the analysis of the
+          meaning, that is displayed in a tooltip.
+        </li>
+      </ul>
+      <p>
+        This work is reported in the
+        <a
+          href="http://sanskrit.uohyd.ac.in/faculty/amba/PUBLICATIONS/Student_Thesis/shailaja_PhD.pdf"
+        >
+          Ph.D. thesis of Dr. Shailaja N.
+        </a>
+      </p>
+    </section>
+
+    <script src="./about.js" type="module"></script>
+  </body>
+</html>
