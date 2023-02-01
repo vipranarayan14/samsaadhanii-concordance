@@ -25,10 +25,6 @@ mark {
   padding: 0;
 }
 
-.offcanvas-footer {
-  @extend .offcanvas-header;
-}
-
 #app .hidden {
   display: none;
 }
@@ -37,4 +33,12 @@ mark {
   border-color: #{$input-focus-border-color};
   box-shadow: #{$input-focus-box-shadow};
   transition: #{$input-transition};
+}
+
+#app .nav-link {
+  text-decoration: none;
+}
+
+#app .offcanvas-footer {
+  @extend .offcanvas-header;
 }
