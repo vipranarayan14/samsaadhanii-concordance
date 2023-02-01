@@ -1,21 +1,21 @@
-import "./bootstrap";
+import "./commons/commons";
 
-import { addProperties } from "./utils/addProperties";
-import { Loader } from "./utils/Loader";
-import { List } from "./utils/List";
-import { scrollToTop } from "./utils/scrollToTop";
-import { getDhatuDetails } from "./utils/getDhatuDetails";
-import { loadVrittis } from "./utils/loadVrittis";
-import { createDhatuModalData } from "./utils/createDhatuModalData";
-import { loadDhatupatha } from "./utils/loadDhatupatha";
-import { setupThemeTester } from "./utils/setThemeTester";
-import { getFilterQuery } from "./utils/getFilterQuery";
-import { searchData } from "./utils/searchData";
-import { hiliteMatches } from "./utils/hiliteMatches";
-import { sortData } from "./utils/sortData";
-import { getSearchQuery } from "./utils/getSearchQuery";
-import { filterData } from "./utils/filterData";
-import { getSortQuery } from "./utils/getSortQuery";
+import { addProperties } from "./commons/utils/addProperties";
+import { Loader } from "./commons/utils/Loader";
+import { List } from "./commons/utils/List";
+import { scrollToTop } from "./commons/utils/scrollToTop";
+import { getDhatuDetails } from "./commons/utils/getDhatuDetails";
+import { loadVrittis } from "./commons/utils/loadVrittis";
+import { createDhatuModalData } from "./commons/utils/createDhatuModalData";
+import { loadDhatupatha } from "./commons/utils/loadDhatupatha";
+import { setupThemeTester } from "./commons/utils/setThemeTester";
+import { getFilterQuery } from "./commons/utils/getFilterQuery";
+import { searchData } from "./commons/utils/searchData";
+import { hiliteMatches } from "./commons/utils/hiliteMatches";
+import { sortData } from "./commons/utils/sortData";
+import { getSearchQuery } from "./commons/utils/getSearchQuery";
+import { filterData } from "./commons/utils/filterData";
+import { getSortQuery } from "./commons/utils/getSortQuery";
 
 const Globals = { CACHE: {} };
 
@@ -33,7 +33,7 @@ const resetViewOptionsBtnEle = document.querySelector(
   "#app #reset-view-options-btn"
 );
 
-const DHATUPATHA_URL = require("url:./dhatupatha.json");
+const DHATUPATHA_URL = require("url:./assets/dhatupatha.json");
 const CONCORDANCE_ENDPOINT =
   "https://cdn.jsdelivr.net/gh/samsaadhanii/scl/dhaatupaatha";
 const VRITTI_ENDPOINT = `${CONCORDANCE_ENDPOINT}/files`;

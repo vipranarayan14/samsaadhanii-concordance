@@ -1,4 +1,4 @@
-@import "bootstrap.scss";
+@import "./commons/commons";
 
 :root {
   --bg: #f0f0f0;
@@ -19,7 +19,7 @@ button {
   font-size: inherit;
 }
 
-mark {
+#app mark {
   background-color: var(--mark-bg);
   color: var(--mark-text);
   padding: 0;
