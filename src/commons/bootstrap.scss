@@ -2,20 +2,34 @@
 @import "~bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
-$primary: #000000;
-$secondary: #aaaaaa;
-// $secondary: #e7e7e7;
+// $primary: #489cdf;
+// $primary: #5678aa;
+// $primary: #247ec6
+$primary: #0e73c4;
+
+$secondary: #ffc107;
+
 $background: #f0f0f0;
+// $background: #fffed1;
+// $background: #fcfce9;
+// $background: #ffffd3;
+// $background: #f8f8db;
+// $background: #f8ecc2;
+// $background: #fff3cd;
+
 $surface: #ffffff;
 
+$text: #212529;
+$divider: #aaaaaa;
+
 $body-bg: $background;
-$body-color: $primary;
+$body-color: $text;
 
 // Sets the box-shadow of 'shadow' utility class
 $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
 // Sets lists border
-$list-group-border-color: $secondary;
+$list-group-border-color: $divider;
 $list-group-border-width: 1.5px;
 
 // Sets modal component's styles
@@ -28,7 +42,7 @@ $modal-header-padding-y: 0.75rem;
 $custom-colors: (
   "background": $background,
   "surface": $surface,
-  "on-surface": $gray-600,
+  "divider": $divider,
 );
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
@@ -41,7 +55,7 @@ $display-font-sizes: map-merge($display-font-sizes, $custom-display-font-sizes);
 // Sets accordion component's styles
 $accordion-bg: $surface;
 $accordion-border-width: 1px;
-$accordion-border-color: $secondary;
+$accordion-border-color: $divider;
 $accordion-border-radius: $border-radius-sm;
 
 // New utility classes for opacity with hover & focus states
