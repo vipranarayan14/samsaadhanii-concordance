@@ -140,13 +140,9 @@ loader.show();
 loadDhatupatha(Globals.ENDPOINTS.DHATUPATHA).then((data) => {
   Globals.CACHE.DHATUPATHA = addProperties(data);
 
-  const listData = Globals.CACHE.DHATUPATHA;
-
-  list.setData(listData);
-
-  Globals.listData = listData;
-
   initEventListeners();
+
+  updateList();
 
   loader.hide();
 });
