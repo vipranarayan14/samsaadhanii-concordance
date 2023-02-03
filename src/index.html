@@ -7,6 +7,18 @@
     ></component>
 
     <link rel="stylesheet" href="index.scss" />
+
+    <script type="module">
+      const ENDPOINTS = {
+        DHATUPATHA: "./assets/dhatupatha.json",
+        VRITTI: `https://cdn.jsdelivr.net/gh/samsaadhanii/scl/dhaatupaatha/files`,
+        GRAPH: `https://cdn.jsdelivr.net/gh/samsaadhanii/scl/dhaatupaatha/graphs`,
+        FORMS:
+          "https://sanskrit.uohyd.ac.in//cgi-bin/scl/skt_gen/verb/verb_gen_web.cgi",
+      };
+
+      window.Globals = { ENDPOINTS };
+    </script>
   </head>
   <body>
     <main id="app">

@@ -18,7 +18,9 @@ import { setupThemeTester } from "./commons/utils/setThemeTester";
 import { sortData } from "./commons/utils/sortData";
 import { hide, show } from "./commons/utils/utils";
 
-const Globals = { CACHE: {} };
+const Globals = window.Globals;
+
+Globals.CACHE = {};
 
 const loaderEle = document.querySelector("#app #loader");
 const listEle = document.querySelector("#app #dhatu-list");
@@ -36,14 +38,6 @@ const resetViewOptionsBtnEle = document.querySelector(
 const viewOptionsIndicatorEle = document.querySelector(
   "#app #view-options-indicator"
 );
-
-const DHATUPATHA_URL = "./assets/dhatupatha.json";
-const CONCORDANCE_ENDPOINT =
-  "https://cdn.jsdelivr.net/gh/samsaadhanii/scl/dhaatupaatha";
-const VRITTI_ENDPOINT = `${CONCORDANCE_ENDPOINT}/files`;
-const GRAPH_ENDPOINT = `${CONCORDANCE_ENDPOINT}/graphs`;
-const FORMS_ENDPOINT =
-  "https://sanskrit.uohyd.ac.in//cgi-bin/scl/skt_gen/verb/verb_gen_web.cgi";
 
 const list = new List(listEle);
 const loader = new Loader(loaderEle);
@@ -111,13 +105,11 @@ const handleModalShow = (e) => {
 
   const { itemId } = item.dataset;
 
-  const dhatuDetails = getDhatuDetails(Globals.listData, itemId);
+  const { DHATUPATHA } = Globals.CACHE;
 
-  const modalData = createDhatuModalData({
-    ...dhatuDetails,
-    FORMS_ENDPOINT,
-    GRAPH_ENDPOINT,
-  });
+  const dhatuDetails = getDhatuDetails(DHATUPATHA, itemId);
+
+  const modalData = createDhatuModalData(dhatuDetails, Globals);
 
   const modal = e.target;
   const modalTitle = modal.querySelector(".modal-title");
@@ -126,7 +118,7 @@ const handleModalShow = (e) => {
   modalTitle.textContent = modalData.title;
   modalBody.replaceChildren(modalData.content);
 
-  loadVrittis(modal, { ...dhatuDetails, VRITTI_ENDPOINT });
+  loadVrittis(modal, dhatuDetails, Globals);
 };
 
 const initEventListeners = () => {
@@ -145,7 +137,7 @@ const initEventListeners = () => {
 
 loader.show();
 
-loadDhatupatha(DHATUPATHA_URL).then((data) => {
+loadDhatupatha(Globals.ENDPOINTS.DHATUPATHA).then((data) => {
   Globals.CACHE.DHATUPATHA = addProperties(data);
 
   const listData = Globals.CACHE.DHATUPATHA;

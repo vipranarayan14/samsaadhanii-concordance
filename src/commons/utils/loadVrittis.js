@@ -12,13 +12,13 @@ const vrittiCodes = {
   dhatupradipa: "XA",
 };
 
-export const loadVrittis = (targetEle, details) => {
+export const loadVrittis = (targetEle, details, Globals) => {
   Object.entries(vrittiCodes).forEach(async ([vrittiName, vrittiCode]) => {
     const id = details[`${vrittiName}Id`];
 
     if (!id || id === "-") return setVritti(targetEle, vrittiName, "N/A");
 
-    const vrittiURL = `${details.VRITTI_ENDPOINT}/${vrittiCode}${id}.html`;
+    const vrittiURL = `${Globals.ENDPOINTS.VRITTI}/${vrittiCode}${id}.html`;
 
     const result = await fetch(vrittiURL);
 

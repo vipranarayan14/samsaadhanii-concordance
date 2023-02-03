@@ -41,9 +41,9 @@ const createDhatuModalContent = (details, formsURL, graphURL) => {
   return dhatuModalContent;
 };
 
-export const createDhatuModalData = (details) => {
-  const formsURL = createURL(details.FORMS_ENDPOINT, details.formsURL);
-  const graphURL = createURL(details.GRAPH_ENDPOINT, details.graphURL);
+export const createDhatuModalData = (details, Globals) => {
+  const formsURL = createURL(Globals.ENDPOINTS.FORMS, details.formsURL);
+  const graphURL = createURL(Globals.ENDPOINTS.GRAPH, details.graphURL);
 
   return {
     title: createDhatuModalTitle(details),
