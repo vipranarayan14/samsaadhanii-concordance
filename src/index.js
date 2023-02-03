@@ -16,6 +16,7 @@ import { sortData } from "./commons/utils/sortData";
 import { getSearchQuery } from "./commons/utils/getSearchQuery";
 import { filterData } from "./commons/utils/filterData";
 import { getSortQuery } from "./commons/utils/getSortQuery";
+import { show, hide } from "./commons/utils/utils";
 
 const Globals = { CACHE: {} };
 
@@ -32,6 +33,9 @@ const filterSelectEles = viewFiltersEle.querySelectorAll("select");
 const resetViewOptionsBtnEle = document.querySelector(
   "#app #reset-view-options-btn"
 );
+const viewOptionsIndicatorEle = document.querySelector(
+  "#app #view-options-indicator"
+);
 
 const DHATUPATHA_URL = "./assets/dhatupatha.json";
 const CONCORDANCE_ENDPOINT =
@@ -43,6 +47,18 @@ const FORMS_ENDPOINT =
 
 const list = new List(listEle);
 const loader = new Loader(loaderEle);
+
+const updateIndicator = (viewOptions) => {
+  const isViewOptionsModified = Object.values(viewOptions).some((value) =>
+    Boolean(value)
+  );
+
+  if (isViewOptionsModified) {
+    show(viewOptionsIndicatorEle);
+  } else {
+    hide(viewOptionsIndicatorEle);
+  }
+};
 
 export const updateList = () => {
   const data = Globals.CACHE.DHATUPATHA;
@@ -59,6 +75,10 @@ export const updateList = () => {
   const hilitedData = hiliteMatches(searchedData, searchQuery);
 
   list.setData(hilitedData);
+
+  const viewOptions = { ...filterQuery, ...sortQuery };
+
+  updateIndicator(viewOptions);
 };
 
 const handleFilterFormEleSubmit = (e) => e.preventDefault();

@@ -6,3 +6,7 @@ export const removeSvaras = (dhatu) =>
   dhatu.replace(new RegExp(svarasRegex, "g"), "");
 
 export const createURL = (endpoint, path) => (path ? `${endpoint}${path}` : "");
+
+export const show = (element) => element.classList.remove("hidden");
+
+export const hide = (element) => element.classList.add("hidden");

@@ -12,8 +12,15 @@
         aria-controls="view-options"
         title="View options"
       >
-        <span>
+        <span class="position-relative">
           <i class="bi bi-sliders" style="font-size: 1.2rem"> </i>
+          <span
+            id="view-options-indicator"
+            class="position-absolute start-0 translate-middle bg-warning rounded-circle hidden"
+            style="top: 0.1rem; padding: 0.35rem"
+          >
+            <span class="visually-hidden">Some view options are modified</span>
+          </span>
         </span>
       </button>
 

@@ -29,9 +29,9 @@ const sortByDhatu = (dhatuList) =>
     collator.compare(dhatuDetailsA.dhatu, dhatuDetailsB.dhatu)
   );
 
-export const sortData = (dhatupatha, sortBy) => {
+export const sortData = (dhatupatha, sortQuery) => {
   const sort = { dhatu: sortByDhatu, gana: sortByGana, artha: sortByArtha }[
-    sortBy
+    sortQuery.sort
   ];
 
   return sort ? sort(dhatupatha) : dhatupatha;

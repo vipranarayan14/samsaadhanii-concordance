@@ -1,1 +1,1 @@
-export const getSortQuery = (sortSelectEle) => sortSelectEle.value;
+export const getSortQuery = (sortSelectEle) => ({ sort: sortSelectEle.value });
