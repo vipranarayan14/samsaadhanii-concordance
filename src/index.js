@@ -1,6 +1,7 @@
 import "./commons/commons";
 
 import { addProperties } from "./commons/utils/addProperties";
+import { animateOnPin } from "./commons/utils/animateOnPin";
 import { createDhatuModalData } from "./commons/utils/createDhatuModalData";
 import { filterData } from "./commons/utils/filterData";
 import { getDhatuDetails } from "./commons/utils/getDhatuDetails";
@@ -24,6 +25,9 @@ Globals.CACHE = {};
 
 const loaderEle = document.querySelector("#app #loader");
 const listEle = document.querySelector("#app #dhatu-list");
+const searchFormContainerEle = document.querySelector(
+  "#app #search-form-container"
+);
 const searchFormEle = document.querySelector("#app #search-form");
 const sortSelectEle = document.querySelector("#app #sort-select");
 const searchInputEle = document.querySelector("#app #search-input");
@@ -47,11 +51,7 @@ const updateIndicator = (viewOptions) => {
     Boolean(value)
   );
 
-  if (isViewOptionsModified) {
-    show(viewOptionsIndicatorEle);
-  } else {
-    hide(viewOptionsIndicatorEle);
-  }
+  viewOptionsIndicatorEle.classList.toggle("hidden", !isViewOptionsModified);
 };
 
 export const updateList = () => {
@@ -138,6 +138,12 @@ const initEventListeners = () => {
     handleResetViewOptionsBtnEleClick
   );
 };
+
+const setupAnimations = () => {
+  animateOnPin(searchFormContainerEle);
+};
+
+setupAnimations();
 
 loader.show();
 

@@ -1,44 +1,51 @@
-<form
-  id="search-form"
-  class="bg-body align-items-center d-flex sticky-top py-2 px-1"
->
-  <div class="bg-surface flex-fill rounded-1 shadow">
-    <div class="input-group rounded-1">
-      <button
-        type="button"
-        class="btn bg-transparent border border-0 text-opacity-50 text-opacity-100-hover text-opacity-100-focus shadow-none"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#view-options"
-        aria-controls="view-options"
-        title="View options"
-      >
-        <span class="position-relative">
-          <i class="bi bi-sliders" style="font-size: 1.2rem"> </i>
-          <span
-            id="view-options-indicator"
-            class="position-absolute start-0 translate-middle bg-warning rounded-circle hidden"
-            style="top: 0.1rem; padding: 0.35rem"
-          >
-            <span class="visually-hidden">Some view options are modified</span>
-          </span>
-        </span>
-      </button>
+<section id="search-form-container" class="sticky-top bg-body" style="top: -1">
+  <div class="container-sm p-0">
+    <div class="row g-0 justify-content-center">
+      <div class="col" style="max-width: var(--list-max-width)">
+        <form id="search-form" class="align-items-center d-flex py-2 px-1">
+          <div class="bg-surface flex-fill rounded-1 shadow">
+            <div class="input-group rounded-1">
+              <button
+                type="button"
+                class="btn bg-transparent border border-0 text-opacity-50 text-opacity-100-hover text-opacity-100-focus shadow-none"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#view-options"
+                aria-controls="view-options"
+                title="View options"
+              >
+                <span class="position-relative">
+                  <i class="bi bi-sliders" style="font-size: 1.2rem"> </i>
+                  <span
+                    id="view-options-indicator"
+                    class="position-absolute start-0 translate-middle bg-warning rounded-circle hidden"
+                    style="top: 0.1rem; padding: 0.35rem"
+                  >
+                    <span class="visually-hidden"
+                      >Some view options are modified</span
+                    >
+                  </span>
+                </span>
+              </button>
 
-      <input
-        type="text"
-        name="search"
-        placeholder="Type to filter..."
-        id="search-input"
-        class="bg-transparent border border-0 form-control p-2 shadow-none"
-      />
-      <button
-        type="button"
-        id="clear-search-btn"
-        class="btn bg-transparent border border-0 text-opacity-25 text-opacity-100-hover text-opacity-100-focus shadow-none"
-        title="Clear"
-      >
-        <i class="bi bi-x-lg"></i>
-      </button>
+              <input
+                type="text"
+                name="search"
+                placeholder="Type to filter..."
+                id="search-input"
+                class="bg-transparent border border-0 form-control p-2 shadow-none"
+              />
+              <button
+                type="button"
+                id="clear-search-btn"
+                class="btn bg-transparent border border-0 text-opacity-25 text-opacity-100-hover text-opacity-100-focus shadow-none"
+                title="Clear"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</form>
+</section>
