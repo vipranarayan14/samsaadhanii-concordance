@@ -75,7 +75,11 @@ export const updateList = () => {
   updateIndicator(viewOptions);
 };
 
-const handleFilterFormEleSubmit = (e) => e.preventDefault();
+const handleFilterFormEleSubmit = (e) => {
+  e.preventDefault();
+
+  updateList();
+};
 
 const handleSortSelectEleChange = (e) => updateList();
 
