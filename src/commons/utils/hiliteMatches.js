@@ -23,8 +23,5 @@ export const hiliteMatches = (filteredList, { keywordsSets }) => {
     gana: hilite(details.gana),
     padi: hilite(details.padi),
     it: hilite(details.it),
-    madhaviyaId: hilite(details.madhaviyaId),
-    kshirataranginiId: hilite(details.kshirataranginiId),
-    dhatupradipaId: hilite(details.dhatupradipaId),
   }));
 };
