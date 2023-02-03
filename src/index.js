@@ -15,7 +15,6 @@ import { Loader } from "./commons/utils/Loader";
 import { loadVrittis } from "./commons/utils/loadVrittis";
 import { scrollToTop } from "./commons/utils/scrollToTop";
 import { searchData } from "./commons/utils/searchData";
-import { setupThemeTester } from "./commons/utils/setThemeTester";
 import { sortData } from "./commons/utils/sortData";
 import { qs, qsa } from "./commons/utils/utils";
 
@@ -160,6 +159,3 @@ loadDhatupatha(Globals.ENDPOINTS.DHATUPATHA).then((data) => {
 
   loader.hide();
 });
-
-// TEMP: For theme testing
-setupThemeTester();
