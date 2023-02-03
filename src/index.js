@@ -17,17 +17,21 @@ import { scrollToTop } from "./commons/utils/scrollToTop";
 import { searchData } from "./commons/utils/searchData";
 import { setupThemeTester } from "./commons/utils/setThemeTester";
 import { sortData } from "./commons/utils/sortData";
-import { hide, show } from "./commons/utils/utils";
 
-const Globals = window.Globals;
+const Globals = {};
+
+// ENDPOINTS are set in index.html
+Globals.ENDPOINTS = {
+  DHATUPATHA: DHATUPATHA_ENDPOINT,
+  VRITTI: VRITTI_ENDPOINT,
+  GRAPH: GRAPH_ENDPOINT,
+  FORMS: FORMS_ENDPOINT,
+};
 
 Globals.CACHE = {};
 
 const loaderEle = document.querySelector("#app #loader");
 const listEle = document.querySelector("#app #dhatu-list");
-const searchFormContainerEle = document.querySelector(
-  "#app #search-form-container"
-);
 const searchFormEle = document.querySelector("#app #search-form");
 const sortSelectEle = document.querySelector("#app #sort-select");
 const searchInputEle = document.querySelector("#app #search-input");
@@ -41,6 +45,9 @@ const resetViewOptionsBtnEle = document.querySelector(
 );
 const viewOptionsIndicatorEle = document.querySelector(
   "#app #view-options-indicator"
+);
+const searchFormContainerEle = document.querySelector(
+  "#app #search-form-container"
 );
 
 const list = new List(listEle);

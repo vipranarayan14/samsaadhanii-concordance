@@ -8,6 +8,7 @@
     },
     "posthtml-expressions": {
       "removeScriptLocals": true
-    }
+    },
+    "posthtml-beautify": {}
   }
 }
