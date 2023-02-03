@@ -90,6 +90,8 @@ const handleSearchInputEleInput = (e) => updateList();
 const handleScrollToTopClick = (e) => scrollToTop();
 
 const handleClearSearchBtnEleClick = (e) => {
+  if (!searchInputEle.value) return;
+
   searchInputEle.value = "";
   searchInputEle.focus();
 
