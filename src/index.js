@@ -33,7 +33,7 @@ const resetViewOptionsBtnEle = document.querySelector(
   "#app #reset-view-options-btn"
 );
 
-const DHATUPATHA_URL = require("url:./assets/dhatupatha.json");
+const DHATUPATHA_URL = "./assets/dhatupatha.json";
 const CONCORDANCE_ENDPOINT =
   "https://cdn.jsdelivr.net/gh/samsaadhanii/scl/dhaatupaatha";
 const VRITTI_ENDPOINT = `${CONCORDANCE_ENDPOINT}/files`;
