@@ -1,22 +1,22 @@
 import "./commons/commons";
 
 import { addProperties } from "./commons/utils/addProperties";
-import { Loader } from "./commons/utils/Loader";
-import { List } from "./commons/utils/List";
-import { scrollToTop } from "./commons/utils/scrollToTop";
-import { getDhatuDetails } from "./commons/utils/getDhatuDetails";
-import { loadVrittis } from "./commons/utils/loadVrittis";
 import { createDhatuModalData } from "./commons/utils/createDhatuModalData";
-import { loadDhatupatha } from "./commons/utils/loadDhatupatha";
-import { setupThemeTester } from "./commons/utils/setThemeTester";
-import { getFilterQuery } from "./commons/utils/getFilterQuery";
-import { searchData } from "./commons/utils/searchData";
-import { hiliteMatches } from "./commons/utils/hiliteMatches";
-import { sortData } from "./commons/utils/sortData";
-import { getSearchQuery } from "./commons/utils/getSearchQuery";
 import { filterData } from "./commons/utils/filterData";
+import { getDhatuDetails } from "./commons/utils/getDhatuDetails";
+import { getFilterQuery } from "./commons/utils/getFilterQuery";
+import { getSearchQuery } from "./commons/utils/getSearchQuery";
 import { getSortQuery } from "./commons/utils/getSortQuery";
-import { show, hide } from "./commons/utils/utils";
+import { hiliteMatches } from "./commons/utils/hiliteMatches";
+import { List } from "./commons/utils/List";
+import { loadDhatupatha } from "./commons/utils/loadDhatupatha";
+import { Loader } from "./commons/utils/Loader";
+import { loadVrittis } from "./commons/utils/loadVrittis";
+import { scrollToTop } from "./commons/utils/scrollToTop";
+import { searchData } from "./commons/utils/searchData";
+import { setupThemeTester } from "./commons/utils/setThemeTester";
+import { sortData } from "./commons/utils/sortData";
+import { hide, show } from "./commons/utils/utils";
 
 const Globals = { CACHE: {} };
 
