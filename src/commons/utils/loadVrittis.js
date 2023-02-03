@@ -1,5 +1,7 @@
+import { qs } from "./utils";
+
 const setVritti = (targetEle, vrittiName, content) => {
-  const vrittiEle = targetEle.querySelector(`[data-slot="${vrittiName}"]`);
+  const vrittiEle = qs(`[data-slot="${vrittiName}"]`, targetEle);
 
   if (!vrittiEle) return;
 

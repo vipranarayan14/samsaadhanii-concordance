@@ -1,4 +1,4 @@
-import { createURL } from "./utils";
+import { createURL, qs } from "./utils";
 
 const createDhatuModalTitle = (details) =>
   `${details.muladhatu} (${details.dhatu}) ${details.meaning}`;
@@ -6,11 +6,11 @@ const createDhatuModalTitle = (details) =>
 const createDhatuModalContent = (details, formsURL, graphURL) => {
   const slotData = details;
 
-  const template = document.querySelector("#dhatu-all-details");
+  const template = qs("#dhatu-all-details");
 
   const dhatuModalContent = template.content.cloneNode(true);
 
-  const getSlot = (query) => dhatuModalContent.querySelector(query);
+  const getSlot = (query) => qs(query, dhatuModalContent);
 
   for (const [slotName, slotValue] of Object.entries(slotData)) {
     const slot = getSlot(`[data-slot="${slotName}"]`);

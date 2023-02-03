@@ -1,13 +1,14 @@
 import { scrollToTop } from "./scrollToTop";
+import { qs } from "./utils";
 
 const createDhatuListItem = (dhatuDetails) => {
   const { id, muladhatu, dhatu, ...slotData } = dhatuDetails;
 
-  const template = document.querySelector("#dhatu-list-item");
+  const template = qs("#dhatu-list-item");
 
   const dhatuListItem = template.content.cloneNode(true);
 
-  const getSlot = (query) => dhatuListItem.querySelector(query);
+  const getSlot = (query) => qs(query, dhatuListItem);
 
   for (const [slotName, slotValue] of Object.entries(slotData)) {
     const slot = getSlot(`[data-slot="${slotName}"]`);

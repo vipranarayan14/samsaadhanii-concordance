@@ -17,6 +17,7 @@ import { scrollToTop } from "./commons/utils/scrollToTop";
 import { searchData } from "./commons/utils/searchData";
 import { setupThemeTester } from "./commons/utils/setThemeTester";
 import { sortData } from "./commons/utils/sortData";
+import { qs, qsa } from "./commons/utils/utils";
 
 const Globals = {};
 
@@ -30,25 +31,19 @@ Globals.ENDPOINTS = {
 
 Globals.CACHE = {};
 
-const loaderEle = document.querySelector("#app #loader");
-const listEle = document.querySelector("#app #dhatu-list");
-const searchFormEle = document.querySelector("#app #search-form");
-const sortSelectEle = document.querySelector("#app #sort-select");
-const searchInputEle = document.querySelector("#app #search-input");
-const clearSearchBtnEle = document.querySelector("#app #clear-search-btn");
-const dhatuDetailsModalEle = document.querySelector("#dhatu-details-modal");
-const scrollToTopEle = document.querySelector("#app #scroll-to-top");
-const viewFiltersEle = document.querySelector("#app #view-filters");
-const filterSelectEles = viewFiltersEle.querySelectorAll("select");
-const resetViewOptionsBtnEle = document.querySelector(
-  "#app #reset-view-options-btn"
-);
-const viewOptionsIndicatorEle = document.querySelector(
-  "#app #view-options-indicator"
-);
-const searchFormContainerEle = document.querySelector(
-  "#app #search-form-container"
-);
+const loaderEle = qs("#app #loader");
+const listEle = qs("#app #dhatu-list");
+const searchFormEle = qs("#app #search-form");
+const sortSelectEle = qs("#app #sort-select");
+const searchInputEle = qs("#app #search-input");
+const clearSearchBtnEle = qs("#app #clear-search-btn");
+const dhatuDetailsModalEle = qs("#dhatu-details-modal");
+const scrollToTopEle = qs("#app #scroll-to-top");
+const viewFiltersEle = qs("#app #view-filters");
+const filterSelectEles = qsa("select", viewFiltersEle);
+const resetViewOptionsBtnEle = qs("#app #reset-view-options-btn");
+const viewOptionsIndicatorEle = qs("#app #view-options-indicator");
+const searchFormContainerEle = qs("#app #search-form-container");
 
 const list = new List(listEle);
 const loader = new Loader(loaderEle);
@@ -125,8 +120,8 @@ const handleModalShow = (e) => {
   const modalData = createDhatuModalData(dhatuDetails, Globals);
 
   const modal = e.target;
-  const modalTitle = modal.querySelector(".modal-title");
-  const modalBody = modal.querySelector(".modal-body");
+  const modalTitle = qs(".modal-title", modal);
+  const modalBody = qs(".modal-body", modal);
 
   modalTitle.textContent = modalData.title;
   modalBody.replaceChildren(modalData.content);
