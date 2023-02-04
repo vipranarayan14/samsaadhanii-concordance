@@ -1,21 +1,5 @@
 @import "./commons/commons";
 
-:root {
-  --bg: #f0f0f0;
-  --card-bg: #ffffff;
-  /* --bg-card-hover: #f8f9fa; */
-  --card-hover-bg: #f4f5f7;
-  /* --card-hover-bg: rgb(238, 238, 238); */
-  --card-corner-radius: 3px;
-  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  --divider-color: #e7e7e7;
-  --mark-bg: #ffff00;
-  --mark-text: #000000;
-
-  --zindex-fixed: #{$zindex-fixed};
-  --list-max-width: 700px;
-}
-
 button {
   font-family: inherit;
   font-size: inherit;
@@ -27,6 +11,14 @@ button {
 
 #app .hidden {
   display: none;
+}
+
+#app .z-fixed {
+  z-index: #{$zindex-fixed};
+}
+
+#app .mw-700 {
+  max-width: 700px;
 }
 
 #app .input-group:focus-within {
