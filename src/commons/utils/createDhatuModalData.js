@@ -4,22 +4,38 @@ const createDhatuModalTitle = (details) =>
   `${details.muladhatu} (${details.dhatu}) ${details.meaning}`;
 
 const createDhatuModalContent = (details, formsURL, graphURL) => {
-  const slotData = details;
+  const { madhaviyaId, kshirataranginiId, dhatupradipaId, ...slotData } =
+    details;
 
   const template = qs("#dhatu-all-details");
 
   const dhatuModalContent = template.content.cloneNode(true);
 
-  const getSlot = (query) => qs(query, dhatuModalContent);
+  const getSlot = (slotName) =>
+    qs(`[data-slot="${slotName}"]`, dhatuModalContent);
 
   for (const [slotName, slotValue] of Object.entries(slotData)) {
-    const slot = getSlot(`[data-slot="${slotName}"]`);
+    const slot = getSlot(slotName);
 
     if (slot) slot.textContent = slotValue;
   }
 
-  const formsSlot = getSlot('[data-slot="forms"]');
-  const formsLinkSlot = getSlot('[data-slot="formsLink"]');
+  const vrittiDetails = { madhaviyaId, kshirataranginiId, dhatupradipaId };
+
+  for (const [slotName, vrittiNum] of Object.entries(vrittiDetails)) {
+    const vrittiSlot = getSlot(slotName);
+
+    if (vrittiNum !== "-") {
+      vrittiSlot.textContent = vrittiNum;
+      continue;
+    }
+
+    vrittiSlot.classList.replace("text-bg-secondary", "text-bg-danger");
+    vrittiSlot.textContent = "·";
+  }
+
+  const formsSlot = getSlot("forms");
+  const formsLinkSlot = getSlot("formsLink");
 
   if (!formsURL) {
     formsSlot.innerHTML = "N/A";
@@ -27,9 +43,9 @@ const createDhatuModalContent = (details, formsURL, graphURL) => {
     formsLinkSlot.href = formsURL;
   }
 
-  const graphSlot = getSlot('[data-slot="graph"]');
-  const graphLinkSlot = getSlot('[data-slot="graphLink"]');
-  const graphImgSlot = getSlot('[data-slot="graphImg"]');
+  const graphSlot = getSlot("graph");
+  const graphLinkSlot = getSlot("graphLink");
+  const graphImgSlot = getSlot("graphImg");
 
   if (!graphURL) {
     graphSlot.innerHTML = "N/A";

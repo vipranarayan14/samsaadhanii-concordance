@@ -2,27 +2,49 @@ import { scrollToTop } from "./scrollToTop";
 import { qs } from "./utils";
 
 const createDhatuListItem = (dhatuDetails) => {
-  const { id, muladhatu, dhatu, ...slotData } = dhatuDetails;
+  const {
+    id,
+    muladhatu,
+    dhatu,
+    madhaviyaId,
+    kshirataranginiId,
+    dhatupradipaId,
+    ...slotData
+  } = dhatuDetails;
 
   const template = qs("#dhatu-list-item");
 
   const dhatuListItem = template.content.cloneNode(true);
 
-  const getSlot = (query) => qs(query, dhatuListItem);
+  const getSlot = (slotName) => qs(`[data-slot="${slotName}"]`, dhatuListItem);
 
   for (const [slotName, slotValue] of Object.entries(slotData)) {
-    const slot = getSlot(`[data-slot="${slotName}"]`);
+    const slot = getSlot(slotName);
 
     if (slot) slot.innerHTML = slotValue;
   }
 
-  const idSlot = getSlot('[data-slot="item-id"]');
+  const vrittiDetails = { madhaviyaId, kshirataranginiId, dhatupradipaId };
 
-  idSlot.setAttribute("data-item-id", id);
+  for (const [slotName, vrittiNum] of Object.entries(vrittiDetails)) {
+    const vrittiSlot = getSlot(slotName);
 
-  const dhatuSlot = getSlot('[data-slot="dhatu"]');
+    if (vrittiNum !== "-") {
+      vrittiSlot.textContent = vrittiNum;
+      continue;
+    }
+
+    vrittiSlot.classList.replace("text-bg-secondary", "text-bg-danger");
+    vrittiSlot.textContent = "·";
+  }
+
+  const dhatuSlot = getSlot("dhatu");
 
   dhatuSlot.innerHTML = `${muladhatu} (${dhatu})`;
+
+  const idSlot = getSlot("item-id");
+
+  idSlot.setAttribute("data-item-id", id);
 
   return dhatuListItem;
 };
