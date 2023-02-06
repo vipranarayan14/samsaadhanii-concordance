@@ -31,11 +31,11 @@ const createDhatuListItem = (dhatuDetails) => {
 
     if (vrittiNum !== "-") {
       vrittiSlot.textContent = vrittiNum;
-      continue;
+      vrittiSlot.classList.add("text-bg-primary");
+    } else {
+      vrittiSlot.textContent = "·";
+      vrittiSlot.classList.add("text-bg-danger");
     }
-
-    vrittiSlot.classList.replace("text-bg-secondary", "text-bg-danger");
-    vrittiSlot.textContent = "·";
   }
 
   const dhatuSlot = getSlot("dhatu");
