@@ -2,7 +2,11 @@
   <label for="{{ id }}" class="d-block h6 fw-bold"> {{ label }} </label>
 
   <div>
-    <select id="{{ id }}" name="{{ id }}" class="form-select rounded-1">
+    <select
+      id="{{ id }}"
+      name="{{ id }}"
+      class="form-select border-divider rounded-1"
+    >
       <each loop="option in {{{ options }}}">
         <if condition="loop.first">
           <option value="{{ option[0] }}" selected>{{ option[1] }}</option>
