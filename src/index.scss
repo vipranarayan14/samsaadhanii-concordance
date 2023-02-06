@@ -9,30 +9,10 @@ button {
   padding: 0;
 }
 
-#app .hidden {
-  display: none;
-}
-
-#app .z-fixed {
-  z-index: #{$zindex-fixed};
-}
-
-#app .mw-700 {
-  max-width: 700px;
-}
-
 #app .input-group:focus-within {
   border-color: #{$input-focus-border-color};
   box-shadow: #{$input-focus-box-shadow};
   transition: #{$input-transition};
-}
-
-#app .nav-link {
-  text-decoration: none;
-}
-
-#app .offcanvas-footer {
-  @extend .offcanvas-header;
 }
 
 #app #search-form-container {

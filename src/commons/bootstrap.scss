@@ -117,3 +117,32 @@ $utilities: (
 @import "~bootstrap/scss/utilities/api";
 
 // 8. Add additional custom code here
+.hidden {
+  display: none;
+}
+
+.z-fixed {
+  z-index: #{$zindex-fixed};
+}
+
+.mw-700 {
+  max-width: 700px;
+}
+
+.nav-link {
+  text-decoration: none;
+}
+
+.offcanvas-footer {
+  @extend .offcanvas-header;
+}
+
+.rounded-start-1 {
+  border-bottom-left-radius: #{$border-radius-sm};
+  border-top-left-radius: #{$border-radius-sm};
+}
+
+.rounded-end-1 {
+  border-bottom-right-radius: #{$border-radius-sm};
+  border-top-right-radius: #{$border-radius-sm};
+}
