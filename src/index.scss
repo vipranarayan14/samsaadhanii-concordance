@@ -26,3 +26,12 @@ button {
 #app #search-form-container.pinned {
   @extend .bg-primary;
 }
+
+#app #dhatu-list .list-group-item-action:focus,
+#app #dhatu-list .list-group-item-action.focus {
+  outline: none;
+  border-color: #{$input-focus-border-color};
+  box-shadow: #{$input-focus-box-shadow} inset;
+  transition: #{$input-transition};
+}
+
