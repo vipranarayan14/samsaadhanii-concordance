@@ -7,9 +7,10 @@ export const removeSvaras = (dhatu) =>
 
 export const createURL = (endpoint, path) => (path ? `${endpoint}${path}` : "");
 
-export const show = (element) => element.classList.remove("hidden");
+export const show = (element) => element.classList.remove("_hidden");
 
-export const hide = (element) => element.classList.add("hidden");
+export const hide = (element) => element.classList.add("_hidden");
+
 
 export const qs = (selector, parent = document) =>
   parent.querySelector(selector);

@@ -117,10 +117,6 @@ $utilities: (
 @import "~bootstrap/scss/utilities/api";
 
 // 8. Add additional custom code here
-.hidden {
-  display: none;
-}
-
 .z-fixed {
   z-index: #{$zindex-fixed};
 }

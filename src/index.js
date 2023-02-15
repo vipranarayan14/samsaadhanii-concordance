@@ -52,7 +52,7 @@ const updateIndicator = (viewOptions) => {
     Boolean(value)
   );
 
-  viewOptionsIndicatorEle.classList.toggle("hidden", !isViewOptionsModified);
+  viewOptionsIndicatorEle.classList.toggle("_hidden", !isViewOptionsModified);
 };
 
 export const updateList = () => {
