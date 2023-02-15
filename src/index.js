@@ -47,13 +47,11 @@ const searchFormContainerEle = qs("#app #search-form-container");
 const list = new List(listEle);
 const loader = new Loader(loaderEle);
 
-const updateIndicator = (viewOptions) => {
-  const isViewOptionsModified = Object.values(viewOptions).some((value) =>
-    Boolean(value)
-  );
-
+const updateIndicator = (isViewOptionsModified) =>
   viewOptionsIndicatorEle.classList.toggle("_hidden", !isViewOptionsModified);
-};
+
+const updateListState = (isListModified) =>
+  listEle.classList.toggle("_initial", !isListModified);
 
 export const updateList = () => {
   const data = Globals.CACHE.DHATUPATHA;
@@ -73,7 +71,15 @@ export const updateList = () => {
 
   const viewOptions = { ...filterQuery, ...sortQuery };
 
-  updateIndicator(viewOptions);
+  const isViewOptionsModified = Object.values(viewOptions).some((value) =>
+    Boolean(value)
+  );
+
+  updateIndicator(isViewOptionsModified);
+
+  const isListModified = isViewOptionsModified || Boolean(searchInputEle.value);
+
+  updateListState(isListModified);
 };
 
 const handleFilterFormEleSubmit = (e) => {
@@ -90,27 +96,56 @@ const handleSearchInputEleInput = (e) => updateList();
 
 const handleScrollToTopClick = (e) => scrollToTop();
 
+const resetViewOptions = () => {
+  const viewOptionEles = [sortSelectEle, ...filterSelectEles];
+
+  viewOptionEles.forEach((select) => (select.selectedIndex = 0));
+};
+
+const clearSearchInput = () => {
+  searchInputEle.value = "";
+};
+
+const resetQuery = () => {
+  resetViewOptions();
+  clearSearchInput();
+
+  updateList();
+};
+
 const handleClearSearchBtnEleClick = (e) => {
   if (!searchInputEle.value) return;
 
-  searchInputEle.value = "";
+  clearSearchInput();
+
   searchInputEle.focus();
 
   updateList();
 };
 
 const handleResetViewOptionsBtnEleClick = (e) => {
-  const viewOptionEles = [sortSelectEle, ...filterSelectEles];
-
-  viewOptionEles.forEach((select) => (select.selectedIndex = 0));
+  resetViewOptions();
 
   updateList();
 };
 
-const handleModalShow = (e) => {
+const handleModalShowTrigger = (e) => {
   const item = e.relatedTarget;
 
   const { itemId } = item.dataset;
+
+  const isAnchorClicked = e.explicitOriginalTarget.closest("._anchor") !== null;
+
+  if (isAnchorClicked) {
+    // Don't show modal
+    e.preventDefault();
+
+    resetQuery();
+
+    list.goToItem(itemId);
+
+    return;
+  }
 
   const { DHATUPATHA } = Globals.CACHE;
 
@@ -135,7 +170,10 @@ const initEventListeners = () => {
   searchInputEle.addEventListener("input", handleSearchInputEleInput);
   clearSearchBtnEle.addEventListener("click", handleClearSearchBtnEleClick);
   scrollToTopEle.addEventListener("click", handleScrollToTopClick);
-  dhatuDetailsModalEle.addEventListener("show.bs.modal", handleModalShow);
+  dhatuDetailsModalEle.addEventListener(
+    "show.bs.modal",
+    handleModalShowTrigger
+  );
   resetViewOptionsBtnEle.addEventListener(
     "click",
     handleResetViewOptionsBtnEleClick

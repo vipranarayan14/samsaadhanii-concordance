@@ -49,6 +49,12 @@ const createDhatuListItem = (dhatuDetails) => {
   return dhatuListItem;
 };
 
+const focusItem = (item) => {
+  item.scrollIntoView({ block: "center" });
+
+  item.focus({ preventScroll: true });
+};
+
 export class List {
   constructor(element) {
     this.element = element;
@@ -101,6 +107,20 @@ export class List {
     this.setContent(this.lastLoadedId, this.lastLoadedId + this.itemsToLoad);
 
     this.startObserver();
+  }
+
+  goToItem(itemId) {
+    const index = this.list.findIndex(({ id }) => id === itemId);
+
+    if (index < 0) return;
+
+    this.setContent(0, index);
+
+    this.loadNext();
+
+    const item = qs(`[data-item-id="${itemId}"]`, this.element);
+
+    focusItem(item);
   }
 
   onIntersect(entries) {

@@ -1,11 +1,19 @@
 <template id="dhatu-list-item">
   <a
     href="#"
-    class="list-group-item list-group-item-action p-1"
+    class="list-group-item list-group-item-action p-1 position-relative"
     data-slot="item-id"
     data-bs-toggle="modal"
     data-bs-target="#dhatu-details-modal"
   >
+    <button
+      class="btn btn-transparent btn-sm position-absolute _anchor"
+      style="top: 5px; left: 5px"
+      title="Locate this on the list"
+    >
+      <i class="bi bi-geo-alt-fill"></i>
+    </button>
+
     <div class="align-items-center d-flex flex-column flex-md-row text-center">
       <div class="p-1 w-100" style="font-size: 1.1rem">
         <span class="fw-bold" data-slot="dhatu"> </span>
