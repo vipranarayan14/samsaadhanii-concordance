@@ -1,6 +1,4 @@
-import "./commons/commons";
-
-import { Modal } from "bootstrap";
+import { bootstrap } from "./commons/commons";
 
 import { addProperties } from "./commons/utils/addProperties";
 import { animateOnPin } from "./commons/utils/animateOnPin";
@@ -48,7 +46,7 @@ const searchFormContainerEle = qs("#app #search-form-container");
 
 const list = new List(listEle);
 const loader = new Loader(loaderEle);
-const dhatuDetailsModal = new Modal(dhatuDetailsModalEle);
+const dhatuDetailsModal = new bootstrap.Modal(dhatuDetailsModalEle);
 
 const updateIndicator = (isViewOptionsModified) =>
   viewOptionsIndicatorEle.classList.toggle("_hidden", !isViewOptionsModified);

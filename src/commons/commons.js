@@ -1,1 +1,3 @@
-import "./bootstrap";
+import bootstrap from "./bootstrap";
+
+export { bootstrap };
