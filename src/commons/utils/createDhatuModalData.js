@@ -1,4 +1,27 @@
-import { createURL, da, qs } from "./utils";
+import { da, qs, removeSvaras } from "./utils";
+
+const translitToWX = (str) =>
+  Sanscript.t(removeSvaras(str), "devanagari", "wx");
+
+const createFormsQuery = (details) => {
+  const { dhatuId, muladhatu, padi, gana, meaning } = details;
+
+  const prayoga = "karwari";
+  const encoding = "WX";
+
+  const vb = [dhatuId, muladhatu, gana, meaning].map(translitToWX).join("_");
+
+  const padiInWX = translitToWX(padi);
+
+  return (
+    `?vb=${vb}` +
+    `&prayoga_paxI=${prayoga}-${padiInWX}` +
+    `&encoding=${encoding}` +
+    `&upasarga=-` // required
+  );
+};
+
+const createURL = (endpoint, path) => (path ? `${endpoint}${path}` : "");
 
 const createDhatuModalTitle = (details) =>
   `${details.muladhatu} (${details.dhatu}) ${details.meaning}`;
@@ -57,7 +80,8 @@ const createDhatuModalContent = (details, formsURL, graphURL) => {
 };
 
 export const createDhatuModalData = (details, Globals) => {
-  const formsURL = createURL(Globals.ENDPOINTS.FORMS, details.formsURL);
+  const formsQuery = createFormsQuery(details);
+  const formsURL = createURL(Globals.ENDPOINTS.FORMS, formsQuery);
   const graphURL = createURL(Globals.ENDPOINTS.GRAPH, details.graphURL);
 
   return {
