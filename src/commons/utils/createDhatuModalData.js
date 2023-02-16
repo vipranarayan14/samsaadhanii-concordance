@@ -7,7 +7,7 @@ const createDhatuModalContent = (details, formsURL, graphURL) => {
   const { madhaviyaId, kshirataranginiId, dhatupradipaId, ...slotData } =
     details;
 
-  const template = qs("#dhatu-all-details");
+  const template = qs("#template-dhatu-all-details");
 
   const dhatuModalContent = template.content.cloneNode(true);
 

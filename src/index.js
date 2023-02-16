@@ -1,5 +1,7 @@
 import "./commons/commons";
 
+import { Modal } from "bootstrap";
+
 import { addProperties } from "./commons/utils/addProperties";
 import { animateOnPin } from "./commons/utils/animateOnPin";
 import { createDhatuModalData } from "./commons/utils/createDhatuModalData";
@@ -46,6 +48,7 @@ const searchFormContainerEle = qs("#app #search-form-container");
 
 const list = new List(listEle);
 const loader = new Loader(loaderEle);
+const dhatuDetailsModal = new Modal(dhatuDetailsModalEle);
 
 const updateIndicator = (isViewOptionsModified) =>
   viewOptionsIndicatorEle.classList.toggle("_hidden", !isViewOptionsModified);
@@ -129,17 +132,16 @@ const handleResetViewOptionsBtnEleClick = (e) => {
   updateList();
 };
 
-const handleModalShowTrigger = (e) => {
-  const item = e.relatedTarget;
+const handleDhatuListClick = (e) => {
+  e.preventDefault();
+
+  const item = e.target.closest("._dhatu-list-item");
 
   const { itemId } = item.dataset;
 
-  const isAnchorClicked = e.explicitOriginalTarget.closest("._anchor") !== null;
+  const isAnchorClicked = e.target.closest("._anchor") !== null;
 
   if (isAnchorClicked) {
-    // Don't show modal
-    e.preventDefault();
-
     resetQuery();
 
     list.goToItem(itemId);
@@ -147,20 +149,40 @@ const handleModalShowTrigger = (e) => {
     return;
   }
 
+  dhatuDetailsModal.show(item);
+};
+
+const handleModalShow = (e) => {
+  const item = e.relatedTarget;
+
+  const { itemId } = item.dataset;
+
   const { DHATUPATHA } = Globals.CACHE;
 
   const dhatuDetails = getDhatuDetails(DHATUPATHA, itemId);
 
   const modalData = createDhatuModalData(dhatuDetails, Globals);
 
-  const modal = e.target;
-  const modalTitle = qs(".modal-title", modal);
-  const modalBody = qs(".modal-body", modal);
+  const modalEle = e.target;
+  const modalTitle = qs(".modal-title", modalEle);
+  const modalBody = qs(".modal-body", modalEle);
+
+  modalEle.dataset.itemId = itemId;
 
   modalTitle.textContent = modalData.title;
   modalBody.replaceChildren(modalData.content);
 
-  loadVrittis(modal, dhatuDetails, Globals);
+  loadVrittis(modalEle, dhatuDetails, Globals);
+};
+
+const handleModalHide = (e) => {
+  const modalEle = e.target;
+
+  const { itemId } = modalEle.dataset;
+
+  const relatedTarget = qs(`[data-item-id="${itemId}"]`, listEle);
+
+  relatedTarget.focus();
 };
 
 const initEventListeners = () => {
@@ -170,10 +192,9 @@ const initEventListeners = () => {
   searchInputEle.addEventListener("input", handleSearchInputEleInput);
   clearSearchBtnEle.addEventListener("click", handleClearSearchBtnEleClick);
   scrollToTopEle.addEventListener("click", handleScrollToTopClick);
-  dhatuDetailsModalEle.addEventListener(
-    "show.bs.modal",
-    handleModalShowTrigger
-  );
+  listEle.addEventListener("click", handleDhatuListClick);
+  dhatuDetailsModalEle.addEventListener("show.bs.modal", handleModalShow);
+  dhatuDetailsModalEle.addEventListener("hidden.bs.modal", handleModalHide);
   resetViewOptionsBtnEle.addEventListener(
     "click",
     handleResetViewOptionsBtnEleClick

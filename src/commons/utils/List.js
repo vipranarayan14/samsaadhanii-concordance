@@ -12,7 +12,7 @@ const createDhatuListItem = (dhatuDetails) => {
     ...slotData
   } = dhatuDetails;
 
-  const template = qs("#dhatu-list-item");
+  const template = qs("#template-dhatu-list-item");
 
   const dhatuListItem = template.content.cloneNode(true);
 
