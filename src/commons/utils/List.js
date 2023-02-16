@@ -70,6 +70,7 @@ export class List {
 
     if (index < 0) return;
 
+    this.#clear();
     this.#append(0, index);
     this.#loadNext();
 
