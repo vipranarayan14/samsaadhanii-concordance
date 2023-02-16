@@ -35,6 +35,6 @@ button {
   transition: #{$input-transition};
 }
 
-#app #dhatu-list._initial ._anchor {
+#app #dhatu-list._initial [data-action="locate"] {
   display: none;
 }

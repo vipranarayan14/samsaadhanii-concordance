@@ -132,11 +132,11 @@ const handleResetViewOptionsBtnEleClick = (e) => {
 const handleDhatuListClick = (e) => {
   e.preventDefault();
 
-  const item = e.target.closest("._dhatu-list-item");
+  const item = e.target.closest(da("item-id"));
 
   const { itemId } = item.dataset;
 
-  const isAnchorClicked = e.target.closest("._anchor") !== null;
+  const isAnchorClicked = e.target.closest(da("action", "locate")) !== null;
 
   if (isAnchorClicked) {
     resetQuery();
