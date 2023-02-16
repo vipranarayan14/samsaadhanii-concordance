@@ -1,16 +1,6 @@
-export const removeLastVirama = (keyword) => keyword.replace(/्$/, "");
-
 export const svarasRegex = "[॒॑]";
 
-export const removeSvaras = (dhatu) =>
-  dhatu.replace(new RegExp(svarasRegex, "g"), "");
-
-export const createURL = (endpoint, path) => (path ? `${endpoint}${path}` : "");
-
-export const show = (element) => element.classList.remove("_hidden");
-
-export const hide = (element) => element.classList.add("_hidden");
-
+const hideClass = "_hidden";
 
 export const qs = (selector, parent = document) =>
   parent.querySelector(selector);
@@ -21,3 +11,17 @@ export const qsa = (selector, parent = document) =>
 // Make data-attribute query
 export const da = (name, value) =>
   value ? `[data-${name}="${value}"]` : `[data-${name}]`;
+
+export const show = (element) => element.classList.remove(hideClass);
+
+export const hide = (element) => element.classList.add(hideClass);
+
+export const toggle = (element, condition) =>
+  element.classList.toggle(hideClass, condition);
+
+export const removeLastVirama = (keyword) => keyword.replace(/्$/, "");
+
+export const removeSvaras = (dhatu) =>
+  dhatu.replace(new RegExp(svarasRegex, "g"), "");
+
+export const createURL = (endpoint, path) => (path ? `${endpoint}${path}` : "");

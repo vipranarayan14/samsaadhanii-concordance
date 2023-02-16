@@ -16,7 +16,7 @@ import { loadVrittis } from "./commons/utils/loadVrittis";
 import { scrollToTop } from "./commons/utils/scrollToTop";
 import { searchData } from "./commons/utils/searchData";
 import { sortData } from "./commons/utils/sortData";
-import { da, qs, qsa } from "./commons/utils/utils";
+import { da, qs, qsa, toggle } from "./commons/utils/utils";
 
 const Globals = {};
 
@@ -50,7 +50,7 @@ const loader = new Loader(loaderEle);
 const dhatuDetailsModal = new bootstrap.Modal(dhatuDetailsModalEle);
 
 const updateIndicator = (isViewOptionsModified) =>
-  viewOptionsIndicatorEle.classList.toggle("_hidden", !isViewOptionsModified);
+  toggle(viewOptionsIndicatorEle, !isViewOptionsModified);
 
 const updateListState = (isListModified) =>
   listEle.classList.toggle("_initial", !isListModified);

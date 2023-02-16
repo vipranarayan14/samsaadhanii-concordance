@@ -1,13 +1,15 @@
+import { hide, show } from "./utils";
+
 export class Loader {
   constructor(element) {
     this.element = element;
   }
 
   show() {
-    this.element.classList.remove("_hidden");
+    show(this.element);
   }
 
   hide() {
-    this.element.classList.add("_hidden");
+    hide(this.element);
   }
 }
