@@ -16,7 +16,7 @@ import { loadVrittis } from "./commons/utils/loadVrittis";
 import { scrollToTop } from "./commons/utils/scrollToTop";
 import { searchData } from "./commons/utils/searchData";
 import { sortData } from "./commons/utils/sortData";
-import { qs, qsa } from "./commons/utils/utils";
+import { qs, qsa, qsd } from "./commons/utils/utils";
 
 const Globals = {};
 
@@ -35,13 +35,13 @@ const listEle = qs("#app #dhatu-list");
 const searchFormEle = qs("#app #search-form");
 const sortSelectEle = qs("#app #sort-select");
 const searchInputEle = qs("#app #search-input");
-const clearSearchBtnEle = qs("#app #clear-search-btn");
+const clearSearchBtnEle = qsd("action", "clear", searchFormEle);
 const dhatuDetailsModalEle = qs("#dhatu-details-modal");
 const scrollToTopEle = qs("#app #scroll-to-top");
 const viewFiltersEle = qs("#app #view-filters");
 const filterSelectEles = qsa("select", viewFiltersEle);
 const viewOptionsEle = qs("#app #view-options");
-const resetViewOptionsBtnEle = qs("#app #reset-view-options-btn");
+const resetViewOptionsBtnEle = qsd("action", "reset", viewOptionsEle);
 const viewOptionsIndicatorEle = qs("#app #view-options-indicator");
 const searchFormContainerEle = qs("#app #search-form-container");
 

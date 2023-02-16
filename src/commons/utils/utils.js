@@ -17,3 +17,6 @@ export const qs = (selector, parent = document) =>
 
 export const qsa = (selector, parent = document) =>
   parent.querySelectorAll(selector);
+
+export const qsd = (name, value = "", parent = document) =>
+  qs(`[data-${name}="${value}"]`, parent);
