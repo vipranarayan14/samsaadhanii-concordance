@@ -40,6 +40,7 @@ const dhatuDetailsModalEle = qs("#dhatu-details-modal");
 const scrollToTopEle = qs("#app #scroll-to-top");
 const viewFiltersEle = qs("#app #view-filters");
 const filterSelectEles = qsa("select", viewFiltersEle);
+const viewOptionsEle = qs("#app #view-options");
 const resetViewOptionsBtnEle = qs("#app #reset-view-options-btn");
 const viewOptionsIndicatorEle = qs("#app #view-options-indicator");
 const searchFormContainerEle = qs("#app #search-form-container");
@@ -83,20 +84,6 @@ export const updateList = () => {
   updateListState(isListModified);
 };
 
-const handleFilterFormEleSubmit = (e) => {
-  e.preventDefault();
-
-  updateList();
-};
-
-const handleSortSelectEleChange = (e) => updateList();
-
-const handleViewFiltersEleChange = (e) => updateList();
-
-const handleSearchInputEleInput = (e) => updateList();
-
-const handleScrollToTopClick = (e) => scrollToTop();
-
 const resetViewOptions = () => {
   const viewOptionEles = [sortSelectEle, ...filterSelectEles];
 
@@ -114,6 +101,16 @@ const resetQuery = () => {
   updateList();
 };
 
+const handleFilterFormEleSubmit = (e) => {
+  e.preventDefault();
+
+  updateList();
+};
+
+const handleSearchInputEleInput = (e) => updateList();
+
+const handleScrollToTopClick = (e) => scrollToTop();
+
 const handleClearSearchBtnEleClick = (e) => {
   if (!searchInputEle.value) return;
 
@@ -123,6 +120,8 @@ const handleClearSearchBtnEleClick = (e) => {
 
   updateList();
 };
+
+const handleViewOptionsEleChange = (e) => updateList();
 
 const handleResetViewOptionsBtnEleClick = (e) => {
   resetViewOptions();
@@ -185,8 +184,7 @@ const handleModalHide = (e) => {
 
 const initEventListeners = () => {
   searchFormEle.addEventListener("submit", handleFilterFormEleSubmit);
-  sortSelectEle.addEventListener("change", handleSortSelectEleChange);
-  viewFiltersEle.addEventListener("change", handleViewFiltersEleChange);
+  viewOptionsEle.addEventListener("change", handleViewOptionsEleChange);
   searchInputEle.addEventListener("input", handleSearchInputEleInput);
   clearSearchBtnEle.addEventListener("click", handleClearSearchBtnEleClick);
   scrollToTopEle.addEventListener("click", handleScrollToTopClick);
