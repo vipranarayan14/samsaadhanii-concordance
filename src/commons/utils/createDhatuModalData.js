@@ -1,4 +1,4 @@
-import { createURL, qs } from "./utils";
+import { createURL, da, qs } from "./utils";
 
 const createDhatuModalTitle = (details) =>
   `${details.muladhatu} (${details.dhatu}) ${details.meaning}`;
@@ -11,8 +11,7 @@ const createDhatuModalContent = (details, formsURL, graphURL) => {
 
   const dhatuModalContent = template.content.cloneNode(true);
 
-  const getSlot = (slotName) =>
-    qs(`[data-slot="${slotName}"]`, dhatuModalContent);
+  const getSlot = (slotName) => qs(da("slot", slotName), dhatuModalContent);
 
   for (const [slotName, slotValue] of Object.entries(slotData)) {
     const slot = getSlot(slotName);

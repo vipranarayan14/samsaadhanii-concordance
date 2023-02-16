@@ -1,7 +1,7 @@
-import { qs } from "./utils";
+import { da, qs } from "./utils";
 
 const setVritti = (targetEle, vrittiName, content) => {
-  const vrittiEle = qs(`[data-slot="${vrittiName}"]`, targetEle);
+  const vrittiEle = qs(da("slot", vrittiName), targetEle);
 
   if (!vrittiEle) return;
 

@@ -1,5 +1,5 @@
 import { scrollToTop } from "./scrollToTop";
-import { qs } from "./utils";
+import { da, qs } from "./utils";
 
 const createDhatuListItem = (dhatuDetails) => {
   const {
@@ -16,7 +16,7 @@ const createDhatuListItem = (dhatuDetails) => {
 
   const dhatuListItem = template.content.cloneNode(true);
 
-  const getSlot = (slotName) => qs(`[data-slot="${slotName}"]`, dhatuListItem);
+  const getSlot = (slotName) => qs(da("slot", slotName), dhatuListItem);
 
   for (const [slotName, slotValue] of Object.entries(slotData)) {
     const slot = getSlot(slotName);
@@ -74,7 +74,7 @@ export class List {
     this.#append(0, index);
     this.#loadNext();
 
-    const item = qs(`[data-item-id="${itemId}"]`, this.element);
+    const item = qs(da("item-id", itemId), this.element);
 
     focusItem(item);
   }

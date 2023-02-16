@@ -164,7 +164,7 @@ const handleModalShow = (e) => {
   const modalTitle = qs(".modal-title", modalEle);
   const modalBody = qs(".modal-body", modalEle);
 
-  modalEle.dataset.itemId = itemId;
+  modalEle.setAttribute("data-item-id", itemId);
 
   modalTitle.textContent = modalData.title;
   modalBody.replaceChildren(modalData.content);
@@ -177,7 +177,7 @@ const handleModalHide = (e) => {
 
   const { itemId } = modalEle.dataset;
 
-  const relatedTarget = qs(`[data-item-id="${itemId}"]`, listEle);
+  const relatedTarget = qs(da("item-id", itemId), listEle);
 
   relatedTarget.focus();
 };
