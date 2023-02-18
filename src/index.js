@@ -147,7 +147,7 @@ const handleDhatuListClick = (e) => {
       resetQuery();
 
       list.goToItem(itemId);
-    }, 1000);
+    }, 500);
 
     return;
   }
