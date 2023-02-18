@@ -16,7 +16,7 @@ import { loadVrittis } from "./commons/utils/loadVrittis";
 import { scrollToTop } from "./commons/utils/scrollToTop";
 import { searchData } from "./commons/utils/searchData";
 import { sortData } from "./commons/utils/sortData";
-import { da, qs, qsa, toggle } from "./commons/utils/utils";
+import { da, qs, qsa, show, hide, toggle } from "./commons/utils/utils";
 
 const Globals = {};
 
@@ -141,7 +141,8 @@ const handleDhatuListClick = (e) => {
   const isLocateBtnClicked = locateBtn !== null;
 
   if (isLocateBtnClicked) {
-    locateBtn.setAttribute("data-state", "clicked");
+    hide(qs(da("icon", "locate"), locateBtn));
+    show(qs(da("icon", "spinner"), locateBtn));
 
     window.setTimeout(() => {
       resetQuery();

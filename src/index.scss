@@ -38,21 +38,3 @@ button {
 #app #dhatu-list._initial [data-action="locate"] {
   display: none;
 }
-
-#app #dhatu-list [data-action="locate"][data-state="clicked"] {
-  cursor: wait;
-}
-
-#app
-  #dhatu-list
-  [data-action="locate"][data-state="clicked"]
-  [data-icon="locate"] {
-  display: none;
-}
-
-#app
-  #dhatu-list
-  [data-action="locate"]:not([data-state="clicked"])
-  [data-icon="spinner"] {
-  display: none;
-}
