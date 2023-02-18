@@ -136,12 +136,18 @@ const handleDhatuListClick = (e) => {
 
   const { itemId } = item.dataset;
 
-  const isAnchorClicked = e.target.closest(da("action", "locate")) !== null;
+  const locateBtn = e.target.closest(da("action", "locate"));
 
-  if (isAnchorClicked) {
-    resetQuery();
+  const isLocateBtnClicked = locateBtn !== null;
 
-    list.goToItem(itemId);
+  if (isLocateBtnClicked) {
+    locateBtn.setAttribute("data-state", "clicked");
+
+    window.setTimeout(() => {
+      resetQuery();
+
+      list.goToItem(itemId);
+    }, 1000);
 
     return;
   }
