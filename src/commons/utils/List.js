@@ -58,7 +58,7 @@ const focusItem = (item) => {
 export class List {
   #itemsToLoad = 20;
   #lastLoadedId = 0;
-  #list = [];
+  #data = [];
   #observer = new IntersectionObserver((entries) => this.#onIntersect(entries));
 
   constructor(element) {
@@ -66,7 +66,7 @@ export class List {
   }
 
   goToItem(itemId) {
-    const index = this.#list.findIndex(({ id }) => id === itemId);
+    const index = this.#data.findIndex(({ id }) => id === itemId);
 
     if (index < 0) return;
 
@@ -79,8 +79,8 @@ export class List {
     focusItem(item);
   }
 
-  setData(list) {
-    this.#list = list;
+  setData(data) {
+    this.#data = data;
     this.#lastLoadedId = 0;
     this.#clear();
     this.#loadNext();
@@ -89,7 +89,7 @@ export class List {
   }
 
   #append(fromId, toId) {
-    const items = this.#list.slice(fromId, toId).map(createDhatuListItem);
+    const items = this.#data.slice(fromId, toId).map(createDhatuListItem);
 
     this.element.append(...items);
 
@@ -117,7 +117,7 @@ export class List {
   #loadNext() {
     this.#stopObserver();
 
-    if (this.#lastLoadedId > this.#list.length - 1) return;
+    if (this.#lastLoadedId > this.#data.length - 1) return;
 
     this.#append(this.#lastLoadedId, this.#lastLoadedId + this.#itemsToLoad);
 
