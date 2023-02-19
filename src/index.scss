@@ -13,6 +13,11 @@ button {
   display: none;
 }
 
+#app .icon svg {
+  // From BS icons css file
+  vertical-align: -0.125em;
+}
+
 #app .input-group:focus-within {
   border-color: #{$input-focus-border-color};
   box-shadow: #{$input-focus-box-shadow};
