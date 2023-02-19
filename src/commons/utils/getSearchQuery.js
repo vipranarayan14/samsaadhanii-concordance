@@ -1,3 +1,5 @@
+import Sanscript from "@indic-transliteration/sanscript";
+
 import { removeSvaras, removeLastVirama } from "./utils";
 
 const getKeywords = (query) => query.split(" ").filter((keyword) => !!keyword);

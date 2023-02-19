@@ -1,7 +1,8 @@
+import Sanscript from "@indic-transliteration/sanscript";
+
 import { da, qs, removeSvaras } from "./utils";
 
-const translitToWX = (str) =>
-  Sanscript.t(removeSvaras(str), "devanagari", "wx");
+const translitToWX = (str) => Sanscript.t(str, "devanagari", "wx");
 
 const createFormsQuery = (details) => {
   const { dhatuId, muladhatu, padi, gana, meaning } = details;
@@ -9,7 +10,9 @@ const createFormsQuery = (details) => {
   const prayoga = "karwari";
   const encoding = "WX";
 
-  const vb = [dhatuId, muladhatu, gana, meaning].map(translitToWX).join("_");
+  const vb = [dhatuId, removeSvaras(muladhatu), gana, meaning]
+    .map(translitToWX)
+    .join("_");
 
   const padiInWX = translitToWX(padi);
 
