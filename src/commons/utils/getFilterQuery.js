@@ -1,7 +1,4 @@
 export const getFilterQuery = (filterSelectEles) =>
   Object.fromEntries(
-    [...filterSelectEles].map((select) => [
-      select.dataset.filterBy,
-      select.value,
-    ])
+    [...filterSelectEles].map((select) => [select.dataset.field, select.value])
   );

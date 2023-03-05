@@ -1,11 +1,12 @@
 <div>
-  <label for="{{ id }}" class="d-block h6 fw-bold"> {{ label }} </label>
+  <label for="{{ id }}-select" class="d-block h6 fw-bold"> {{ label }} </label>
 
   <div>
     <select
-      id="{{ id }}"
-      name="{{ id }}"
+      id="{{ id }}-select"
+      name="{{ id }}-select"
       class="form-select border-divider rounded-1"
+      data-field="{{ id }}"
     >
       <each loop="option in {{{ options }}}">
         <if condition="loop.first">

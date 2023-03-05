@@ -11,22 +11,24 @@ const extractKeywordsWithFields = (query) =>
     return { field, value };
   });
 
-export const getSearchQuery = (query) => {
-  const hasFields = query.includes(":");
+export const getSearchQuery = (searchInputEle) => {
+  const searchString = searchInputEle.value;
+
+  const hasFields = searchString.includes(":");
 
   let keywordsWithFields = null;
 
   if (hasFields) {
-    keywordsWithFields = extractKeywordsWithFields(query);
+    keywordsWithFields = extractKeywordsWithFields(searchString);
   }
 
-  const simplifiedQuery = removeSvaras(query);
-  const queryFromWx = Sanscript.t(simplifiedQuery, "wx", "devanagari");
-  const queryFromItrans = Sanscript.t(simplifiedQuery, "itrans", "devanagari");
+  const simplified = removeSvaras(searchString);
+  const convertedFromWx = Sanscript.t(simplified, "wx", "devanagari");
+  const convertedFromItrans = Sanscript.t(simplified, "itrans", "devanagari");
 
-  const keywordsSets = [simplifiedQuery, queryFromWx, queryFromItrans].map(
-    ($query) => getKeywords($query).map(removeLastVirama)
+  const keywordsSets = [simplified, convertedFromWx, convertedFromItrans].map(
+    (searchString) => getKeywords(searchString).map(removeLastVirama)
   );
 
-  return { hasFields, keywordsWithFields, keywordsSets };
+  return { searchString, hasFields, keywordsWithFields, keywordsSets };
 };

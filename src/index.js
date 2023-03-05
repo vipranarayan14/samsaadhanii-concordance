@@ -13,6 +13,7 @@ import { List } from "./commons/utils/List";
 import { loadDhatupatha } from "./commons/utils/loadDhatupatha";
 import { Loader } from "./commons/utils/Loader";
 import { loadVrittis } from "./commons/utils/loadVrittis";
+import { Params } from "./commons/utils/Params";
 import { scrollToTop } from "./commons/utils/scrollToTop";
 import { searchData } from "./commons/utils/searchData";
 import { sortData } from "./commons/utils/sortData";
@@ -44,6 +45,7 @@ const viewOptionsEle = qs("#app #view-options");
 const resetViewOptionsBtnEle = qs(da("action", "reset"), viewOptionsEle);
 const viewOptionsIndicatorEle = qs("#app #view-options-indicator");
 const searchFormContainerEle = qs("#app #search-form-container");
+const viewOptionEles = [sortSelectEle, ...filterSelectEles];
 
 const list = new List(listEle);
 const loader = new Loader(loaderEle);
@@ -64,12 +66,14 @@ export const updateList = () => {
   const sortQuery = getSortQuery(sortSelectEle);
   const sortedData = sortData(filteredData, sortQuery);
 
-  const searchQuery = getSearchQuery(searchInputEle.value);
+  const searchQuery = getSearchQuery(searchInputEle);
   const searchedData = searchData(sortedData, searchQuery);
 
   const hilitedData = hiliteMatches(searchedData, searchQuery);
 
   list.setData(hilitedData);
+
+  // Side-effects 👇
 
   const viewOptions = { ...filterQuery, ...sortQuery };
 
@@ -84,21 +88,47 @@ export const updateList = () => {
   updateListState(isListModified);
 };
 
-const resetViewOptions = () => {
-  const viewOptionEles = [sortSelectEle, ...filterSelectEles];
+const updateStateFromParams = () => {
+  searchInputEle.value = Params.getSearchField("q");
 
-  viewOptionEles.forEach((select) => (select.selectedIndex = 0));
+  viewOptionEles.forEach((select) => {
+    const value = Params.getOptionField(select.dataset.field) ?? "";
+
+    const values = [...select.options].map((option) => option.value);
+
+    if (!values.includes(value)) return;
+
+    select.value = value;
+  });
 };
 
-const clearSearchInput = () => {
+const resetViewOptions = () => {
+  viewOptionEles.forEach((select) => (select.selectedIndex = 0));
+
+  const viewOptionFields = viewOptionEles.map((select) => select.dataset.field);
+
+  Params.resetOptionFields(viewOptionFields);
+};
+
+const resetSearch = () => {
   searchInputEle.value = "";
+
+  Params.resetSearchField();
 };
 
 const resetQuery = () => {
   resetViewOptions();
-  clearSearchInput();
+  resetSearch();
 
   updateList();
+};
+
+const locateItem = (itemId) => {
+  window.setTimeout(() => {
+    resetQuery();
+
+    list.goToItem(itemId);
+  }, 500);
 };
 
 const handleFilterFormEleSubmit = (e) => {
@@ -107,21 +137,29 @@ const handleFilterFormEleSubmit = (e) => {
   updateList();
 };
 
-const handleSearchInputEleInput = (e) => updateList();
+const handleSearchInputEleInput = (e) => {
+  updateList();
+
+  Params.setSearchField(e.target.value);
+};
 
 const handleScrollToTopClick = (e) => scrollToTop();
 
 const handleClearSearchBtnEleClick = (e) => {
   if (!searchInputEle.value) return;
 
-  clearSearchInput();
+  resetSearch();
 
   searchInputEle.focus();
 
   updateList();
 };
 
-const handleViewOptionsEleChange = (e) => updateList();
+const handleViewOptionsEleChange = (e) => {
+  updateList();
+
+  Params.setOptionField(e.target.dataset.field, e.target.value);
+};
 
 const handleResetViewOptionsBtnEleClick = (e) => {
   resetViewOptions();
@@ -144,11 +182,7 @@ const handleDhatuListClick = (e) => {
     hide(qs(da("icon", "locate"), locateBtn));
     show(qs(da("icon", "spinner"), locateBtn));
 
-    window.setTimeout(() => {
-      resetQuery();
-
-      list.goToItem(itemId);
-    }, 500);
+    locateItem(itemId);
 
     return;
   }
@@ -189,6 +223,16 @@ const handleModalHide = (e) => {
   relatedTarget.focus();
 };
 
+const handleDOMContentLoaded = (e) => {
+  updateStateFromParams();
+};
+
+const handlePopstate = (e) => {
+  updateStateFromParams();
+
+  updateList();
+};
+
 const initEventListeners = () => {
   searchFormEle.addEventListener("submit", handleFilterFormEleSubmit);
   viewOptionsEle.addEventListener("change", handleViewOptionsEleChange);
@@ -207,6 +251,11 @@ const initEventListeners = () => {
 const setupAnimations = () => {
   animateOnPin(searchFormContainerEle);
 };
+
+// App init 👇
+
+window.addEventListener("popstate", handlePopstate);
+document.addEventListener("DOMContentLoaded", handleDOMContentLoaded);
 
 setupAnimations();
 
