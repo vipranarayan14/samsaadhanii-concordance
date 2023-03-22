@@ -4,17 +4,20 @@ A new UI for [Samsaadhanii Concordance](http://scl.samsaadhanii.in/scl/dhaatupaa
 
 ## Features
 
-- Filter
+- Search
     - Instant: Filters as you type.
     - Compound: Each keyword (space-seperated) makes the results more specific.
     - Any encoding: Currently - WX/ITRANS/Deva
     - (New) Results highlighted.
     - (New) Searches all fields - dhatu/meaning/gana/padi/it and vritti numbers.
     - Sticks to top when scrolled.
+    - Locate.
 - Sort
     - Sort by dhatu, artha or gana.
     - Sort happens on the client-side.
     - Super fast.
+- Filter
+    - Filter by vritti/gana/padi/it.
 - UI
     - Mobile-first design.
     - Responsive: Adapts to screen size.
