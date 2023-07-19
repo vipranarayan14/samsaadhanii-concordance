@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.0",
+    "lightningcss": "^1.21.5",
     "parcel": "^2.8.0",
     "posthtml-beautify": "^0.7.0",
     "posthtml-expressions": "^1.11.0",
