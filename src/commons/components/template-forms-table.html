@@ -1,0 +1,83 @@
+<template id="template-forms-table">
+  <div>
+    <div data-slot="lakara">लट् (वर्तमान)</div>
+    <div class="d-flex flex-row justify-content-around">
+      <div
+        data-slot="parasmaiTable"
+        class="d-flex flex-column align-items-center"
+      >
+        <div>परस्मैपदी</div>
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">एकवचनम्</th>
+                <th scope="col">द्विवचनम्</th>
+                <th scope="col">बहुवचनम्</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">प्रथमपुरुषः</th>
+                <td data-slot="ppe">राजते</td>
+                <td data-slot="ppd">राजेते</td>
+                <td data-slot="ppb">राजन्ते</td>
+              </tr>
+              <tr>
+                <th scope="row">मध्यमपुरुषः</th>
+                <td data-slot="pme">राजसे</td>
+                <td data-slot="pmd">राजेथे</td>
+                <td data-slot="pmb">राजध्वे</td>
+              </tr>
+              <tr>
+                <th scope="row">उत्तमपुरुषः</th>
+                <td data-slot="pue">राजे</td>
+                <td data-slot="pud">राजावहे</td>
+                <td data-slot="pub">राजामहे</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div
+        data-slot="aatmaneTable"
+        class="d-flex flex-column align-items-center"
+      >
+        <div>आत्मनेपदी</div>
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">एकवचनम्</th>
+                <th scope="col">द्विवचनम्</th>
+                <th scope="col">बहुवचनम्</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">प्रथमपुरुषः</th>
+                <td data-slot="ape">राजते</td>
+                <td data-slot="apd">राजेते</td>
+                <td data-slot="apb">राजन्ते</td>
+              </tr>
+              <tr>
+                <th scope="row">मध्यमपुरुषः</th>
+                <td data-slot="ame">राजसे</td>
+                <td data-slot="amd">राजेथे</td>
+                <td data-slot="amb">राजध्वे</td>
+              </tr>
+              <tr>
+                <th scope="row">उत्तमपुरुषः</th>
+                <td data-slot="aue">राजे</td>
+                <td data-slot="aud">राजावहे</td>
+                <td data-slot="aub">राजामहे</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -37,16 +37,16 @@
                 class="accordion-button collapsed fw-bold"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#collapse-1"
+                data-bs-target="#vriitis-collapse-1"
                 aria-expanded="false"
-                aria-controls="collapse-1"
+                aria-controls="vriitis-collapse-1"
               >
                 <span>माधवीयधातुवृत्तिः</span>&nbsp;
                 <span class="badge" data-slot="madhaviyaId"></span>
               </button>
             </h3>
             <div
-              id="collapse-1"
+              id="vriitis-collapse-1"
               class="accordion-collapse collapse"
               aria-labelledby="header-1"
               data-bs-parent="#vrittis-accordion"
@@ -67,16 +67,16 @@
                 class="accordion-button collapsed fw-bold"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#collapse-2"
+                data-bs-target="#vriitis-collapse-2"
                 aria-expanded="false"
-                aria-controls="collapse-2"
+                aria-controls="vriitis-collapse-2"
               >
                 <span>क्षीरतरङ्गिणी</span>&nbsp;
                 <span class="badge" data-slot="kshirataranginiId"></span>
               </button>
             </h3>
             <div
-              id="collapse-2"
+              id="vriitis-collapse-2"
               class="accordion-collapse collapse"
               aria-labelledby="header-2"
               data-bs-parent="#vrittis-accordion"
@@ -97,16 +97,16 @@
                 class="accordion-button collapsed fw-bold"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#collapse-3"
+                data-bs-target="#vriitis-collapse-3"
                 aria-expanded="false"
-                aria-controls="collapse-3"
+                aria-controls="vriitis-collapse-3"
               >
                 <span>धातुप्रदीपः</span>&nbsp;
                 <span class="badge" data-slot="dhatupradipaId"></span>
               </button>
             </h3>
             <div
-              id="collapse-3"
+              id="vriitis-collapse-3"
               class="accordion-collapse collapse"
               aria-labelledby="header-3"
               data-bs-parent="#vrittis-accordion"
@@ -126,17 +126,41 @@
 
     <section class="forms">
       <h2 class="py-2 my-3 fs-5 fw-bold border-bottom">तिङन्त-रूपाणि</h2>
-      <div class="text-center" data-slot="forms">
-        <a
-          class="btn btn-outline-primary rounded-1"
-          href="#"
-          target="_blank"
-          data-slot="formsLink"
-        >
-          <span>Show forms&nbsp;</span>
-          <component src="/commons/icons/ext-link.html"></component>
-        </a>
+
+      <div class="accordion" id="forms-accordion">
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="header-1">
+            <button
+              class="accordion-button collapsed fw-bold"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#forms-collapse-1"
+              aria-expanded="false"
+              aria-controls="forms-collapse-1"
+            >
+              <span>कर्तरि</span>
+            </button>
+          </h3>
+          <div
+            id="forms-collapse-1"
+            class="accordion-collapse collapse"
+            aria-labelledby="header-1"
+            data-bs-parent="#forms-accordion"
+          >
+            <div
+              class="accordion-body text-break"
+              style="max-height: 400px; overflow-y: auto"
+              data-slot="formsTable"
+            >
+              Loading...
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- <div class="text-center" data-slot="forms">
+        <div data-slot="formsTable"></div>
+      </div> -->
     </section>
 
     <section class="graph">

@@ -1,0 +1,98 @@
+[
+    {
+        lakaraName: ''
+        forms: {
+            ppe: '',
+            ppd: '',
+            ...
+            ape: '',
+            apd: '',
+        }
+    }
+]
+
+const formKeysMap = {
+  "परस्मैपदी-प्रथमपुरुषः-एकवचनम्": "ppe",
+  "परस्मैपदी-प्रथमपुरुषः-द्विवचनम्": "ppd",
+  "परस्मैपदी-प्रथमपुरुषः-बहुवचनम्": "ppb",
+  "परस्मैपदी-मध्यमपुरुषः-एकवचनम्": "pme",
+  "परस्मैपदी-मध्यमपुरुषः-द्विवचनम्": "pmd",
+  "परस्मैपदी-मध्यमपुरुषः-बहुवचनम्": "pmb",
+  "परस्मैपदी-उत्तमपुरुषः-एकवचनम्": "pue",
+  "परस्मैपदी-उत्तमपुरुषः-द्विवचनम्": "pud",
+  "परस्मैपदी-उत्तमपुरुषः-बहुवचनम्": "pub",
+
+  "आत्मनेपदी-प्रथमपुरुषः-एकवचनम्": "ape",
+  "आत्मनेपदी-प्रथमपुरुषः-द्विवचनम्": "apd",
+  "आत्मनेपदी-प्रथमपुरुषः-बहुवचनम्": "apb",
+  "आत्मनेपदी-मध्यमपुरुषः-एकवचनम्": "ame",
+  "आत्मनेपदी-मध्यमपुरुषः-द्विवचनम्": "amd",
+  "आत्मनेपदी-मध्यमपुरुषः-बहुवचनम्": "amb",
+  "आत्मनेपदी-उत्तमपुरुषः-एकवचनम्": "aue",
+  "आत्मनेपदी-उत्तमपुरुषः-द्विवचनम्": "aud",
+  "आत्मनेपदी-उत्तमपुरुषः-बहुवचनम्": "aub",
+};
+
+const restructureForms = (parasmaiData, aatmaneData) => {
+  const restructuredForms = {
+    ppe: [],
+    ppd: [],
+    ppb: [],
+    pme: [],
+    pmd: [],
+    pmb: [],
+    pue: [],
+    pud: [],
+    pub: [],
+    ape: [],
+    apd: [],
+    apb: [],
+    ame: [],
+    amd: [],
+    amb: [],
+    aue: [],
+    aud: [],
+    aub: [],
+  };
+
+  for (const formDetails of parasmaiData) {
+    const formsKey =
+      formKeysMap[`परस्मैपदी-${formDetails.person}-${formDetails.number}`];
+
+    console.log(formsKey);
+
+    restructuredForms[formsKey].push(formDetails.form);
+  }
+
+  for (const formDetails of aatmaneData) {
+    const formsKey =
+      formKeysMap[`आत्मनेपदी-${formDetails.person}-${formDetails.number}`];
+
+    restructuredForms[formsKey].push(formDetails.form);
+  }
+
+  return restructuredForms;
+};
+
+const retructureFormsData = (formsData) => {
+  const parasmai = formsData[0]["parasmE"];
+  const aatmane = formsData[0]["Awmane"];
+
+  const retructuredFormsData = [];
+
+  const lakaraIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  for (const lakaraId of lakaraIndices) {
+    const parasmaiData = parasmai ? parasmai[0][`l_forms_${lakaraId}`] : [];
+    const aatmaneData = aatmane ? aatmane[0][`l_forms_${lakaraId}`] : [];
+
+    const forms = restructureForms(parasmaiData, aatmaneData);
+
+    retructuredFormsData.push({
+      lakaraId,
+      forms,
+    });
+  }
+
+  return retructuredFormsData;
+};
