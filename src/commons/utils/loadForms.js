@@ -49,11 +49,13 @@ const createFormsTable = (retructuredFormsData) => {
 
     const parasmaiTableSlot = getSlot("parasmaiTable");
 
+    const getParasmaiSlot = (slotName) => qs(da("slot", slotName), parasmaiTableSlot);
+
     if (formsData.parasmaiForms) {
       for (const [slotName, slotValue] of Object.entries(
         formsData.parasmaiForms
       )) {
-        const slot = getSlot(`p${slotName}`);
+        const slot = getParasmaiSlot(`${slotName}`);
 
         if (slot) slot.textContent = slotValue;
       }
@@ -63,11 +65,13 @@ const createFormsTable = (retructuredFormsData) => {
 
     const aatmaneTableSlot = getSlot("aatmaneTable");
 
+    const getAatmaneSlot = (slotName) => qs(da("slot", slotName), aatmaneTableSlot);
+
     if (formsData.aatmaneForms) {
       for (const [slotName, slotValue] of Object.entries(
         formsData.aatmaneForms
       )) {
-        const slot = getSlot(`a${slotName}`);
+        const slot = getAatmaneSlot(`${slotName}`);
 
         if (slot) slot.textContent = slotValue;
       }
@@ -164,5 +168,3 @@ export const loadForms = async (targetEle, details, Globals) => {
 
   setForms(targetEle, retructuredFormsData);
 };
-
-
