@@ -1,9 +1,10 @@
-import { isArrayEmpty, svarasRegex } from "./utils";
+import { isArrayEmpty, vowelMarksRegex } from "./utils";
 
-const fillSvaras = (keyword) => keyword.split("").join(`${svarasRegex}?`);
+const fillVowelMarks = (keyword) =>
+  keyword.split("").join(vowelMarksRegex).concat(vowelMarksRegex);
 
 const makeKeywordsRegex = (keywords) => {
-  const keywordsRegexStr = keywords.map(fillSvaras).join("|");
+  const keywordsRegexStr = keywords.map(fillVowelMarks).join("|");
 
   return new RegExp(keywordsRegexStr, "g");
 };

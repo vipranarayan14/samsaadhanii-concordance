@@ -1,6 +1,6 @@
 import Sanscript from "@indic-transliteration/sanscript";
 
-export const svarasRegex = "[॒॑]";
+export const vowelMarksRegex = "[्ािीुूृॄेैोौंःँ॒॑]*";
 
 const hideClass = "_hidden";
 
@@ -24,7 +24,7 @@ export const toggle = (element, condition) =>
 export const removeLastVirama = (keyword) => keyword.replace(/्$/, "");
 
 export const removeSvaras = (dhatu) =>
-  dhatu.replace(new RegExp(svarasRegex, "g"), "");
+  dhatu.replace(new RegExp(vowelMarksRegex, "g"), "");
 
 export const translitToWX = (str) => Sanscript.t(str, "devanagari", "wx");
 
