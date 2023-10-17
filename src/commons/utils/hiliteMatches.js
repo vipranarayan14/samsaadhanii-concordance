@@ -1,4 +1,4 @@
-import { svarasRegex } from "./utils";
+import { isArrayEmpty, svarasRegex } from "./utils";
 
 const fillSvaras = (keyword) => keyword.split("").join(`${svarasRegex}?`);
 
@@ -10,6 +10,8 @@ const makeKeywordsRegex = (keywords) => {
 
 export const hiliteMatches = (filteredList, { keywordsSets }) => {
   const keywords = keywordsSets.flat(1);
+
+  if (isArrayEmpty(keywords)) return filteredList;
 
   const keywordsRegex = makeKeywordsRegex(keywords);
 

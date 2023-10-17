@@ -27,3 +27,5 @@ export const removeSvaras = (dhatu) =>
   dhatu.replace(new RegExp(svarasRegex, "g"), "");
 
 export const translitToWX = (str) => Sanscript.t(str, "devanagari", "wx");
+
+export const isArrayEmpty = (array) => array.length === 0;
