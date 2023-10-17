@@ -12,6 +12,7 @@ import { hiliteMatches } from "./commons/utils/hiliteMatches";
 import { List } from "./commons/utils/List";
 import { loadDhatupatha } from "./commons/utils/loadDhatupatha";
 import { Loader } from "./commons/utils/Loader";
+import { loadForms } from "./commons/utils/loadForms";
 import { loadVrittis } from "./commons/utils/loadVrittis";
 import { Params } from "./commons/utils/Params";
 import { scrollToTop } from "./commons/utils/scrollToTop";
@@ -89,7 +90,7 @@ export const updateList = () => {
 };
 
 const updateStateFromParams = () => {
-  searchInputEle.value = Params.getSearchField("q");
+  searchInputEle.value = Params.getSearchField();
 
   viewOptionEles.forEach((select) => {
     const value = Params.getOptionField(select.dataset.field) ?? "";
@@ -211,6 +212,8 @@ const handleModalShow = (e) => {
   modalBody.replaceChildren(modalData.content);
 
   loadVrittis(modalEle, dhatuDetails, Globals);
+
+  loadForms(modalEle, dhatuDetails, Globals);
 };
 
 const handleModalHide = (e) => {

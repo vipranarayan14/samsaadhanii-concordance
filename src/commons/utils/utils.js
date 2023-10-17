@@ -1,3 +1,5 @@
+import Sanscript from "@indic-transliteration/sanscript";
+
 export const svarasRegex = "[॒॑]";
 
 const hideClass = "_hidden";
@@ -23,3 +25,5 @@ export const removeLastVirama = (keyword) => keyword.replace(/्$/, "");
 
 export const removeSvaras = (dhatu) =>
   dhatu.replace(new RegExp(svarasRegex, "g"), "");
+
+export const translitToWX = (str) => Sanscript.t(str, "devanagari", "wx");

@@ -43,3 +43,14 @@ button {
 #app #dhatu-list._initial [data-action="locate"] {
   display: none;
 }
+
+#app #dhatu-details-modal .forms {
+  td,
+  th {
+    word-break: keep-all;
+  }
+
+  thead th:nth-child(1) {
+    width: 80px;
+  }
+}

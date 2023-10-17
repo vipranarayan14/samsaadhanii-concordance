@@ -1,28 +1,4 @@
-import Sanscript from "@indic-transliteration/sanscript";
-
-import { da, qs, removeSvaras } from "./utils";
-
-const translitToWX = (str) => Sanscript.t(str, "devanagari", "wx");
-
-const createFormsQuery = (details) => {
-  const { dhatuId, muladhatu, padi, gana, meaning } = details;
-
-  const prayoga = "karwari";
-  const encoding = "WX";
-
-  const vb = [dhatuId, removeSvaras(muladhatu), gana, meaning]
-    .map(translitToWX)
-    .join("_");
-
-  const padiInWX = translitToWX(padi);
-
-  return (
-    `?vb=${vb}` +
-    `&prayoga_paxI=${prayoga}-${padiInWX}` +
-    `&encoding=${encoding}` +
-    `&upasarga=-` // required
-  );
-};
+import { da, qs } from "./utils";
 
 const createURL = (endpoint, path) => (path ? `${endpoint}${path}` : "");
 
@@ -59,15 +35,6 @@ const createDhatuModalContent = (details, formsURL, graphURL) => {
     }
   }
 
-  const formsSlot = getSlot("forms");
-  const formsLinkSlot = getSlot("formsLink");
-
-  if (!formsURL) {
-    formsSlot.innerHTML = "N/A";
-  } else {
-    formsLinkSlot.href = formsURL;
-  }
-
   const graphSlot = getSlot("graph");
   const graphLinkSlot = getSlot("graphLink");
   const graphImgSlot = getSlot("graphImg");
@@ -83,12 +50,10 @@ const createDhatuModalContent = (details, formsURL, graphURL) => {
 };
 
 export const createDhatuModalData = (details, Globals) => {
-  const formsQuery = createFormsQuery(details);
-  const formsURL = createURL(Globals.ENDPOINTS.FORMS, formsQuery);
   const graphURL = createURL(Globals.ENDPOINTS.GRAPH, details.graphURL);
 
   return {
     title: createDhatuModalTitle(details),
-    content: createDhatuModalContent(details, formsURL, graphURL),
+    content: createDhatuModalContent(details, graphURL),
   };
 };
