@@ -44,7 +44,7 @@ button {
   display: none;
 }
 
-[data-slot="formsTable"] {
+#app #dhatu-details-modal .forms {
   td,
   th {
     word-break: keep-all;

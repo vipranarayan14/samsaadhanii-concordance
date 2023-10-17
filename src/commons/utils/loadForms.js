@@ -1,9 +1,8 @@
 import { da, hide, qs, removeSvaras, show, translitToWX } from "./utils";
 
-const createFormsQuery = (details) => {
+const createFormsQuery = (details, prayoga) => {
   const { dhatuId, muladhatu, padi, gana, meaning } = details;
 
-  const prayoga = "karwari";
   const encoding = "WX";
 
   const vb = [dhatuId, removeSvaras(muladhatu), gana, meaning]
@@ -49,7 +48,8 @@ const createFormsTable = (retructuredFormsData) => {
 
     const parasmaiTableSlot = getSlot("parasmaiTable");
 
-    const getParasmaiSlot = (slotName) => qs(da("slot", slotName), parasmaiTableSlot);
+    const getParasmaiSlot = (slotName) =>
+      qs(da("slot", slotName), parasmaiTableSlot);
 
     if (formsData.parasmaiForms) {
       for (const [slotName, slotValue] of Object.entries(
@@ -65,7 +65,8 @@ const createFormsTable = (retructuredFormsData) => {
 
     const aatmaneTableSlot = getSlot("aatmaneTable");
 
-    const getAatmaneSlot = (slotName) => qs(da("slot", slotName), aatmaneTableSlot);
+    const getAatmaneSlot = (slotName) =>
+      qs(da("slot", slotName), aatmaneTableSlot);
 
     if (formsData.aatmaneForms) {
       for (const [slotName, slotValue] of Object.entries(
@@ -85,8 +86,8 @@ const createFormsTable = (retructuredFormsData) => {
   return formsTables;
 };
 
-const setForms = (targetEle, retructuredFormsData) => {
-  const formsTableEle = qs(da("slot", "formsTable"), targetEle);
+const setForms = (targetEle, retructuredFormsData, prayoga) => {
+  const formsTableEle = qs(da("slot", prayoga), targetEle);
 
   if (!formsTableEle) return;
 
@@ -154,17 +155,17 @@ const retructureFormsData = (formsData) => {
 };
 
 export const loadForms = async (targetEle, details, Globals) => {
-  const formsQuery = createFormsQuery(details);
+  for await (const prayoga of ["karwari", "karmaNi"]) {
+    const formsQuery = createFormsQuery(details, prayoga);
 
-  const formsURL = `${Globals.ENDPOINTS.FORMS}/${formsQuery}`;
+    const formsURL = `${Globals.ENDPOINTS.FORMS}/${formsQuery}`;
 
-  const result = await fetch(formsURL);
+    const result = await fetch(formsURL);
 
-  const formsData = await result.json();
+    const formsData = await result.json();
 
-  const retructuredFormsData = retructureFormsData(formsData);
+    const retructuredFormsData = retructureFormsData(formsData);
 
-  console.log(retructuredFormsData);
-
-  setForms(targetEle, retructuredFormsData);
+    setForms(targetEle, retructuredFormsData, prayoga);
+  }
 };
