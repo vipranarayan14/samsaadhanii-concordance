@@ -1,0 +1,14 @@
+// .detailsTable tr:not(:last-child) {
+//   border-bottom: 1px solid grey;
+// }
+
+.detailsTable {
+  th,
+  td {
+    padding: 8px;
+  }
+}
+
+.formsTable {
+  --bs-table-bg: transparent;
+}
