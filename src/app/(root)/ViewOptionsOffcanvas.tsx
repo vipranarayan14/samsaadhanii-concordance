@@ -1,16 +1,104 @@
-import { BsCheck2, BsArrowCounterclockwise } from "react-icons/bs";
+import { useState } from "react";
+
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Button from "react-bootstrap/Button";
 
+import { BsCheck2, BsArrowCounterclockwise } from "react-icons/bs";
+
 import { SortSelect } from "./SortSelect";
 import { FilterSelect } from "./FilterSelect";
+import { Query } from "./Search";
 
 type Props = {
   handleHide: () => void;
   show: boolean;
+  query: Query;
+  setQuery: (query: Query) => void;
 };
 
-export function ViewOptionsOffcanvas({ handleHide, show }: Props) {
+const ganaOptions = [
+  "भ्वादिः",
+  "अदादिः",
+  "जुहोत्यादिः",
+  "दिवादिः",
+  "स्वादिः",
+  "तुदादिः",
+  "रुधादिः",
+  "तनादिः",
+  "क्र्यादिः",
+  "चुरादिः",
+];
+
+const sortInput = {
+  name: "sort",
+  label: "Sort by",
+  options: ["गणः", "धातु", "अर्थ"],
+};
+
+const filterInputs = [
+  {
+    name: "vritti",
+    label: "वृत्तिः",
+    options: ["माधवीयधातुवृत्तिः", "क्षीरतरङ्गिणी", "धातुप्रदीपः"],
+  },
+  {
+    name: "gana",
+    label: "गणः",
+    options: [
+      "भ्वादिः",
+      "अदादिः",
+      "जुहोत्यादिः",
+      "दिवादिः",
+      "स्वादिः",
+      "तुदादिः",
+      "रुधादिः",
+      "तनादिः",
+      "क्र्यादिः",
+      "चुरादिः",
+    ],
+  },
+  { name: "padi", label: "पदि", options: ["परस्मैपदी", "आत्मनेपदी", "उभयपदी"] },
+  { name: "it", label: "इट्", options: ["सेट्", "अनिट्", "-"] },
+];
+
+export const viewInputsNames = [
+  sortInput.name,
+  ...filterInputs.map(({ name }) => name),
+];
+
+const viewInputsInitialValues = Object.fromEntries(
+  viewInputsNames.map((inputName) => [inputName, ""])
+);
+
+export function ViewOptionsOffcanvas({
+  handleHide,
+  show,
+  query,
+  setQuery,
+}: Props) {
+  const inputsValuesFromQuery = {
+    ...viewInputsInitialValues,
+    ...query,
+  };
+
+  const [inputsValues, setInputsValues] = useState<Record<string, string>>(
+    inputsValuesFromQuery
+  );
+
+  const handleChange = (name: string, value: string) => {
+    setInputsValues((values) => ({ ...values, [name]: value }));
+
+    setQuery({ [name]: value });
+  };
+
+  const handleResetClick = () => {
+    console.log(viewInputsInitialValues);
+
+    setInputsValues(viewInputsInitialValues);
+
+    setQuery(viewInputsInitialValues);
+  };
+
   return (
     <Offcanvas
       onHide={handleHide}
@@ -36,13 +124,9 @@ export function ViewOptionsOffcanvas({ handleHide, show }: Props) {
       <Offcanvas.Body>
         <div>
           <SortSelect
-            name="sort"
-            label="Sort by"
-            options={[
-              ["", "गणः"],
-              ["dhatu", "धातु"],
-              ["artha", "अर्थ"],
-            ]}
+            {...sortInput}
+            value={inputsValues[sortInput.name]}
+            handleChange={handleChange}
           />
         </div>
 
@@ -51,40 +135,16 @@ export function ViewOptionsOffcanvas({ handleHide, show }: Props) {
             <h2 className="h6 fw-bold">Filter by</h2>
           </div>
 
-          <FilterSelect
-            name="vritti"
-            label="वृत्तिः"
-            options={["माधवीयधातुवृत्तिः", "क्षीरतरङ्गिणी", "धातुप्रदीपः"]}
-          />
-
-          <FilterSelect
-            name="gana"
-            label="गणः"
-            options={[
-              "भ्वादिः",
-              "अदादिः",
-              "जुहोत्यादिः",
-              "दिवादिः",
-              "स्वादिः",
-              "तुदादिः",
-              "रुधादिः",
-              "तनादिः",
-              "क्र्यादिः",
-              "चुरादिः",
-            ]}
-          />
-
-          <FilterSelect
-            name="padi"
-            label="पदि"
-            options={["परस्मैपदी", "आत्मनेपदी", "उभयपदी"]}
-          />
-
-          <FilterSelect
-            name="it"
-            label="इट्"
-            options={["सेट्", "अनिट्", "-"]}
-          />
+          {filterInputs.map(({ name, label, options }) => (
+            <FilterSelect
+              key={name}
+              name={name}
+              label={label}
+              options={options}
+              value={inputsValues[name]}
+              handleChange={handleChange}
+            />
+          ))}
         </div>
       </Offcanvas.Body>
 
@@ -95,7 +155,7 @@ export function ViewOptionsOffcanvas({ handleHide, show }: Props) {
           <span>Okay</span>
         </Button>
 
-        <Button variant="outline-danger">
+        <Button variant="outline-danger" onClick={handleResetClick}>
           <BsArrowCounterclockwise />
           &nbsp;
           <span>Reset</span>
