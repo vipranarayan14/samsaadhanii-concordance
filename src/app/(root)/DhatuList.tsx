@@ -5,24 +5,26 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 
-import { getDhatupatha } from "@/utils/getDhatupatha";
+import { DhatuDetails } from "@/utils/getDhatupatha";
 
 import { Loader } from "./Loader";
 import { DhatuListItem } from "./DhatuListItem";
 
-async function List() {
-  const dhatupatha = await getDhatupatha();
+type Props = {
+  dhatuList: DhatuDetails[];
+};
 
+async function List({ dhatuList }: Props) {
   return (
     <ListGroup variant="flush" className="_bg-surface my-2 rounded-1 shadow">
-      {dhatupatha.map((dhatuDetails) => (
+      {dhatuList.map((dhatuDetails) => (
         <DhatuListItem key={dhatuDetails.id} dhatuDetails={dhatuDetails} />
       ))}
     </ListGroup>
   );
 }
 
-export function DhatuList() {
+export function DhatuList({ dhatuList }: Props) {
   return (
     <section>
       <Container fluid="sm" className="p-0">
@@ -30,7 +32,7 @@ export function DhatuList() {
           <Col className="_mw-700">
             <div className="px-1 py-2">
               <Suspense fallback={<Loader />}>
-                <List />
+                <List dhatuList={dhatuList} />
               </Suspense>
             </div>
           </Col>

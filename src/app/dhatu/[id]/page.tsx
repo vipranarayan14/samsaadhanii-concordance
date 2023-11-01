@@ -12,7 +12,6 @@ const dhatupatha = await getDhatupatha();
 
 type Props = {
   params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export function generateMetadata({ params }: Props): Metadata {

@@ -1,8 +1,9 @@
 import { useState } from "react";
 
-import { viewInputsNames, ViewOptionsOffcanvas } from "./ViewOptionsOffcanvas";
+import { ViewOptionsOffcanvas } from "./ViewOptionsOffcanvas";
 import { ViewOptionsBtn } from "./ViewOptionsBtn";
 import { Query } from "./Search";
+import { viewInputsNames } from "@/utils/viewInputsData";
 
 type Props = {
   query: Query;
