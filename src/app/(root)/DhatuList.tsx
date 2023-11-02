@@ -18,16 +18,13 @@ type Props = {
 };
 
 async function List({ dhatuList, searchQuery }: Props) {
-  const hilite = (text: string) =>
-    searchQuery ? hiliteMatches(text, searchQuery) : <>{text}</>;
-
   return (
     <ListGroup variant="flush" className="_bg-surface my-2 rounded-1 shadow">
       {dhatuList.map((dhatuDetails) => (
         <DhatuListItem
           key={dhatuDetails.id}
           dhatuDetails={dhatuDetails}
-          hilite={hilite}
+          searchQuery={searchQuery}
         />
       ))}
     </ListGroup>

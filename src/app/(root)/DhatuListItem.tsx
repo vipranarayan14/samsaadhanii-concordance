@@ -2,13 +2,17 @@ import Link from "next/link";
 
 import { VrittiInfo } from "@/commons/components/VrittiInfo";
 import { DhatuDetails } from "@/utils/getDhatupatha";
+import { translitToWX } from "@/utils/utils";
+import { BsGeoAltFill } from "react-icons/bs";
+import { SearchQuery } from "@/utils/search/getSearchQuery";
+import { hiliteMatches } from "@/utils/search/hiliteMatches";
 
 type Props = {
   dhatuDetails: DhatuDetails;
-  hilite: (text: string) => JSX.Element;
+  searchQuery?: SearchQuery;
 };
 
-export function DhatuListItem({ dhatuDetails, hilite }: Props) {
+export function DhatuListItem({ dhatuDetails, searchQuery }: Props) {
   const {
     id,
     muladhatu,
@@ -22,62 +26,64 @@ export function DhatuListItem({ dhatuDetails, hilite }: Props) {
     dhatupradipaId,
   } = dhatuDetails;
 
+  const hilite = (text: string) =>
+    searchQuery ? hiliteMatches(text, searchQuery) : <>{text}</>;
+
+  const itemId = `${id}-${translitToWX(dhatu)}`;
+
   return (
-    <Link
-      href={`/dhatu/${id}`}
+    <div
+      id={itemId}
       className="list-group-item list-group-item-action _bg-surface _bg-surface-hover p-1 position-relative"
     >
-      {/* <button
-        className="btn btn-transparent btn-sm position-absolute"
-        data-action="locate"
-        style={{ top: "5px", left: "5px" }}
-        title="Locate this on the list"
-      >
-        <span data-icon="locate">
-          <component src="/commons/icons/locate.html"></component>
-        </span>
-
-        <span data-icon="spinner" className="_hidden">
-          <span
-            className="spinner-grow spinner-grow-sm"
-            role="status"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Loading...</span>
-        </span>
-      </button> */}
-
-      <div className="align-items-center d-flex flex-column flex-md-row text-center">
-        <div className="p-1 w-100" style={{ fontSize: "1.1rem" }}>
-          <span className="fw-bold">
-            {hilite(muladhatu)} ({hilite(dhatu)})
-          </span>{" "}
-          <span>{hilite(meaning)}</span>
-        </div>
-
-        <div
-          className="d-flex justify-content-between"
-          style={{ fontSize: "1.1rem" }}
+      {searchQuery && (
+        <Link
+          href={`/#${itemId}`}
+          className="btn btn-transparent btn-sm position-absolute"
+          data-action="locate"
+          style={{ top: "5px", left: "5px" }}
+          title="Locate this on the list"
         >
-          <div className="m-2" data-slot="gana">
-            {hilite(gana)}
+          <BsGeoAltFill />
+        </Link>
+      )}
+
+      <Link href={`/dhatu/${id}`} className="text-decoration-none text-body">
+        <div className="align-items-center d-flex flex-column flex-md-row text-center">
+          <div className="p-1 w-100" style={{ fontSize: "1.1rem" }}>
+            <span className="fw-bold">
+              {hilite(muladhatu)} ({hilite(dhatu)})
+            </span>{" "}
+            <span>{hilite(meaning)}</span>
           </div>
-          <div className="m-2" data-slot="padi">
-            {hilite(padi)}
+
+          <div
+            className="d-flex justify-content-between"
+            style={{ fontSize: "1.1rem" }}
+          >
+            <div className="m-2" data-slot="gana">
+              {hilite(gana)}
+            </div>
+            <div className="m-2" data-slot="padi">
+              {hilite(padi)}
+            </div>
+            <div className="m-2" data-slot="it">
+              {hilite(it)}
+            </div>
           </div>
-          <div className="m-2" data-slot="it">
-            {hilite(it)}
+
+          <hr className="_border-divider d-block d-md-none m-0 w-75" />
+
+          <div className="d-flex justify-content-evenly ms-md-2 w-100">
+            <VrittiInfo vrittiName="माधवीयधातुवृत्तिः" vrittiId={madhaviyaId} />
+            <VrittiInfo
+              vrittiName="क्षीरतरङ्गिणी"
+              vrittiId={kshirataranginiId}
+            />
+            <VrittiInfo vrittiName="धातुप्रदीपः" vrittiId={dhatupradipaId} />
           </div>
         </div>
-
-        <hr className="_border-divider d-block d-md-none m-0 w-75" />
-
-        <div className="d-flex justify-content-evenly ms-md-2 w-100">
-          <VrittiInfo vrittiName="माधवीयधातुवृत्तिः" vrittiId={madhaviyaId} />
-          <VrittiInfo vrittiName="क्षीरतरङ्गिणी" vrittiId={kshirataranginiId} />
-          <VrittiInfo vrittiName="धातुप्रदीपः" vrittiId={dhatupradipaId} />
-        </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
