@@ -10,10 +10,6 @@ type Props = {
 };
 
 export function Graph({ graphURL }: Props) {
-  if (!graphURL) {
-    return null;
-  }
-
   const graphSrc = getGraphSrc(graphURL);
 
   return (

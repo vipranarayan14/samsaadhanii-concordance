@@ -73,11 +73,13 @@ export default function Page({ params }: { params: { id: string } }) {
         </div>
       </section>
 
-      <section>
-        <SectionHeading>कृदन्त-रूपाणि</SectionHeading>
+      {dhatuDetails.graphURL && (
+        <section>
+          <SectionHeading>कृदन्त-रूपाणि</SectionHeading>
 
-        <Graph graphURL={dhatuDetails.graphURL} />
-      </section>
+          <Graph graphURL={dhatuDetails.graphURL} />
+        </section>
+      )}
     </div>
   );
 }
