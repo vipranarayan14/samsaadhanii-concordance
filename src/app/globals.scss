@@ -11,6 +11,7 @@ $divider: #aaaaaa;
 
 //Custom Variables
 $_border-thick-width: 1.5px;
+$_mark: #eed238;
 
 $body-bg: $background;
 $body-color: $text;
@@ -88,4 +89,9 @@ $accordion-border-color: $divider;
 ._border-thick {
   border-width: $_border-thick-width !important;
   border-color: $divider !important;
+}
+
+mark {
+  padding: 0;
+  background-color: #{$_mark};
 }

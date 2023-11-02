@@ -5,10 +5,15 @@ import Button from "react-bootstrap/Button";
 
 import { BsCheck2, BsArrowCounterclockwise } from "react-icons/bs";
 
+import {
+  filterInputs,
+  sortInput,
+  viewInputsNames,
+} from "@/utils/viewInputsData";
+
 import { SortSelect } from "./SortSelect";
 import { FilterSelect } from "./FilterSelect";
 import { Query } from "./Search";
-import { filterInputs, sortInput, viewInputsNames } from "@/utils/viewInputsData";
 
 type Props = {
   handleHide: () => void;
@@ -43,8 +48,6 @@ export function ViewOptionsOffcanvas({
   };
 
   const handleResetClick = () => {
-    console.log(viewInputsInitialValues);
-
     setInputsValues(viewInputsInitialValues);
 
     setQuery(viewInputsInitialValues);

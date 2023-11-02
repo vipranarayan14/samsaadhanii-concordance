@@ -1,5 +1,5 @@
+import { DhatuDetails } from "../getDhatupatha";
 import { sortOptions } from "../viewInputsData";
-import { DhatuDetailsWithTags } from "./addTags";
 import { SortQuery } from "./getSortQuery";
 
 // const ganas: Record<string, number> = {
@@ -17,7 +17,7 @@ import { SortQuery } from "./getSortQuery";
 
 const collator = new Intl.Collator();
 
-const sortByArtha = (dhatuList: DhatuDetailsWithTags[]) =>
+const sortByArtha = (dhatuList: DhatuDetails[]) =>
   [...dhatuList].sort((dhatuDetailsA, dhatuDetailsB) =>
     collator.compare(dhatuDetailsA.meaning, dhatuDetailsB.meaning)
   );
@@ -28,15 +28,15 @@ const sortByArtha = (dhatuList: DhatuDetailsWithTags[]) =>
 //       ganas[dhatuDetailsA.gana] - ganas[dhatuDetailsB.gana]
 //   );
 
-const sortByGana = (dhatuList: DhatuDetailsWithTags[]) => dhatuList;
+const sortByGana = (dhatuList: DhatuDetails[]) => dhatuList;
 
-const sortByDhatu = (dhatuList: DhatuDetailsWithTags[]) =>
+const sortByDhatu = (dhatuList: DhatuDetails[]) =>
   [...dhatuList].sort((dhatuDetailsA, dhatuDetailsB) =>
     collator.compare(dhatuDetailsA.muladhatu, dhatuDetailsB.muladhatu)
   );
 
 export const sortData = (
-  dhatuList: DhatuDetailsWithTags[],
+  dhatuList: DhatuDetails[],
   sortQuery: SortQuery
 ) => {
   const sort = {

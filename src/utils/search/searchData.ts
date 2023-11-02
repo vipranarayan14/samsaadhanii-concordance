@@ -1,5 +1,5 @@
 import { DhatuDetails } from "../getDhatupatha";
-import { DhatuDetailsWithTags } from "./addTags";
+import { DhatuDetailsWithTags, addTags } from "./addTags";
 import { KeywordsSet, SearchQuery } from "./getSearchQuery";
 
 const scoreItemWithKeywords =
@@ -22,13 +22,14 @@ const getListField = (queryField: string) =>
   }[queryField]);
 
 export const searchData = (
-  dhatupatha: DhatuDetailsWithTags[],
+  dhatuList: DhatuDetails[],
   searchQuery: SearchQuery
 ) => {
+  const dhatuListWithTags = addTags(dhatuList);
   const { keywordsWithFields, keywordsSets } = searchQuery;
 
   if (keywordsWithFields) {
-    return dhatupatha.filter((item) =>
+    return dhatuListWithTags.filter((item) =>
       keywordsWithFields.every(({ field, value }) => {
         const listField = getListField(field) as keyof DhatuDetails;
 
@@ -39,11 +40,11 @@ export const searchData = (
     );
   }
 
-  const listScored = dhatupatha.map(scoreItemWithKeywords(keywordsSets));
+  const listScored = dhatuListWithTags.map(scoreItemWithKeywords(keywordsSets));
 
   const listSortedByScore = listScored
     .filter(({ score }) => score > -1)
     .sort(({ score: scoreA }, { score: scoreB }) => scoreA - scoreB);
 
-  return listSortedByScore.map(({ item }) => item);
+  return listSortedByScore.map<DhatuDetails>(({ item: {tags, ...dhatuDetails} }) => dhatuDetails);
 };

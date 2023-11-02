@@ -1,4 +1,4 @@
-import { DhatuDetailsWithTags } from "./addTags";
+import { DhatuDetails } from "../getDhatupatha";
 import { FilterQuery } from "./getFilterQuery";
 
 const getVrittiProp = (vritti: string) =>
@@ -8,28 +8,22 @@ const getVrittiProp = (vritti: string) =>
     धातुप्रदीपः: "dhatupradipaId",
   }[vritti]);
 
-const filterByVritti = (
-  dhatuList: DhatuDetailsWithTags[],
-  vrittiName: string
-) =>
+const filterByVritti = (dhatuList: DhatuDetails[], vrittiName: string) =>
   dhatuList.filter((dhatuDetails) => {
-    const vrittiProp = getVrittiProp(vrittiName) as keyof DhatuDetailsWithTags;
+    const vrittiProp = getVrittiProp(vrittiName) as keyof DhatuDetails;
 
     return vrittiName && vrittiProp ? dhatuDetails[vrittiProp] !== "-" : true;
   });
 
-const filterByProp = (
-  dhatuList: DhatuDetailsWithTags[],
-  propQuery: FilterQuery
-) =>
+const filterByProp = (dhatuList: DhatuDetails[], propQuery: FilterQuery) =>
   dhatuList.filter((dhatuDetails) =>
     Object.entries(propQuery).every(([prop, value]) =>
-      value ? dhatuDetails[prop as keyof DhatuDetailsWithTags] === value : true
+      value ? dhatuDetails[prop as keyof DhatuDetails] === value : true
     )
   );
 
 export const filterData = (
-  dhatuList: DhatuDetailsWithTags[],
+  dhatuList: DhatuDetails[],
   filterQuery: FilterQuery
 ) => {
   const { vritti, ...propQuery } = filterQuery;

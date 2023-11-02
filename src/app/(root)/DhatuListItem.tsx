@@ -5,9 +5,10 @@ import { DhatuDetails } from "@/utils/getDhatupatha";
 
 type Props = {
   dhatuDetails: DhatuDetails;
+  hilite: (text: string) => JSX.Element;
 };
 
-export function DhatuListItem({ dhatuDetails }: Props) {
+export function DhatuListItem({ dhatuDetails, hilite }: Props) {
   const {
     id,
     muladhatu,
@@ -48,8 +49,10 @@ export function DhatuListItem({ dhatuDetails }: Props) {
 
       <div className="align-items-center d-flex flex-column flex-md-row text-center">
         <div className="p-1 w-100" style={{ fontSize: "1.1rem" }}>
-          <span className="fw-bold">{`${muladhatu} (${dhatu})`}</span>{" "}
-          <span>{meaning}</span>
+          <span className="fw-bold">
+            {hilite(muladhatu)} ({hilite(dhatu)})
+          </span>{" "}
+          <span>{hilite(meaning)}</span>
         </div>
 
         <div
@@ -57,13 +60,13 @@ export function DhatuListItem({ dhatuDetails }: Props) {
           style={{ fontSize: "1.1rem" }}
         >
           <div className="m-2" data-slot="gana">
-            {gana}
+            {hilite(gana)}
           </div>
           <div className="m-2" data-slot="padi">
-            {padi}
+            {hilite(padi)}
           </div>
           <div className="m-2" data-slot="it">
-            {it}
+            {hilite(it)}
           </div>
         </div>
 
