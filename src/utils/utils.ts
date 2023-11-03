@@ -10,4 +10,7 @@ export const removeSvaras = (str: string) =>
 export const translitToWX = (input: string) =>
   Sanscript.t(input, "devanagari", "wx");
 
+export const translitToDev = (input: string) =>
+  Sanscript.t(input, "wx", "devanagari");
+
 export const isArrayEmpty = (array: any[]) => array.length === 0;

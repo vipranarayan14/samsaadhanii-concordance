@@ -1,3 +1,5 @@
+import { LAKARAS_DEV_LIST } from "./consts";
+
 type FormDetails = {
   form: string;
   person: string;
@@ -9,19 +11,6 @@ export type LakaraDetails = {
   parasmaiForms: Record<string, string> | null;
   aatmaneForms: Record<string, string> | null;
 };
-
-const lakaras = [
-  "लट् (वर्तमान)",
-  "लिट् (परोक्ष)",
-  "लुट् (अनद्यतन भविष्यत्)",
-  "लृट् (अद्यतन भविष्यत्)",
-  "लोट् (आज्ञार्थ)",
-  "लङ् (अनद्यतन भूत)",
-  "विधिलिङ्",
-  "आशीर्लिङ्",
-  "लुङ् (अद्यतन भूत)",
-  "लृङ् (भविष्यत्)",
-];
 
 const formKeysMap: Record<string, string> = {
   "प्रथमपुरुषः-एकवचनम्": "pe",
@@ -63,7 +52,7 @@ export const retructureFormsData = (formsData: Record<string, any>) => {
 
   const retructuredFormsData: LakaraDetails[] = [];
 
-  for (const [lakaraId, lakaraName] of lakaras.entries()) {
+  for (const [lakaraId, lakaraName] of LAKARAS_DEV_LIST.entries()) {
     const parasmaiForms = parasmai
       ? restructureForms(parasmai[0][`l_forms_${lakaraId}`])
       : null;

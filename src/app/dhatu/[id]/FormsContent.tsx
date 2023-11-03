@@ -1,7 +1,7 @@
 import { DhatuDetails } from "@/utils/getDhatupatha";
+import { getFormsDataLocal } from "@/utils/getFormsDataLocal";
 
 import { LakaraTable } from "./LakaraTable";
-import { getFormsData } from "../../../utils/getFormsData";
 
 type Props = {
   dhatuDetails: DhatuDetails;
@@ -9,7 +9,9 @@ type Props = {
 };
 
 export async function FormsContent({ dhatuDetails, prayoga }: Props) {
-  const formsData = await getFormsData(dhatuDetails, prayoga);
+  // const formsData: LakaraDetails[] = [];
+  // const formsData = await getFormsData(dhatuDetails, prayoga);
+  const formsData = await getFormsDataLocal(dhatuDetails, prayoga);
 
   return (
     <div>
