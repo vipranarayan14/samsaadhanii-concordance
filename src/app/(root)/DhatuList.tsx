@@ -9,7 +9,7 @@ import { DhatuDetails } from "@/utils/getDhatupatha";
 import { SearchQuery } from "@/utils/search/getSearchQuery";
 import { hiliteMatches } from "@/utils/search/hiliteMatches";
 
-import { Loader } from "./Loader";
+import { Loader } from "../../commons/components/Loader";
 import { DhatuListItem } from "./DhatuListItem";
 
 type Props = {
