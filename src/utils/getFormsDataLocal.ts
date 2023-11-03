@@ -5,11 +5,12 @@ import {
   LAKARAS_DEV_LIST,
   LAKARAS_WX_LIST,
   PADI_SHORT,
+  PV_CHARS_LIST,
   PV_NUM_LIST,
 } from "./consts";
 
 import { LakaraDetails } from "./restructureFormsData";
-import { translitToDev, translitToWX } from "./utils";
+import { chunk, translitToDev, translitToWX } from "./utils";
 
 import { DhatuDetails } from "./getDhatupatha";
 
@@ -36,61 +37,18 @@ async function getForms(formsInput: string): Promise<string> {
 
 type Forms = Record<string, string>;
 
-const makeForms = async (
-  dhatuId: string,
-  gana: string,
-  prayoga: string,
-  padi: string,
-  lakara: string
-): Promise<Forms | null> => {
-  const formsInput = Object.values(PV_NUM_LIST)
-    .map(
-      (pv) =>
-        `^${dhatuId}<verb><${prayoga}><${lakara}><${pv}><${padi}><${gana}>$`
-    )
-    .join("\n");
-
-  const formsOutput = await getForms(formsInput);
-
-  const pvKeys = ["pe", "pd", "pb", "me", "md", "mb", "ue", "ud", "ub"];
-
-  const formsList = formsOutput.split("\n");
-
-  if (formsList.every((form) => form.startsWith("#"))) {
+const formatForms = (forms: string[]): Forms | null => {
+  if (forms.every((form) => form.startsWith("#"))) {
     return null;
   }
 
-  const forms: Forms = {};
-
-  for (const [i, form] of formsList.entries()) {
-    const validForm = form.startsWith("#") ? "-" : form;
-
-    forms[pvKeys[i]] = translitToDev(validForm);
-  }
-
-  return forms;
-};
-
-const makeLakaras = async (dhatuId: string, gana: string, prayoga: string) =>
-  await Promise.all(
-    LAKARAS_WX_LIST.map(async (lakara, i) => ({
-      lakaraName: LAKARAS_DEV_LIST[i],
-      parasmaiForms: await makeForms(
-        dhatuId,
-        gana,
-        prayoga,
-        PADI_SHORT.PARASMAIPADI,
-        lakara
-      ),
-      aatmaneForms: await makeForms(
-        dhatuId,
-        gana,
-        prayoga,
-        PADI_SHORT.ATMANEPADI,
-        lakara
-      ),
-    }))
+  return Object.fromEntries(
+    forms.map((form, i) => [
+      PV_CHARS_LIST[i],
+      form.startsWith("#") ? "-" : translitToDev(form),
+    ])
   );
+};
 
 export const getFormsDataLocal = async (
   dhatuDetails: DhatuDetails,
@@ -101,5 +59,35 @@ export const getFormsDataLocal = async (
   const ganaInWX = translitToWX(gana);
   const ganaWithoutH = ganaInWX.slice(0, -1);
 
-  return await makeLakaras(dhatuId, ganaWithoutH, prayoga);
+  const formsInput = LAKARAS_WX_LIST.flatMap((lakara) =>
+    Object.values(PADI_SHORT).flatMap((padi) =>
+      PV_NUM_LIST.flatMap(
+        (pv) =>
+          `^${dhatuId}<verb><${prayoga}><${lakara}><${pv}><${padi}><${ganaWithoutH}>$`
+      )
+    )
+  ).join("\n");
+
+  const formsOutput = await getForms(formsInput);
+
+  const formsList = formsOutput.split("\n");
+
+  const lakaras = chunk(formsList, 9);
+
+  const lakarasByPadi = chunk(lakaras, 2);
+
+  const formsData = lakarasByPadi.map((lakaraByPadi, i) => {
+    const lakaraName = LAKARAS_DEV_LIST[i];
+
+    const parasmaiForms = formatForms(lakaraByPadi[0]);
+    const aatmaneForms = formatForms(lakaraByPadi[1]);
+
+    return {
+      lakaraName,
+      parasmaiForms,
+      aatmaneForms,
+    };
+  });
+
+  return formsData;
 };
