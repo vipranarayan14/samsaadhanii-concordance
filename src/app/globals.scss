@@ -95,3 +95,8 @@ mark {
   padding: 0;
   background-color: #{$_mark};
 }
+
+:target {
+  scroll-margin-top: 50vh;
+  background-color: #{$secondary-hover} !important;
+}
