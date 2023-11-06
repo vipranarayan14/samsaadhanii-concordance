@@ -31,10 +31,14 @@ export type SearchQuery = {
   keywordsSets: KeywordsSet[];
 };
 
-export const getSearchQuery = (searchParams: SearchParams): SearchQuery => {
+export const getSearchQuery = (
+  searchParams: SearchParams
+): SearchQuery | null => {
   const searchString = getStringFromSearchParams(
     searchParams[searchInput.name]
   );
+
+  if (!searchString) return null;
 
   const hasFields = searchString.includes(":");
 

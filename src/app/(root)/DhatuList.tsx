@@ -14,7 +14,7 @@ import { DhatuListItem } from "./DhatuListItem";
 
 type Props = {
   dhatuList: DhatuDetails[];
-  searchQuery?: SearchQuery;
+  searchQuery?: SearchQuery | null;
 };
 
 async function List({ dhatuList, searchQuery }: Props) {

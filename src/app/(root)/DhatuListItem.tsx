@@ -9,7 +9,7 @@ import { hiliteMatches } from "@/utils/search/hiliteMatches";
 
 type Props = {
   dhatuDetails: DhatuDetails;
-  searchQuery?: SearchQuery;
+  searchQuery?: SearchQuery | null;
 };
 
 export function DhatuListItem({ dhatuDetails, searchQuery }: Props) {

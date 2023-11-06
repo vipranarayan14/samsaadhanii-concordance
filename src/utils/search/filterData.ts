@@ -24,8 +24,10 @@ const filterByProp = (dhatuList: DhatuDetails[], propQuery: FilterQuery) =>
 
 export const filterData = (
   dhatuList: DhatuDetails[],
-  filterQuery: FilterQuery
+  filterQuery: FilterQuery | null
 ) => {
+  if (!filterQuery) return dhatuList;
+
   const { vritti, ...propQuery } = filterQuery;
 
   const filteredByVritti = filterByVritti(dhatuList, vritti);

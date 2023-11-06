@@ -15,6 +15,9 @@ export const translitToDev = (input: string) =>
 
 export const isArrayEmpty = (array: any[]) => array.length === 0;
 
+export const isObjectEmpty = (object: Record<any, any>) =>
+  Object.entries(object).length === 0;
+
 export const chunk = (arr: any[], size: number) => {
   const chunks = [];
 

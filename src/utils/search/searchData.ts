@@ -23,8 +23,10 @@ const getListField = (queryField: string) =>
 
 export const searchData = (
   dhatuList: DhatuDetails[],
-  searchQuery: SearchQuery
+  searchQuery: SearchQuery | null
 ) => {
+  if (!searchQuery) return dhatuList;
+
   const dhatuListWithTags = addTags(dhatuList);
   const { keywordsWithFields, keywordsSets } = searchQuery;
 
@@ -46,5 +48,7 @@ export const searchData = (
     .filter(({ score }) => score > -1)
     .sort(({ score: scoreA }, { score: scoreB }) => scoreA - scoreB);
 
-  return listSortedByScore.map<DhatuDetails>(({ item: {tags, ...dhatuDetails} }) => dhatuDetails);
+  return listSortedByScore.map<DhatuDetails>(
+    ({ item: { tags, ...dhatuDetails } }) => dhatuDetails
+  );
 };

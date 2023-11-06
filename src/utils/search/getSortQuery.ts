@@ -6,8 +6,10 @@ export type SortQuery = {
   sort: string;
 };
 
-export const getSortQuery = (searchParams: SearchParams) => {
+export const getSortQuery = (searchParams: SearchParams): SortQuery | null => {
   const sort = getStringFromSearchParams(searchParams[sortInput.name]);
+
+  if (!sort) return null;
 
   return { sort };
 };

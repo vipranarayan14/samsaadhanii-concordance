@@ -37,8 +37,10 @@ const sortByDhatu = (dhatuList: DhatuDetails[]) =>
 
 export const sortData = (
   dhatuList: DhatuDetails[],
-  sortQuery: SortQuery
+  sortQuery: SortQuery | null
 ) => {
+  if (!sortQuery) return dhatuList;
+
   const sort = {
     [sortOptions.dhatu]: sortByDhatu,
     [sortOptions.gana]: sortByGana,
