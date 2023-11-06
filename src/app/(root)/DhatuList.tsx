@@ -1,15 +1,13 @@
 import { Suspense } from "react";
 
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 
 import { DhatuDetails } from "@/utils/getDhatupatha";
 import { SearchQuery } from "@/utils/search/getSearchQuery";
-import { hiliteMatches } from "@/utils/search/hiliteMatches";
 
-import { Loader } from "../../commons/components/Loader";
+import FixedWidthContainer from "@/commons/components/FixedWidthContainer";
+import { Loader } from "@/commons/components/Loader";
+
 import { DhatuListItem } from "./DhatuListItem";
 
 type Props = {
@@ -34,17 +32,13 @@ async function List({ dhatuList, searchQuery }: Props) {
 export function DhatuList({ ...props }: Props) {
   return (
     <section>
-      <Container fluid="sm" className="p-0">
-        <Row className="g-0 justify-content-center">
-          <Col className="_mw-700">
-            <div className="px-1 py-2">
-              <Suspense fallback={<Loader />}>
-                <List {...props} />
-              </Suspense>
-            </div>
-          </Col>
-        </Row>
-      </Container>
+      <FixedWidthContainer>
+        <div className="px-1 py-2">
+          <Suspense fallback={<Loader />}>
+            <List {...props} />
+          </Suspense>
+        </div>
+      </FixedWidthContainer>
     </section>
   );
 }

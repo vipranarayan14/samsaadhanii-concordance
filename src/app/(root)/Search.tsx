@@ -4,10 +4,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { useInView } from "react-intersection-observer";
 
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+
+import FixedWidthContainer from "@/commons/components/FixedWidthContainer";
 
 import { SearchInput } from "./SearchInput";
 import { ViewOptions } from "./ViewOptions";
@@ -62,21 +61,17 @@ export function Search() {
 
   return (
     <section className={`sticky-top _transition-bg ${bg}`} style={{ top: -1 }}>
-      <Container ref={ref} fluid="sm" className=" p-0">
-        <Row className="g-0 justify-content-center">
-          <Col style={{ maxWidth: "700px" }}>
-            <Form className="d-flex align-items-center py-2 px-1">
-              <div className="flex-fill rounded-1 shadow">
-                <div className="input-group rounded-1">
-                  <ViewOptions query={query} setQuery={setQuery} />
+      <FixedWidthContainer>
+        <Form className="d-flex align-items-center py-2 px-1">
+          <div className="flex-fill rounded-1 shadow">
+            <div className="input-group rounded-1">
+              <ViewOptions query={query} setQuery={setQuery} />
 
-                  <SearchInput query={query} setQuery={setQuery} />
-                </div>
-              </div>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
+              <SearchInput query={query} setQuery={setQuery} />
+            </div>
+          </div>
+        </Form>
+      </FixedWidthContainer>
     </section>
   );
 }
