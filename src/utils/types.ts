@@ -12,3 +12,5 @@ export type DhatuDetails = {
   kshirataranginiId: string;
   dhatupradipaId: string;
 };
+
+export type SearchParams = { [key: string]: string | string[] | undefined };

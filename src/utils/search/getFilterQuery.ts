@@ -1,7 +1,8 @@
-import { SearchParams } from "@/app/(root)/page";
 import { filterInputs } from "../viewInputsData";
-import { getStringFromSearchParams } from "./getStringFromSearchParams";
 import { isObjectEmpty } from "../utils";
+import type { SearchParams } from "../types";
+
+import { getStringFromSearchParams } from "./getStringFromSearchParams";
 
 const filterInputNames = filterInputs.map(({ name }) => name);
 
@@ -16,5 +17,5 @@ export const getFilterQuery = (searchParams: SearchParams) => {
     }
   }
 
-  return !isObjectEmpty(filterQuery) ? filterQuery: null;
+  return !isObjectEmpty(filterQuery) ? filterQuery : null;
 };
