@@ -7,21 +7,21 @@ import { BsXLg } from "react-icons/bs";
 
 import { searchInput } from "@/utils/viewInputsData";
 
-import { Query } from "./Search";
+import type { Query } from "@/utils/types";
 
 type Props = {
   query: Query;
-  setQuery: (query: Query) => void;
+  updateQuery: (query: Query) => void;
   setIsTyping: (isTyping: boolean) => void;
 };
 
-export function SearchInput({ query, setQuery, setIsTyping }: Props) {
+export function SearchInput({ query, updateQuery, setIsTyping }: Props) {
   const initialValue = query[searchInput.name] ?? "";
 
   const [inputValue, setInputValue] = useState(initialValue);
 
   const debouncedSetQuery = useDebouncedCallback((query: Query) => {
-    setQuery(query);
+    updateQuery(query);
 
     setIsTyping(false);
   }, 500);

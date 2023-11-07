@@ -1,5 +1,3 @@
-import { useSearchParams } from "next/navigation";
-
 import { Loader } from "@/commons/components/Loader";
 import { getSearchQuery } from "@/utils/search/getSearchQuery";
 import { searchData } from "@/utils/search/searchData";
@@ -9,16 +7,17 @@ import { getSortQuery } from "@/utils/search/getSortQuery";
 import { sortData } from "@/utils/search/sortData";
 import { getDhatupatha } from "@/utils/getDhatupatha";
 
+import type { Query } from "@/utils/types";
+
 import { DhatuList } from "./DhatuList";
 
 type Props = {
   isTyping: boolean;
+  query: Query;
 };
 
-export function SearchResults({ isTyping }: Props) {
-  const params = useSearchParams();
-
-  const searchParams = Object.fromEntries(params.entries());
+export function SearchResults({ isTyping, query }: Props) {
+  const searchParams = query;
 
   const { dhatupatha, isError, isLoading } = getDhatupatha();
 
