@@ -1,7 +1,7 @@
 import Sanscript from "@indic-transliteration/sanscript";
 
 import { removeSvaras, removeLastVirama } from "../utils";
-import { SearchParams } from "@/app/(root)/search/page";
+import { SearchParams } from "@/app/(root)/page";
 
 import { searchInput } from "@/utils/viewInputsData";
 import { getStringFromSearchParams } from "./getStringFromSearchParams";

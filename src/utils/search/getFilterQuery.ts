@@ -1,4 +1,4 @@
-import { SearchParams } from "@/app/(root)/search/page";
+import { SearchParams } from "@/app/(root)/page";
 import { filterInputs } from "../viewInputsData";
 import { getStringFromSearchParams } from "./getStringFromSearchParams";
 import { isObjectEmpty } from "../utils";

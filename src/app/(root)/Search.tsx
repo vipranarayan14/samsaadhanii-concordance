@@ -17,7 +17,7 @@ export function Search() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const { ref, entry } = useInView({ threshold: 1 });
+  const { entry } = useInView({ threshold: 1 });
 
   const createURLSearchString = (query: Query) => {
     const params = new URLSearchParams(searchParams);
@@ -47,11 +47,7 @@ export function Search() {
     const newQuery = { ...query, ...partialQuery };
     const URLSearchString = createURLSearchString(newQuery);
 
-    if (URLSearchString === "") {
-      router.push("/");
-    } else {
-      router.push("/search" + "?" + URLSearchString);
-    }
+    router.push("?" + URLSearchString);
   };
 
   const isPinned = entry && entry.intersectionRatio < 1;

@@ -1,4 +1,4 @@
-import { SearchParams } from "@/app/(root)/search/page";
+import { SearchParams } from "@/app/(root)/page";
 import { sortInput } from "../viewInputsData";
 import { getStringFromSearchParams } from "./getStringFromSearchParams";
 
