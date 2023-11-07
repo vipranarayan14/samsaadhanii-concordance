@@ -34,6 +34,8 @@ export function SearchInput({ query, updateQuery, setIsTyping }: Props) {
     debouncedSetQuery({ [searchInput.name]: searchString });
   };
 
+  const isInputEmpty = inputValue === "";
+
   return (
     <>
       <Form.Control
@@ -45,14 +47,16 @@ export function SearchInput({ query, updateQuery, setIsTyping }: Props) {
         onChange={(e) => updateSearchQuery(e.target.value)}
       />
 
-      <Button
-        variant="light"
-        className="_rounded-end-1 border border-0 shadow-none"
-        title="Clear"
-        onClick={() => updateSearchQuery("")}
-      >
-        <BsXLg />
-      </Button>
+      {!isInputEmpty && (
+        <Button
+          variant="light"
+          className="_rounded-end-1 border border-0 shadow-none"
+          title="Clear"
+          onClick={() => updateSearchQuery("")}
+        >
+          <BsXLg />
+        </Button>
+      )}
     </>
   );
 }
