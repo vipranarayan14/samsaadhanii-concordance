@@ -1,42 +1,28 @@
 "use client";
 
-import { DhatuList } from "./DhatuList";
+import FixedWidthContainer from "@/commons/components/FixedWidthContainer";
+
 import { Search } from "./Search";
 
-import { getSearchQuery } from "@/utils/search/getSearchQuery";
-import { searchData } from "@/utils/search/searchData";
-import { getFilterQuery } from "@/utils/search/getFilterQuery";
-import { filterData } from "@/utils/search/filterData";
-import { getSortQuery } from "@/utils/search/getSortQuery";
-import { sortData } from "@/utils/search/sortData";
-import { getDhatupatha } from "@/utils/getDhatupatha";
+import { Suspense, useState } from "react";
+import { SearchResults } from "./SearchResults";
 
-export type SearchParams = { [key: string]: string | string[] | undefined };
-
-type Props = {
-  searchParams: SearchParams;
-};
-
-export default function Page({ searchParams }: Props) {
-  const { dhatupatha, isError, isLoading } = getDhatupatha();
-
-  const filterQuery = getFilterQuery(searchParams);
-  const filteredList = filterData(dhatupatha, filterQuery);
-
-  const sortQuery = getSortQuery(searchParams);
-  const sortedList = sortData(filteredList, sortQuery);
-
-  const searchQuery = getSearchQuery(searchParams);
-  const searchedList = searchData(sortedList, searchQuery);
+export default function Page() {
+  const [isTyping, setIsTyping] = useState(false);
 
   return (
     <>
-      <Search />
-      {isError && <p>Failed to load. Reload page.</p>}
-      {/* {isLoading && <Loader />} */}
-      {!isError && !isLoading && (
-        <DhatuList dhatuList={searchedList} searchQuery={searchQuery} />
-      )}
+      <Search setIsTyping={(isTyping) => setIsTyping(isTyping)} />
+
+      <section>
+        <FixedWidthContainer as={"main"}>
+          <div className="px-1 py-2">
+            <Suspense>
+              <SearchResults />
+            </Suspense>
+          </div>
+        </FixedWidthContainer>
+      </section>
     </>
   );
 }

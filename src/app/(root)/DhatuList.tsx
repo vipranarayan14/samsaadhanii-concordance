@@ -1,12 +1,7 @@
-import { Suspense } from "react";
-
 import ListGroup from "react-bootstrap/ListGroup";
 
 import type { DhatuDetails } from "@/utils/types";
 import { SearchQuery } from "@/utils/search/getSearchQuery";
-
-import FixedWidthContainer from "@/commons/components/FixedWidthContainer";
-import { Loader } from "@/commons/components/Loader";
 
 import { DhatuListItem } from "./DhatuListItem";
 
@@ -15,7 +10,7 @@ type Props = {
   searchQuery?: SearchQuery | null;
 };
 
-async function List({ dhatuList, searchQuery }: Props) {
+export function DhatuList({ dhatuList, searchQuery }: Props) {
   return (
     <ListGroup variant="flush" className="_bg-surface my-2 rounded-1 shadow">
       {dhatuList.map((dhatuDetails) => (
@@ -26,19 +21,5 @@ async function List({ dhatuList, searchQuery }: Props) {
         />
       ))}
     </ListGroup>
-  );
-}
-
-export function DhatuList({ ...props }: Props) {
-  return (
-    <section>
-      <FixedWidthContainer as={"main"}>
-        <div className="px-1 py-2">
-          <Suspense fallback={<Loader />}>
-            <List {...props} />
-          </Suspense>
-        </div>
-      </FixedWidthContainer>
-    </section>
   );
 }
