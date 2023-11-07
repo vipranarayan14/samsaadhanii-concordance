@@ -2,7 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import { DhatuDetails } from "./types";
 
-const dhatupathaPath = "src/assets/dhatupatha.json";
+const dhatupathaPath = "public/dhatupatha.json";
 
 export async function getDhatupathaLocal(): Promise<DhatuDetails[]> {
   const dhatupathaPathAbs = path.join(process.cwd(), dhatupathaPath);
