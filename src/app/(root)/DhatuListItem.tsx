@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { BsGeoAltFill } from "react-icons/bs";
 
-import { DhatuDetails } from "@/utils/getDhatupatha";
+import { DhatuDetails } from "@/utils/getDhatupathaLocal";
 import { translitToWX } from "@/utils/utils";
 import { SearchQuery } from "@/utils/search/getSearchQuery";
 import { hiliteMatches } from "@/utils/search/hiliteMatches";

@@ -18,7 +18,7 @@ export type DhatuDetails = {
 
 const dhatupathaPath = "src/assets/dhatupatha.json";
 
-export async function getDhatupatha(): Promise<DhatuDetails[]> {
+export async function getDhatupathaLocal(): Promise<DhatuDetails[]> {
   const dhatupathaPathAbs = path.join(process.cwd(), dhatupathaPath);
 
   const result = await fs.readFile(dhatupathaPathAbs, "utf-8");

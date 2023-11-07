@@ -1,4 +1,4 @@
-import { DhatuDetails } from "@/utils/getDhatupatha";
+import { DhatuDetails } from "@/utils/getDhatupathaLocal";
 import { getFormsDataLocal } from "@/utils/getFormsDataLocal";
 
 import { LakaraTable } from "./LakaraTable";

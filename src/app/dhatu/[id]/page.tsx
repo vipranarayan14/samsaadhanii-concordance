@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { getDhatupatha } from "@/utils/getDhatupatha";
+import { getDhatupathaLocal } from "@/utils/getDhatupathaLocal";
 import { PageHeader } from "./PageHeader";
 import { DhatuDetailsTable } from "./DetailsTable";
 import { VrittiAccordionsGroup } from "./VrittiAccordionsGroup";
@@ -8,7 +8,7 @@ import { FormsAccordionsGroup } from "./FormsAccordionsGroup";
 import { SectionHeading } from "./SectionHeading";
 import { Graph } from "./Graph";
 
-const dhatupatha = await getDhatupatha();
+const dhatupatha = await getDhatupathaLocal();
 
 type Props = {
   params: { id: string };

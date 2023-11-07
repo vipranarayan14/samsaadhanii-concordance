@@ -1,7 +1,7 @@
 import React from "react";
 
 import { VRITTI_CODES } from "@/utils/consts";
-import { DhatuDetails } from "@/utils/getDhatupatha";
+import { DhatuDetails } from "@/utils/getDhatupathaLocal";
 
 import { VrittiAccordion } from "./VrittiAccordion";
 import { VrittiContent } from "./VrittiContent";

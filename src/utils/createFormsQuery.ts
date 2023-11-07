@@ -1,4 +1,4 @@
-import { DhatuDetails } from "./getDhatupatha";
+import { DhatuDetails } from "./getDhatupathaLocal";
 import { removeSvaras, translitToWX } from "./utils";
 
 export const createFormsQuery = (details: DhatuDetails, prayoga: string) => {

@@ -1,5 +1,5 @@
 import { createFormsQuery } from "@/utils/createFormsQuery";
-import { DhatuDetails } from "@/utils/getDhatupatha";
+import { DhatuDetails } from "@/utils/getDhatupathaLocal";
 import { retructureFormsData } from "@/utils/restructureFormsData";
 import { ENDPOINTS } from "@/utils/endpoints";
 

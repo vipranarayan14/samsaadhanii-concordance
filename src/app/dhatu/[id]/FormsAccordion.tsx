@@ -2,7 +2,7 @@
 
 import Accordion from "react-bootstrap/Accordion";
 
-import { DhatuDetails } from "@/utils/getDhatupatha";
+import { DhatuDetails } from "@/utils/getDhatupathaLocal";
 import { FormsContent } from "./FormsContent";
 import React from "react";
 

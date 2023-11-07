@@ -1,4 +1,4 @@
-import { DhatuDetails } from "../getDhatupatha";
+import { DhatuDetails } from "../getDhatupathaLocal";
 import { DhatuDetailsWithTags, addTags } from "./addTags";
 import { KeywordsSet, SearchQuery } from "./getSearchQuery";
 

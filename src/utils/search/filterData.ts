@@ -1,4 +1,4 @@
-import { DhatuDetails } from "../getDhatupatha";
+import { DhatuDetails } from "../getDhatupathaLocal";
 import { FilterQuery } from "./getFilterQuery";
 
 const getVrittiProp = (vritti: string) =>

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { DhatuDetails } from "@/utils/getDhatupatha";
+import { DhatuDetails } from "@/utils/getDhatupathaLocal";
 
 import { FormsAccordion } from "./FormsAccordion";
 import { FormsContent } from "./FormsContent";

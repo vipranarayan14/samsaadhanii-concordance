@@ -1,4 +1,4 @@
-import { getDhatupatha } from "@/utils/getDhatupatha";
+import { getDhatupathaLocal } from "@/utils/getDhatupathaLocal";
 
 import { DhatuList } from "./DhatuList";
 import { Search } from "./Search";
@@ -10,7 +10,7 @@ import { filterData } from "@/utils/search/filterData";
 import { getSortQuery } from "@/utils/search/getSortQuery";
 import { sortData } from "@/utils/search/sortData";
 
-const dhatupatha = await getDhatupatha();
+const dhatupatha = await getDhatupathaLocal();
 
 export type SearchParams = { [key: string]: string | string[] | undefined };
 
