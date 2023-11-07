@@ -1,4 +1,4 @@
-import { DhatuDetails } from "../getDhatupathaLocal";
+import type { DhatuDetails } from "../types";
 import { removeSvaras } from "../utils";
 
 const createTags = (details: DhatuDetails) => {

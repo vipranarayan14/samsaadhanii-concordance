@@ -1,4 +1,4 @@
-import { DhatuDetails } from "../getDhatupathaLocal";
+import type { DhatuDetails } from "../types";
 import { sortOptions } from "../viewInputsData";
 import { SortQuery } from "./getSortQuery";
 

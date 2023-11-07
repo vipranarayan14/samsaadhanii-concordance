@@ -2,7 +2,7 @@ import { Suspense } from "react";
 
 import ListGroup from "react-bootstrap/ListGroup";
 
-import { DhatuDetails } from "@/utils/getDhatupathaLocal";
+import type { DhatuDetails } from "@/utils/types";
 import { SearchQuery } from "@/utils/search/getSearchQuery";
 
 import FixedWidthContainer from "@/commons/components/FixedWidthContainer";

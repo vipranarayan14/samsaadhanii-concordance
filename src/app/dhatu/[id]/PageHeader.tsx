@@ -1,4 +1,4 @@
-import { DhatuDetails } from "@/utils/getDhatupathaLocal";
+import type { DhatuDetails } from "@/utils/types";
 
 type Props = {
   dhatuDetails: DhatuDetails;
