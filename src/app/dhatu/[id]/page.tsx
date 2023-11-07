@@ -8,6 +8,8 @@ import { FormsAccordionsGroup } from "./FormsAccordionsGroup";
 import { SectionHeading } from "./SectionHeading";
 import { Graph } from "./Graph";
 
+import FixedWidthContainer from "@/commons/components/FixedWidthContainer";
+
 const dhatupatha = await getDhatupathaLocal();
 
 type Props = {
@@ -57,29 +59,31 @@ export default function Page({ params }: { params: { id: string } }) {
     <div>
       <PageHeader dhatuDetails={dhatuDetails} />
 
-      <DhatuDetailsTable dhatuDetails={dhatuDetails} />
+      <FixedWidthContainer as={"main"} width={900}>
+        <DhatuDetailsTable dhatuDetails={dhatuDetails} />
 
-      <section>
-        <SectionHeading>वृत्तयः</SectionHeading>
-        <div>
-          <VrittiAccordionsGroup dhatuDetails={dhatuDetails} />
-        </div>
-      </section>
-
-      <section>
-        <SectionHeading>तिङन्त-रूपाणि</SectionHeading>
-        <div>
-          <FormsAccordionsGroup dhatuDetails={dhatuDetails} />
-        </div>
-      </section>
-
-      {dhatuDetails.graphURL && (
         <section>
-          <SectionHeading>कृदन्त-रूपाणि</SectionHeading>
-
-          <Graph graphURL={dhatuDetails.graphURL} />
+          <SectionHeading>वृत्तयः</SectionHeading>
+          <div>
+            <VrittiAccordionsGroup dhatuDetails={dhatuDetails} />
+          </div>
         </section>
-      )}
+
+        <section>
+          <SectionHeading>तिङन्त-रूपाणि</SectionHeading>
+          <div>
+            <FormsAccordionsGroup dhatuDetails={dhatuDetails} />
+          </div>
+        </section>
+
+        {dhatuDetails.graphURL && (
+          <section>
+            <SectionHeading>कृदन्त-रूपाणि</SectionHeading>
+
+            <Graph graphURL={dhatuDetails.graphURL} />
+          </section>
+        )}
+      </FixedWidthContainer>
     </div>
   );
 }
