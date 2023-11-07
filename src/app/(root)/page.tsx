@@ -18,7 +18,7 @@ export default function Page() {
         <FixedWidthContainer as={"main"}>
           <div className="px-1 py-2">
             <Suspense>
-              <SearchResults />
+              <SearchResults isTyping={isTyping} />
             </Suspense>
           </div>
         </FixedWidthContainer>

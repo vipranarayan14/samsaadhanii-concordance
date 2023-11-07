@@ -11,7 +11,11 @@ import { getDhatupatha } from "@/utils/getDhatupatha";
 
 import { DhatuList } from "./DhatuList";
 
-export function SearchResults() {
+type Props = {
+  isTyping: boolean;
+};
+
+export function SearchResults({ isTyping }: Props) {
   const params = useSearchParams();
 
   const searchParams = Object.fromEntries(params.entries());
@@ -27,7 +31,7 @@ export function SearchResults() {
     );
   }
 
-  if (isLoading) {
+  if (isLoading || isTyping) {
     return <Loader />;
   }
 

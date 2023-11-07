@@ -12,17 +12,24 @@ import { Query } from "./Search";
 type Props = {
   query: Query;
   setQuery: (query: Query) => void;
+  setIsTyping: (isTyping: boolean) => void;
 };
 
-export function SearchInput({ query, setQuery }: Props) {
+export function SearchInput({ query, setQuery, setIsTyping }: Props) {
   const initialValue = query[searchInput.name] ?? "";
 
   const [inputValue, setInputValue] = useState(initialValue);
 
-  const debouncedSetQuery = useDebouncedCallback(setQuery, 300);
+  const debouncedSetQuery = useDebouncedCallback((query: Query) => {
+    setQuery(query);
+
+    setIsTyping(false);
+  }, 500);
 
   const updateSearchQuery = (searchString: string) => {
     setInputValue(searchString);
+
+    setIsTyping(true);
 
     debouncedSetQuery({ [searchInput.name]: searchString });
   };
@@ -31,7 +38,7 @@ export function SearchInput({ query, setQuery }: Props) {
     <>
       <Form.Control
         type="text"
-        name="search"
+        name="q"
         placeholder="Type to filter..."
         className="_bg-surface border border-0 ms-0 p-2 shadow-none"
         value={inputValue}

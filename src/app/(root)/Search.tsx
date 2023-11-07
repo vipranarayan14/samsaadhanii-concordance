@@ -1,5 +1,3 @@
-"use client";
-
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { useInView } from "react-intersection-observer";
@@ -10,10 +8,15 @@ import FixedWidthContainer from "@/commons/components/FixedWidthContainer";
 
 import { SearchInput } from "./SearchInput";
 import { ViewOptions } from "./ViewOptions";
+import { useEffect } from "react";
 
 export type Query = Record<string, string>;
 
-export function Search() {
+type Props = {
+  setIsTyping: (isTyping: boolean) => void;
+};
+
+export function Search({ setIsTyping }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -63,7 +66,11 @@ export function Search() {
             <div className="input-group rounded-1">
               <ViewOptions query={query} setQuery={setQuery} />
 
-              <SearchInput query={query} setQuery={setQuery} />
+              <SearchInput
+                query={query}
+                setQuery={setQuery}
+                setIsTyping={setIsTyping}
+              />
             </div>
           </div>
         </Form>
