@@ -32,7 +32,7 @@ async function List({ dhatuList, searchQuery }: Props) {
 export function DhatuList({ ...props }: Props) {
   return (
     <section>
-      <FixedWidthContainer>
+      <FixedWidthContainer as={"main"}>
         <div className="px-1 py-2">
           <Suspense fallback={<Loader />}>
             <List {...props} />
