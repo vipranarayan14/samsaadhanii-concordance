@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 import Form from "react-bootstrap/Form";
 
 type Props = {
@@ -15,17 +17,19 @@ export function FilterSelect({
   value,
   handleChange,
 }: Props) {
+  const id = useId();
+
   return (
     <div className="align-items-center d-flex my-2">
       <div style={{ minWidth: "15%" }}>
-        <label htmlFor={name} className="me-2 fw-bold">
+        <label htmlFor={id} className="me-2 fw-bold">
           {label}
         </label>
       </div>
 
       <div className="flex-grow-1">
         <Form.Select
-          id={`${name}-select`}
+          id={id}
           name={name}
           className="_border-divider rounded-1"
           value={value}

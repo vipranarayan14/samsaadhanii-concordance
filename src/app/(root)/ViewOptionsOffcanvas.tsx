@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Button from "react-bootstrap/Button";
@@ -55,6 +55,8 @@ export function ViewOptionsOffcanvas({
     setQuery(viewInputsInitialValues);
   };
 
+  const id = useId();
+
   return (
     <Offcanvas
       onHide={handleHide}
@@ -62,10 +64,10 @@ export function ViewOptionsOffcanvas({
       placement="start"
       className="_bg-surface"
       style={{ width: "300px" }}
-      aria-labelledby="view-options-title"
+      aria-labelledby={id}
     >
       <Offcanvas.Header>
-        <Offcanvas.Title id="view-options-title">
+        <Offcanvas.Title id={id}>
           <h1 className="h5">Options</h1>
         </Offcanvas.Title>
 

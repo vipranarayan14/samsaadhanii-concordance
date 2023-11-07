@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 import Form from "react-bootstrap/Form";
 
 type Props = {
@@ -15,15 +17,17 @@ export function SortSelect({
   value,
   handleChange,
 }: Props) {
+  const id = useId();
+
   return (
     <div>
-      <label htmlFor={name} className="d-block h6 fw-bold">
+      <label htmlFor={id} className="d-block h6 fw-bold">
         {label}
       </label>
 
       <div>
         <Form.Select
-          id={`${name}-select`}
+          id={id}
           name={name}
           className="bg-body _border-divider rounded-1"
           value={value}
