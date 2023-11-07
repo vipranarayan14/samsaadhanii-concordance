@@ -12,7 +12,7 @@ import {
 import { LakaraDetails } from "./restructureFormsData";
 import { chunk, translitToDev, translitToWX } from "./utils";
 
-import { DhatuDetails } from "./getDhatupathaLocal";
+import type { DhatuDetails } from "./types";
 
 const exec = util.promisify(childProcess.exec);
 
