@@ -15,13 +15,17 @@ type Props = {
 };
 
 export function Search({ query, updateQuery, setIsTyping }: Props) {
-  const { entry } = useInView({ threshold: 1 });
+  const { ref, entry } = useInView({ threshold: 1 });
 
   const isPinned = entry && entry.intersectionRatio < 1;
   const bg = isPinned ? "bg-primary" : "bg-body";
 
   return (
-    <section className={`sticky-top _transition-bg ${bg}`} style={{ top: -1 }}>
+    <section
+      ref={ref}
+      className={`sticky-top _transition-bg ${bg}`}
+      style={{ top: -1 }}
+    >
       <FixedWidthContainer>
         <Form className="d-flex align-items-center py-2 px-1">
           <div className="flex-fill rounded-1 shadow">
