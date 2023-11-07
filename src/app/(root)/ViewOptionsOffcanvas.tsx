@@ -10,6 +10,7 @@ import {
   sortInput,
   viewInputsNames,
 } from "@/utils/viewInputsData";
+import { Icon } from "@/commons/components/Icon";
 
 import { SortSelect } from "./SortSelect";
 import { FilterSelect } from "./FilterSelect";
@@ -104,13 +105,17 @@ export function ViewOptionsOffcanvas({
 
       <div className="_offcanvas-footer flex-row-reverse">
         <Button variant="outline-primary" onClick={handleHide}>
-          <BsCheck2 />
+          <Icon>
+            <BsCheck2 />
+          </Icon>
           &nbsp;
           <span>Okay</span>
         </Button>
 
         <Button variant="outline-danger" onClick={handleResetClick}>
-          <BsArrowCounterclockwise />
+          <Icon>
+            <BsArrowCounterclockwise />
+          </Icon>
           &nbsp;
           <span>Reset</span>
         </Button>

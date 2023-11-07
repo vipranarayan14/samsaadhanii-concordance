@@ -96,7 +96,20 @@ mark {
   background-color: #{$_mark};
 }
 
-:target {
+._bg-surface :target {
   scroll-margin-top: 50vh;
   background-color: #{$secondary-hover} !important;
+}
+
+._opacity-hover {
+  opacity: 0.8;
+}
+
+._opacity-hover:hover {
+  opacity: 1;
+}
+
+._icon svg {
+  // From BS icons css file
+  vertical-align: -0.125em;
 }

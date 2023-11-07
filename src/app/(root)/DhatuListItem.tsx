@@ -1,11 +1,14 @@
 import Link from "next/link";
 
-import { VrittiInfo } from "@/commons/components/VrittiInfo";
+import { BsGeoAltFill } from "react-icons/bs";
+
 import { DhatuDetails } from "@/utils/getDhatupatha";
 import { translitToWX } from "@/utils/utils";
-import { BsGeoAltFill } from "react-icons/bs";
 import { SearchQuery } from "@/utils/search/getSearchQuery";
 import { hiliteMatches } from "@/utils/search/hiliteMatches";
+
+import { VrittiInfo } from "@/commons/components/VrittiInfo";
+import { Icon } from "@/commons/components/Icon";
 
 type Props = {
   dhatuDetails: DhatuDetails;
@@ -43,8 +46,11 @@ export function DhatuListItem({ dhatuDetails, searchQuery }: Props) {
           data-action="locate"
           style={{ top: "5px", left: "5px" }}
           title="Locate this on the list"
+          scroll={false}
         >
-          <BsGeoAltFill />
+          <Icon>
+            <BsGeoAltFill />
+          </Icon>
         </Link>
       )}
 

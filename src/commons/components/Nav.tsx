@@ -1,9 +1,13 @@
 "use client";
 
+import Link from "next/link";
+
 import Container from "react-bootstrap/Container";
 import BSNav from "react-bootstrap/Nav";
 import BSNavbar from "react-bootstrap/Navbar";
-import Link from "next/link";
+import { BsBoxArrowUpRight } from "react-icons/bs";
+
+import { Icon } from "./Icon";
 
 export function Nav() {
   return (
@@ -45,8 +49,11 @@ export function Nav() {
                 href="http://scl.samsaadhanii.in/scl/"
                 target="_blank"
               >
-                <span>Samsādhanī&nbsp;</span>
-                {/* <component src="/commons/icons/ext-link.html"></component> */}
+                <span>Samsādhanī</span>
+                &nbsp;&nbsp;
+                <Icon>
+                  <BsBoxArrowUpRight />
+                </Icon>
               </BSNav.Link>
             </BSNav.Item>
           </BSNav>

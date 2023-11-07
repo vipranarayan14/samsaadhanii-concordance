@@ -1,9 +1,11 @@
 "use client";
 
-import { getGraphSrc } from "@/utils/getGraphSrc";
 import Image from "next/image";
 import Card from "react-bootstrap/Card";
 import { BsBoxArrowUpRight } from "react-icons/bs";
+
+import { Icon } from "@/commons/components/Icon";
+import { getGraphSrc } from "@/utils/getGraphSrc";
 
 type Props = {
   graphURL: string;
@@ -34,8 +36,11 @@ export function Graph({ graphURL }: Props) {
             href={graphSrc}
             target="_blank"
           >
-            <span>Show full size&nbsp;</span>
-            <BsBoxArrowUpRight />
+            <span>Show full size</span>
+            &nbsp;&nbsp;
+            <Icon>
+              <BsBoxArrowUpRight />
+            </Icon>
           </a>
         </div>
       </Card.Body>
