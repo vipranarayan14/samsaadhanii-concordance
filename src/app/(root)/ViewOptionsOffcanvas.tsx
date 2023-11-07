@@ -3,6 +3,8 @@ import { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Button from "react-bootstrap/Button";
 
+import type { Query } from "@/utils/types";
+
 import { BsCheck2, BsArrowCounterclockwise } from "react-icons/bs";
 
 import {
@@ -14,7 +16,6 @@ import { Icon } from "@/commons/components/Icon";
 
 import { SortSelect } from "./SortSelect";
 import { FilterSelect } from "./FilterSelect";
-import { Query } from "./Search";
 
 type Props = {
   handleHide: () => void;

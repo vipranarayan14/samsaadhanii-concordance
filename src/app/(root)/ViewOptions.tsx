@@ -1,8 +1,9 @@
+import type { Query } from "@/utils/types";
+
 import { useState } from "react";
 
 import { ViewOptionsOffcanvas } from "./ViewOptionsOffcanvas";
 import { ViewOptionsBtn } from "./ViewOptionsBtn";
-import { Query } from "./Search";
 import { viewInputsNames } from "@/utils/viewInputsData";
 
 type Props = {
