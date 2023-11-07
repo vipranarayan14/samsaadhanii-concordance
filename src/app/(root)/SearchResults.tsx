@@ -17,8 +17,6 @@ type Props = {
 };
 
 export function SearchResults({ isTyping, query }: Props) {
-  const searchParams = query;
-
   const { dhatupatha, isError, isLoading } = getDhatupatha();
 
   if (isError) {
@@ -34,13 +32,13 @@ export function SearchResults({ isTyping, query }: Props) {
     return <Loader />;
   }
 
-  const filterQuery = getFilterQuery(searchParams);
+  const filterQuery = getFilterQuery(query);
   const filteredList = filterData(dhatupatha, filterQuery);
 
-  const sortQuery = getSortQuery(searchParams);
+  const sortQuery = getSortQuery(query);
   const sortedList = sortData(filteredList, sortQuery);
 
-  const searchQuery = getSearchQuery(searchParams);
+  const searchQuery = getSearchQuery(query);
   const searchedList = searchData(sortedList, searchQuery);
 
   return <DhatuList dhatuList={searchedList} searchQuery={searchQuery} />;

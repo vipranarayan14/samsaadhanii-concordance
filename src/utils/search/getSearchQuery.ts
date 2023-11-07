@@ -1,8 +1,8 @@
+import type { Query } from "../types";
+
 import Sanscript from "@indic-transliteration/sanscript";
 
 import { removeSvaras, removeLastVirama } from "../utils";
-import type { SearchParams } from "../types";
-
 
 import { searchInput } from "@/utils/viewInputsData";
 import { getStringFromSearchParams } from "./getStringFromSearchParams";
@@ -32,12 +32,8 @@ export type SearchQuery = {
   keywordsSets: KeywordsSet[];
 };
 
-export const getSearchQuery = (
-  searchParams: SearchParams
-): SearchQuery | null => {
-  const searchString = getStringFromSearchParams(
-    searchParams[searchInput.name]
-  );
+export const getSearchQuery = (query: Query): SearchQuery | null => {
+  const searchString = getStringFromSearchParams(query[searchInput.name]);
 
   if (!searchString) return null;
 
