@@ -1,4 +1,4 @@
-import { getDhatupathaLocal } from "@/utils/getDhatupathaLocal";
+"use client";
 
 import { DhatuList } from "./DhatuList";
 import { Search } from "./Search";
@@ -9,8 +9,7 @@ import { getFilterQuery } from "@/utils/search/getFilterQuery";
 import { filterData } from "@/utils/search/filterData";
 import { getSortQuery } from "@/utils/search/getSortQuery";
 import { sortData } from "@/utils/search/sortData";
-
-const dhatupatha = await getDhatupathaLocal();
+import { getDhatupatha } from "@/utils/getDhatupatha";
 
 export type SearchParams = { [key: string]: string | string[] | undefined };
 
@@ -19,6 +18,8 @@ type Props = {
 };
 
 export default function Page({ searchParams }: Props) {
+  const { dhatupatha, isError, isLoading } = getDhatupatha();
+
   const filterQuery = getFilterQuery(searchParams);
   const filteredList = filterData(dhatupatha, filterQuery);
 
@@ -31,7 +32,11 @@ export default function Page({ searchParams }: Props) {
   return (
     <>
       <Search />
-      <DhatuList dhatuList={searchedList} searchQuery={searchQuery} />
+      {isError && <p>Failed to load. Reload page.</p>}
+      {/* {isLoading && <Loader />} */}
+      {!isError && !isLoading && (
+        <DhatuList dhatuList={searchedList} searchQuery={searchQuery} />
+      )}
     </>
   );
 }

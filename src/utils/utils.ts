@@ -1,4 +1,5 @@
 import Sanscript from "@indic-transliteration/sanscript";
+import { Fetcher } from "swr";
 
 export const vowelMarksRegex = "[्ािीुूृॄेैोौंःँ॒॑]*";
 
@@ -27,6 +28,9 @@ export const chunk = (arr: any[], size: number) => {
 
   return chunks;
 };
+
+export const fetcher = (...args: Parameters<typeof fetch>) =>
+  fetch(...args).then((res) => res.json());
 
 // export function* chunk(arr: any[], size: number) {
 //   for (let i = 0, l = arr.length; i < l; i += size) {
