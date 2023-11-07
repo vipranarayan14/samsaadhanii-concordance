@@ -1,27 +1,30 @@
 import { useState } from "react";
 
+import { useDebouncedCallback } from "use-debounce";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
 import { BsXLg } from "react-icons/bs";
-import { Query } from "./Search";
+
 import { searchInput } from "@/utils/viewInputsData";
+
+import { Query } from "./Search";
 
 type Props = {
   query: Query;
   setQuery: (query: Query) => void;
 };
 
-
 export function SearchInput({ query, setQuery }: Props) {
   const initialValue = query[searchInput.name] ?? "";
 
   const [inputValue, setInputValue] = useState(initialValue);
 
+  const debouncedSetQuery = useDebouncedCallback(setQuery, 300);
+
   const updateSearchQuery = (searchString: string) => {
     setInputValue(searchString);
 
-    setQuery({ [searchInput.name]: searchString });
+    debouncedSetQuery({ [searchInput.name]: searchString });
   };
 
   return (
