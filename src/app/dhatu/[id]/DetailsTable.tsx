@@ -15,7 +15,7 @@ type Props = {
 };
 
 export function DhatuDetailsTable({ dhatuDetails }: Props) {
-  const { muladhatu, dhatu, meaning, gana, padi, it } = dhatuDetails;
+  const { dhatuId, muladhatu, dhatu, meaning, gana, padi, it } = dhatuDetails;
 
   // return (
   //   <Container fluid className="px-0" style={{ fontSize: "1.1rem" }}>
@@ -90,6 +90,11 @@ export function DhatuDetailsTable({ dhatuDetails }: Props) {
             <tr>
               <th>इट्</th>
               <td>{it}</td>
+            </tr>
+            {/* TODO: Show dhatuId only under "Advanced" mode */}
+            <tr>
+              <th>dhatuId</th>
+              <td>{dhatuId}</td>
             </tr>
           </tbody>
         </table>
