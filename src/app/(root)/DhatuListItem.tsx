@@ -35,10 +35,7 @@ export function DhatuListItem({ dhatuDetails, searchQuery }: Props) {
   const itemId = `${id}-${translitToWX(dhatu)}`;
 
   return (
-    <div
-      id={itemId}
-      className="list-group-item list-group-item-action _bg-surface _bg-surface-hover p-1 position-relative"
-    >
+    <>
       {searchQuery && (
         <Link
           href={`/#${itemId}`}
@@ -90,6 +87,6 @@ export function DhatuListItem({ dhatuDetails, searchQuery }: Props) {
           </div>
         </div>
       </Link>
-    </div>
+    </>
   );
 }
