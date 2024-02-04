@@ -13007,7 +13007,7 @@
   },
   {
     "id": 929,
-    "dhatuId": "AfaH-Sas1",
+    "dhatuId": "Sas2",
     "muladhatu": "आङः-शसिँ॒",
     "dhatu": "आङः-शस्",
     "graphURL": "",
@@ -14730,7 +14730,7 @@
   {
     "id": 1052,
     "dhatuId": "Gas1",
-    "muladhatu": "घस्ऌँ",
+    "muladhatu": "घसॢँ",
     "dhatu": "घस्",
     "graphURL": "",
     "meaning": "अदने",
@@ -21211,7 +21211,7 @@
   },
   {
     "id": 1515,
-    "dhatuId": "AfaH-SAs1",
+    "dhatuId": "SAs2",
     "muladhatu": "आङः-शासुँ॒",
     "dhatu": "आङः-शास्",
     "graphURL": "",
@@ -22009,7 +22009,7 @@
   },
   {
     "id": 1572,
-    "dhatuId": "mqj3",
+    "dhatuId": "mqj1",
     "muladhatu": "मृजूँ",
     "dhatu": "मृज्",
     "graphURL": "",
@@ -22023,7 +22023,7 @@
   },
   {
     "id": 1573,
-    "dhatuId": "mqj1",
+    "dhatuId": "mqj2",
     "muladhatu": "मृजूँष्",
     "dhatu": "मृज्",
     "graphURL": "",
@@ -22751,7 +22751,7 @@
   },
   {
     "id": 1625,
-    "dhatuId": "Gq1",
+    "dhatuId": "Gq2",
     "muladhatu": "घृ॒",
     "dhatu": "घृ",
     "graphURL": "",
@@ -22919,7 +22919,7 @@
   },
   {
     "id": 1637,
-    "dhatuId": "kiw1",
+    "dhatuId": "kiw2",
     "muladhatu": "कि॒तँ",
     "dhatu": "कित्",
     "graphURL": "",
@@ -23451,7 +23451,7 @@
   },
   {
     "id": 1675,
-    "dhatuId": "guX2",
+    "dhatuId": "guX1",
     "muladhatu": "गुधँ",
     "dhatu": "गुध्",
     "graphURL": "",
@@ -24487,7 +24487,7 @@
   },
   {
     "id": 1749,
-    "dhatuId": "anu-ruX1",
+    "dhatuId": "ruX2",
     "muladhatu": "अनु॒-रुधँ॒",
     "dhatu": "अनु-रुध्",
     "graphURL": "",
@@ -25061,7 +25061,7 @@
   },
   {
     "id": 1790,
-    "dhatuId": "kRam4",
+    "dhatuId": "kRam3",
     "muladhatu": "क्षमूँष्",
     "dhatu": "क्षम्",
     "graphURL": "",
@@ -26378,8 +26378,8 @@
   {
     "id": 1884,
     "dhatuId": "qkRi1",
-    "muladhatu": "ऋक्षि",
-    "dhatu": "ऋक्षि",
+    "muladhatu": "ऋक्षिँ",
+    "dhatu": "ऋक्षिँ",
     "graphURL": "",
     "meaning": "हिंसायाम्",
     "gana": "स्वादिः",
@@ -30045,7 +30045,7 @@
   },
   {
     "id": 2146,
-    "dhatuId": "vij5",
+    "dhatuId": "vij4",
     "muladhatu": "ओँविजीँ",
     "dhatu": "विज्",
     "graphURL": "",
@@ -30129,7 +30129,7 @@
   },
   {
     "id": 2152,
-    "dhatuId": "vij6",
+    "dhatuId": "vij4",
     "muladhatu": "ओँवि॒जीँ",
     "dhatu": "विज्",
     "graphURL": "",
@@ -30143,7 +30143,7 @@
   },
   {
     "id": 2153,
-    "dhatuId": "vij7",
+    "dhatuId": "vij4",
     "muladhatu": "ओँवि॒जीँ",
     "dhatu": "विज्",
     "graphURL": "",
@@ -30283,7 +30283,7 @@
   },
   {
     "id": 2163,
-    "dhatuId": "wqN2",
+    "dhatuId": "wqN1",
     "muladhatu": "तृणु",
     "dhatu": "तृणु",
     "graphURL": "",
@@ -35729,7 +35729,7 @@
   },
   {
     "id": 2552,
-    "dhatuId": "AfaH-kranx1",
+    "dhatuId": "kranx1",
     "muladhatu": "आङः-क्रन्दँ",
     "dhatu": "आङः-क्रन्द्",
     "graphURL": "",
@@ -36150,8 +36150,8 @@
   {
     "id": 2582,
     "dhatuId": "kLp1",
-    "muladhatu": "क्लृपँ",
-    "dhatu": "क्लृप्",
+    "muladhatu": "कॢपँ",
+    "dhatu": "कॢप्",
     "graphURL": "",
     "meaning": "अवकल्कने",
     "gana": "चुरादिः",
@@ -36415,7 +36415,7 @@
   },
   {
     "id": 2601,
-    "dhatuId": "pis2",
+    "dhatuId": "pis3",
     "muladhatu": "पिसिँ",
     "dhatu": "पिस्",
     "graphURL": "",
@@ -37885,7 +37885,7 @@
   },
   {
     "id": 2706,
-    "dhatuId": "AfaH-Rax1",
+    "dhatuId": "Rax3",
     "muladhatu": "आङः-षदँ",
     "dhatu": "आङः-षद्",
     "graphURL": "",
@@ -38151,7 +38151,7 @@
   },
   {
     "id": 2725,
-    "dhatuId": "mqj2",
+    "dhatuId": "mqj3",
     "muladhatu": "मृजूँ",
     "dhatu": "मृज्",
     "graphURL": "",
@@ -38165,7 +38165,7 @@
   },
   {
     "id": 2726,
-    "dhatuId": "mqj2",
+    "dhatuId": "mqj3",
     "muladhatu": "मृजूँ",
     "dhatu": "मृज्",
     "graphURL": "",
