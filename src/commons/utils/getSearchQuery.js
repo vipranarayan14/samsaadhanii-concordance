@@ -24,11 +24,13 @@ export const getSearchQuery = (searchInputEle) => {
 
   const simplified = removeSvaras(searchString);
   const convertedFromWx = Sanscript.t(simplified, "wx", "devanagari");
-  const convertedFromItrans = Sanscript.t(simplified, "itrans", "devanagari");
+  // const convertedFromItrans = Sanscript.t(simplified, "itrans", "devanagari");
 
-  const keywordsSets = [simplified, convertedFromWx, convertedFromItrans].map(
-    (searchString) => getKeywords(searchString).map(removeLastVirama)
-  );
+  const keywordsSets = [
+    simplified,
+    convertedFromWx,
+    // convertedFromItrans,
+  ].map((searchString) => getKeywords(searchString).map(removeLastVirama));
 
   return { searchString, hasFields, keywordsWithFields, keywordsSets };
 };
