@@ -5,7 +5,7 @@ const createURL = (endpoint, path) => (path ? `${endpoint}${path}` : "");
 const createDhatuModalTitle = (details) =>
   `${details.muladhatu} (${details.dhatu}) ${details.meaning}`;
 
-const createDhatuModalContent = (details, formsURL, graphURL) => {
+const createDhatuModalContent = (details, graphURL) => {
   const { madhaviyaId, kshirataranginiId, dhatupradipaId, ...slotData } =
     details;
 
