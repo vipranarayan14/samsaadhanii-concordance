@@ -3,10 +3,12 @@ import { Fetcher } from "swr";
 
 export const vowelMarksRegex = "[्ािीुूृॄेैोौंःँ॒॑]*";
 
+export const svarasRegex = "[॒॑]";
+
 export const removeLastVirama = (keyword: string) => keyword.replace(/्$/, "");
 
 export const removeSvaras = (str: string) =>
-  str.replace(new RegExp(vowelMarksRegex, "g"), "");
+  str.replace(new RegExp(svarasRegex, "g"), "");
 
 export const translitToWX = (input: string) =>
   Sanscript.t(input, "devanagari", "wx");
