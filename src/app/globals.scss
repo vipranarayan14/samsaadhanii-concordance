@@ -34,6 +34,10 @@ $accordion-border-color: $divider;
 // Include Bootstrap stylesheets
 @import "~bootstrap/scss/bootstrap";
 
+:root {
+  scroll-behavior: auto;
+}
+
 // Additional custom utility class
 ._bg-surface {
   background-color: $surface !important;

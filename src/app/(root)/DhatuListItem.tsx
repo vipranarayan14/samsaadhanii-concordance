@@ -64,20 +64,20 @@ export function DhatuListItem({ dhatuDetails, searchQuery }: Props) {
             className="d-flex justify-content-between"
             style={{ fontSize: "1.1rem" }}
           >
-            <div className="m-2" data-slot="gana">
+            <div className="p-2" data-slot="gana">
               {hilite(gana)}
             </div>
-            <div className="m-2" data-slot="padi">
+            <div className="p-2" data-slot="padi">
               {hilite(padi)}
             </div>
-            <div className="m-2" data-slot="it">
+            <div className="p-2" data-slot="it">
               {hilite(it)}
             </div>
           </div>
 
           <hr className="_border-divider d-block d-md-none m-0 w-75" />
 
-          <div className="d-flex justify-content-evenly ms-md-2 w-100">
+          <div className="d-flex justify-content-evenly ps-md-2 w-100">
             <VrittiInfo vrittiName="माधवीयधातुवृत्तिः" vrittiId={madhaviyaId} />
             <VrittiInfo
               vrittiName="क्षीरतरङ्गिणी"

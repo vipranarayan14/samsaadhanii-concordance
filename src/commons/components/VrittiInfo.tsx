@@ -7,9 +7,9 @@ type Props = {
 
 export function VrittiInfo({ vrittiName, vrittiId }: Props) {
   return (
-    <div className="m-2">
+    <div className="p-2">
       <div
-        className="vritti-name mb-1 text-muted"
+        className="vritti-name pb-1 text-muted"
         style={{ fontSize: "0.9rem" }}
       >
         {vrittiName}
