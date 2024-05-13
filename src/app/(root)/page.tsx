@@ -65,7 +65,7 @@ export default function Page() {
   }, [query]);
 
   return (
-    <>
+    <div>
       <Search
         setIsTyping={(isTyping) => setIsTyping(isTyping)}
         query={query}
@@ -81,6 +81,6 @@ export default function Page() {
           </div>
         </FixedWidthContainer>
       </section>
-    </>
+    </div>
   );
 }
