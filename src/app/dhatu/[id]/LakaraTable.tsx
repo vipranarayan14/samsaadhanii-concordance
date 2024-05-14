@@ -14,18 +14,18 @@ export function LakaraTable({ lakaraDetails }: Props) {
   return (
     <div className="py-4">
       <Row className="g-0 justify-content-center h5 fw-bold">
-        <Col md={10}>{lakaraName}</Col>
+        <Col lg={10}>{lakaraName}</Col>
       </Row>
 
       <Row className="g-0 justify-content-center">
         {parasmaiForms && (
-          <Col md={10}>
+          <Col lg={10}>
             <PadiTable padi="परस्मै" forms={parasmaiForms} />
           </Col>
         )}
 
         {aatmaneForms && (
-          <Col md={10}>
+          <Col lg={10}>
             <PadiTable padi="आत्मने" forms={aatmaneForms} />
           </Col>
         )}
