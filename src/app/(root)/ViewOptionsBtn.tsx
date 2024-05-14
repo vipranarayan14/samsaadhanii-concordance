@@ -29,7 +29,7 @@ export function ViewOptionsBtn({ handleClick, isViewOptionsSet }: Props) {
     >
       <IconContext.Provider
         value={{
-          size: "1.2rem",
+          size: "1.2em",
           style: { verticalAlign: "-0.2em" },
         }}
       >
