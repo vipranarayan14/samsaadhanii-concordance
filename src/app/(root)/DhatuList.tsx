@@ -83,7 +83,7 @@ export function DhatuList({
               />
             ),
           }}
-          itemContent={(index, dhatuDetails) => (
+          itemContent={(_, dhatuDetails) => (
             <DhatuListItem
               key={dhatuDetails.id}
               dhatuDetails={dhatuDetails}
