@@ -39,7 +39,7 @@ export function PadiTable({ padi, forms }: Props) {
       </thead>
       <tbody>
         <tr>
-          <th scope="row" className="border border-start-0">
+          <th scope="row" className="border-end">
             <span className="d-inline d-md-none">प्रथम</span>
             <span className="d-none d-md-inline">प्रथमपुरुषः</span>
           </th>
@@ -48,7 +48,7 @@ export function PadiTable({ padi, forms }: Props) {
           <td>{forms.pb}</td>
         </tr>
         <tr>
-          <th scope="row" className="border border-start-0">
+          <th scope="row" className="border-end">
             <span className="d-inline d-md-none">मध्यम</span>
             <span className="d-none d-md-inline">मध्यमपुरुषः</span>
           </th>
@@ -57,7 +57,7 @@ export function PadiTable({ padi, forms }: Props) {
           <td>{forms.mb}</td>
         </tr>
         <tr>
-          <th scope="row" className="border border-start-0">
+          <th scope="row" className="border-end">
             <span className="d-inline d-md-none">उत्तम</span>
             <span className="d-none d-md-inline">उत्तमपुरुषः</span>
           </th>
