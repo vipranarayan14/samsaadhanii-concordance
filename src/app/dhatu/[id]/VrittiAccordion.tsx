@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 
 import Accordion from "react-bootstrap/Accordion";
 
 import { VrittiBadge } from "@/commons/components/VrittiBadge";
+import { VrittiContentPlaceholder } from "./VrittiContentPlaceholder";
 
 type Props = {
   vrittiId: string;
@@ -21,7 +22,11 @@ export function VrittiAccordion({ vrittiId, vrittiName, children }: Props) {
           &nbsp;
           <VrittiBadge vrittiId={vrittiId} />
         </Accordion.Header>
-        <Accordion.Body className="text-break">{children}</Accordion.Body>
+        <Accordion.Body className="text-break">
+          <Suspense fallback={<VrittiContentPlaceholder />}>
+            {children}
+          </Suspense>
+        </Accordion.Body>
       </Accordion.Item>
     </Accordion>
   );

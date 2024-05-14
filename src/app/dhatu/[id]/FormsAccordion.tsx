@@ -1,10 +1,10 @@
 "use client";
 
+import React, { Suspense } from "react";
+
 import Accordion from "react-bootstrap/Accordion";
 
-import type { DhatuDetails } from "@/utils/types";
-import { FormsContent } from "./FormsContent";
-import React from "react";
+import { FormsContentPlaceholder } from "./FormsContentPlaceholder";
 
 type Props = {
   prayogaName: string;
@@ -19,7 +19,9 @@ export function FormsAccordion({ children, prayogaName }: Props) {
           <span>{prayogaName}</span>
         </Accordion.Header>
 
-        <Accordion.Body>{children}</Accordion.Body>
+        <Accordion.Body>
+          <Suspense fallback={<FormsContentPlaceholder />}>{children}</Suspense>
+        </Accordion.Body>
       </Accordion.Item>
     </Accordion>
   );
