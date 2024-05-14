@@ -12,11 +12,7 @@ type Props = {
   children: React.ReactElement;
 };
 
-export async function VrittiAccordion({
-  vrittiId,
-  vrittiName,
-  children,
-}: Props) {
+export function VrittiAccordion({ vrittiId, vrittiName, children }: Props) {
   return (
     <Accordion defaultActiveKey={vrittiName} className="my-2">
       <Accordion.Item eventKey={vrittiName}>
