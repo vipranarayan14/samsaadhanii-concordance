@@ -6,6 +6,7 @@ $secondary: #ffc107;
 $background: #f0f0f0;
 $surface: #ffffff;
 $secondary-hover: color.scale($secondary, $lightness: 80%);
+$secondary-focus: color.scale($secondary, $lightness: 60%);
 $text: #212529;
 $divider: #aaaaaa;
 
@@ -100,9 +101,9 @@ mark {
   background-color: #{$_mark};
 }
 
-._bg-surface :target {
-  scroll-margin-top: 50vh;
-  background-color: #{$secondary-hover} !important;
+._bg-surface :target,
+._bg-surface .located {
+  background-color: #{$secondary-focus} !important;
 }
 
 ._opacity-hover {

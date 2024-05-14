@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { BsGeoAltFill } from "react-icons/bs";
+import Button from "react-bootstrap/Button";
 
 import type { DhatuDetails } from "@/utils/types";
 import { translitToWX } from "@/utils/utils";
@@ -13,9 +14,10 @@ import { Icon } from "@/commons/components/Icon";
 type Props = {
   dhatuDetails: DhatuDetails;
   searchQuery?: SearchQuery | null;
+  locate: (entryId: number) => void;
 };
 
-export function DhatuListItem({ dhatuDetails, searchQuery }: Props) {
+export function DhatuListItem({ dhatuDetails, searchQuery, locate }: Props) {
   const {
     id,
     muladhatu,
@@ -37,18 +39,17 @@ export function DhatuListItem({ dhatuDetails, searchQuery }: Props) {
   return (
     <>
       {searchQuery && (
-        <Link
-          href={`/#${itemId}`}
-          className="btn btn-transparent btn-sm position-absolute"
-          data-action="locate"
+        <Button
+          variant="transparent"
+          onClick={() => locate(dhatuDetails.id)}
+          className="btn-sm position-absolute"
           style={{ top: "5px", left: "5px" }}
           title="Locate this on the list"
-          scroll={false}
         >
           <Icon>
             <BsGeoAltFill />
           </Icon>
-        </Link>
+        </Button>
       )}
 
       <Link href={`/dhatu/${id}`} className="text-decoration-none text-body">

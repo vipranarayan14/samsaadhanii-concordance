@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { Virtuoso, VirtuosoHandle } from "react-virtuoso";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -8,14 +8,6 @@ import { SearchQuery } from "@/utils/search/getSearchQuery";
 
 import { DhatuListItem } from "./DhatuListItem";
 import { ScrollToTop } from "@/commons/components/ScrollToTop";
-
-// Remove `item` from props to avoid `item="[Object Object]"` attr in HTML
-const Item = ({ item: _, ...props }: { item: any }) => (
-  <div
-    className="list-group-item list-group-item-action _bg-surface _bg-surface-hover p-1"
-    {...props}
-  ></div>
-);
 
 const List = React.forwardRef<any>((props, ref: any) => {
   return (
@@ -28,12 +20,30 @@ const List = React.forwardRef<any>((props, ref: any) => {
   );
 });
 
+const Item = ({ isLocated, ...props }: { isLocated: boolean }) => {
+  const locatedClassName = isLocated ? "located" : "";
+
+  return (
+    <div
+      {...props}
+      className={`list-group-item list-group-item-action _bg-surface _bg-surface-hover p-1 ${locatedClassName}`}
+    ></div>
+  );
+};
+
 type Props = {
   dhatuList: DhatuDetails[];
+  locate: (entryId: number) => void;
+  locatedItemId: number | null;
   searchQuery?: SearchQuery | null;
 };
 
-export function DhatuList({ dhatuList, searchQuery }: Props) {
+export function DhatuList({
+  dhatuList,
+  locate,
+  locatedItemId,
+  searchQuery,
+}: Props) {
   const virtuoso = useRef<VirtuosoHandle>(null);
 
   const goToTop = () => {
@@ -44,6 +54,18 @@ export function DhatuList({ dhatuList, searchQuery }: Props) {
     });
   };
 
+  useEffect(() => {
+    if (locatedItemId !== null) {
+      virtuoso.current?.scrollToIndex({
+        index: locatedItemId,
+        behavior: "auto",
+        align: "center",
+      });
+    } else {
+      goToTop();
+    }
+  }, [locatedItemId]);
+
   return (
     <>
       <div className="py-2">
@@ -51,12 +73,22 @@ export function DhatuList({ dhatuList, searchQuery }: Props) {
           ref={virtuoso}
           useWindowScroll
           data={dhatuList}
-          components={{ List, Item }}
-          itemContent={(_, dhatuDetails) => (
+          components={{
+            List,
+            // Remove `item` from props to avoid `item="[Object Object]"` attr in HTML
+            Item: ({ item: _, ...props }) => (
+              <Item
+                {...props}
+                isLocated={props["data-index"] === locatedItemId}
+              />
+            ),
+          }}
+          itemContent={(index, dhatuDetails) => (
             <DhatuListItem
               key={dhatuDetails.id}
               dhatuDetails={dhatuDetails}
               searchQuery={searchQuery}
+              locate={locate}
             />
           )}
         />
