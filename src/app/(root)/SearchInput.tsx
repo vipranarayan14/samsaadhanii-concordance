@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useDebouncedCallback } from "use-debounce";
 import Button from "react-bootstrap/Button";
@@ -9,6 +9,10 @@ import { searchInput } from "@/utils/viewInputsData";
 
 import type { Query } from "@/utils/types";
 
+const getInputValueFromQuery = (query: Query) => {
+  return query[searchInput.name] ?? "";
+};
+
 type Props = {
   query: Query;
   updateQuery: (query: Query) => void;
@@ -16,7 +20,7 @@ type Props = {
 };
 
 export function SearchInput({ query, updateQuery, setIsTyping }: Props) {
-  const initialValue = query[searchInput.name] ?? "";
+  const initialValue = getInputValueFromQuery(query);
 
   const [inputValue, setInputValue] = useState(initialValue);
 
@@ -35,6 +39,15 @@ export function SearchInput({ query, updateQuery, setIsTyping }: Props) {
   };
 
   const isInputEmpty = inputValue === "";
+
+  useEffect(() => {
+    const newInputValue = getInputValueFromQuery(query);
+
+    // To prevent re-render
+    if (newInputValue === inputValue) return;
+
+    setInputValue(newInputValue);
+  }, [query]);
 
   return (
     <>

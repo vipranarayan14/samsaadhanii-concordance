@@ -67,6 +67,7 @@ export default function Page() {
     updateQuery(partialQuery);
   };
 
+  // Update URL when query changes
   useEffect(() => {
     const URLSearchString = createURLSearchString(query, searchParams);
 
@@ -76,6 +77,13 @@ export default function Page() {
     //  problem, it is okay. Ref: https://github.com/vercel/next.js/discussions/48110
     router.push("?" + URLSearchString, { scroll: false });
   }, [query]);
+
+  // Update query when URL changes
+  useEffect(() => {
+    const queryFromSearchParams = getQueryFromSearchParams(searchParams);
+
+    setQuery(queryFromSearchParams);
+  }, [searchParams]);
 
   return (
     <div>

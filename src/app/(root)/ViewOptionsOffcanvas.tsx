@@ -1,4 +1,4 @@
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Button from "react-bootstrap/Button";
@@ -28,16 +28,18 @@ const viewInputsInitialValues = Object.fromEntries(
   viewInputsNames.map((inputName) => [inputName, ""])
 );
 
+const getInputsValuesFromQuery = (query: Query) => ({
+  ...viewInputsInitialValues,
+  ...query,
+});
+
 export function ViewOptionsOffcanvas({
   handleHide,
   show,
   query,
   setQuery,
 }: Props) {
-  const inputsValuesFromQuery = {
-    ...viewInputsInitialValues,
-    ...query,
-  };
+  const inputsValuesFromQuery = getInputsValuesFromQuery(query);
 
   const [inputsValues, setInputsValues] = useState<Record<string, string>>(
     inputsValuesFromQuery
@@ -56,6 +58,15 @@ export function ViewOptionsOffcanvas({
   };
 
   const id = useId();
+
+  useEffect(() => {
+    const newInputsValues = getInputsValuesFromQuery(query);
+
+    // To prevent re-render
+    // if (newInputsValues === inputsValues) return;
+
+    setInputsValues(newInputsValues);
+  }, [query]);
 
   return (
     <Offcanvas
