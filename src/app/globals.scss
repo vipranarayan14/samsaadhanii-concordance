@@ -58,6 +58,7 @@ $accordion-border-color: $divider;
 
 ._offcanvas-footer {
   @extend .offcanvas-header;
+  justify-content: space-between;
 }
 
 ._rounded-start-1 {
