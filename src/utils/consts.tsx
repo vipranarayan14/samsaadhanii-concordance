@@ -36,6 +36,7 @@ export const LAKARAS_WX_LIST = [
   "lit",
   "lut",
   "lqt",
+  "lot",
   "laf",
   "viXilif",
   "ASIrlif",
@@ -69,4 +70,3 @@ export const PV_CHARS_LIST = [
   "ud",
   "ub",
 ];
-
