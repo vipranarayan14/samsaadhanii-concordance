@@ -20,7 +20,7 @@ export function generateMetadata({ params }: Props): Metadata {
   const { id } = params;
 
   const dhatuDetails = dhatupatha.find(
-    (dhatuDetails) => dhatuDetails.id === Number(id)
+    (dhatuDetails) => dhatuDetails.id === id
   );
 
   if (!dhatuDetails) {
@@ -48,7 +48,7 @@ export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;
 
   const dhatuDetails = dhatupatha.find(
-    (dhatuDetails) => dhatuDetails.id === Number(id)
+    (dhatuDetails) => dhatuDetails.id === id
   );
 
   if (!dhatuDetails) {

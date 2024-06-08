@@ -14,7 +14,7 @@ import { Icon } from "@/commons/components/Icon";
 type Props = {
   dhatuDetails: DhatuDetails;
   searchQuery?: SearchQuery | null;
-  locate: (entryId: number) => void;
+  locate: (entryId: string) => void;
 };
 
 export function DhatuListItem({ dhatuDetails, searchQuery, locate }: Props) {

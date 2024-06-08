@@ -1,5 +1,5 @@
 export type DhatuDetails = {
-  id: number;
+  id: string;
   dhatuId: string;
   muladhatu: string;
   dhatu: string;

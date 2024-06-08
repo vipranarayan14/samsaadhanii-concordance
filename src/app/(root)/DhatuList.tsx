@@ -33,8 +33,8 @@ const Item = ({ isLocated, ...props }: { isLocated: boolean }) => {
 
 type Props = {
   dhatuList: DhatuDetails[];
-  locate: (entryId: number) => void;
-  locatedItemId: number | null;
+  locate: (entryId: string) => void;
+  locatedItemId: string | null;
   searchQuery?: SearchQuery | null;
 };
 
@@ -57,7 +57,7 @@ export function DhatuList({
   useEffect(() => {
     if (locatedItemId !== null) {
       virtuoso.current?.scrollToIndex({
-        index: locatedItemId,
+        index: Number(locatedItemId),
         behavior: "auto",
         align: "center",
       });
@@ -79,7 +79,7 @@ export function DhatuList({
             Item: ({ item: _, ...props }) => (
               <Item
                 {...props}
-                isLocated={props["data-index"] === locatedItemId}
+                isLocated={props["data-index"] === Number(locatedItemId)}
               />
             ),
           }}

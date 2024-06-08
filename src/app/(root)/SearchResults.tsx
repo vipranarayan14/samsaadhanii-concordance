@@ -36,10 +36,10 @@ export function SearchResults({ isTyping, query, updateQuery }: Props) {
 
     // return itemIndex;
 
-    return Number(itemIdToLocate);
+    return itemIdToLocate;
   };
 
-  const locate = async (entryId: number) => {
+  const locate = async (entryId: string) => {
     updateQuery({ [locateQuery.name]: entryId.toString() }, true);
   };
 
