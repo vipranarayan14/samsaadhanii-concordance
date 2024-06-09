@@ -1,0 +1,121 @@
+@use "sass:color";
+
+// Overide Bootstrap variables
+$primary: #0e73c4;
+$secondary: #ffc107;
+$background: #f0f0f0;
+$surface: #ffffff;
+$secondary-hover: color.scale($secondary, $lightness: 80%);
+$secondary-focus: color.scale($secondary, $lightness: 60%);
+$text: #212529;
+$divider: #aaaaaa;
+
+//Custom Variables
+$_border-thick-width: 1.5px;
+$_mark: #eed238;
+
+$body-bg: $background;
+$body-color: $text;
+
+// Sets the box-shadow of 'shadow' utility class
+$box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+// Sets lists border
+$list-group-border-color: $divider;
+$list-group-border-width: 1.5px;
+
+// Sets modal component's styles
+$modal-header-padding-y: 0.75rem;
+
+$accordion-bg: $surface;
+$accordion-border-width: $_border-thick-width;
+$accordion-border-color: $divider;
+// $accordion-border-radius: $border-radius-sm;
+
+// Include Bootstrap stylesheets
+@import "~bootstrap/scss/bootstrap";
+
+:root {
+  scroll-behavior: auto;
+}
+
+// Additional custom utility class
+._bg-surface {
+  background-color: $surface !important;
+}
+
+._z-fixed {
+  z-index: #{$zindex-fixed};
+}
+
+._mw-700 {
+  max-width: 700px;
+}
+
+._nav-link {
+  text-decoration: none;
+}
+
+._offcanvas-footer {
+  @extend .offcanvas-header;
+  justify-content: space-between;
+}
+
+._rounded-start-1 {
+  border-bottom-left-radius: #{$border-radius-sm};
+  border-top-left-radius: #{$border-radius-sm};
+}
+
+._rounded-end-1 {
+  border-bottom-right-radius: #{$border-radius-sm};
+  border-top-right-radius: #{$border-radius-sm};
+}
+
+._transition-bg {
+  transition: background-color 0.15s ease-in-out;
+}
+
+._input-group:focus-within {
+  border-color: #{$input-focus-border-color};
+  box-shadow: #{$input-focus-box-shadow};
+  transition: #{$input-transition};
+}
+
+._border-divider {
+  @extend .border-primary;
+  border-color: #{$divider} !important;
+}
+
+._bg-surface-hover:hover,
+._bg-surface-hover:focus,
+._bg-surface-hover:focus-visible {
+  background-color: #{$secondary-hover} !important;
+}
+
+._border-thick {
+  border-width: $_border-thick-width !important;
+  border-color: $divider !important;
+}
+
+mark {
+  padding: 0;
+  background-color: #{$_mark};
+}
+
+._bg-surface :target,
+._bg-surface .located {
+  background-color: #{$secondary-focus} !important;
+}
+
+._opacity-hover {
+  opacity: 0.8;
+}
+
+._opacity-hover:hover {
+  opacity: 1;
+}
+
+._icon svg {
+  // From BS icons css file
+  vertical-align: -0.125em;
+}
