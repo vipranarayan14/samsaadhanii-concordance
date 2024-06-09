@@ -54,7 +54,7 @@ export function SearchInput({ query, updateQuery, setIsTyping }: Props) {
       <Form.Control
         type="text"
         name="q"
-        placeholder="Type to filter..."
+        placeholder="Type to filter... (Devanagari or WX)"
         className="_bg-surface border border-0 ms-0 p-2 shadow-none"
         value={inputValue}
         autoCorrect="off"
