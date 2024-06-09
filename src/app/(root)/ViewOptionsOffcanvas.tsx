@@ -78,9 +78,7 @@ export function ViewOptionsOffcanvas({
       aria-labelledby={id}
     >
       <Offcanvas.Header>
-        <Offcanvas.Title id={id}>
-          <h1 className="h5">Options</h1>
-        </Offcanvas.Title>
+        <Offcanvas.Title id={id}>Options</Offcanvas.Title>
 
         <Button
           variant="light"
