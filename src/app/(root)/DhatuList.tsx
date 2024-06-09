@@ -79,7 +79,9 @@ export function DhatuList({
             Item: ({ item: _, ...props }) => (
               <Item
                 {...props}
-                isLocated={props["data-index"] === Number(locatedItemId)}
+                isLocated={
+                  props["data-index"] === parseInt(locatedItemId ?? "")
+                }
               />
             ),
           }}
