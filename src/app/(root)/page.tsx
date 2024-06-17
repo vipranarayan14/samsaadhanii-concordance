@@ -15,11 +15,21 @@ function getQueryFromSearchParams(searchParams: URLSearchParams) {
   for (const [key, value] of searchParams.entries()) {
     if (!value) {
       continue;
-    } else if (Array.isArray(value)) {
-      query[key] = value[0];
-    } else {
-      query[key] = value;
     }
+
+    if (!Object.keys(query).includes(key)) {
+      query[key] = value;
+      continue;
+    }
+
+    const firstValue = query[key];
+
+    if (Array.isArray(firstValue)) {
+      query[key] = firstValue.concat(value);
+      continue;
+    }
+
+    query[key] = [firstValue, value];
   }
 
   return query;
@@ -31,7 +41,15 @@ const createURLSearchString = (query: Query, searchParams: URLSearchParams) => {
 
   for (const [name, value] of Object.entries(query)) {
     if (value) {
-      params.set(name, value);
+      if (Array.isArray(value)) {
+        params.delete(name);
+
+        for (const item of value) {
+          params.append(name, item);
+        }
+      } else {
+        params.set(name, value);
+      }
     } else {
       params.delete(name);
     }

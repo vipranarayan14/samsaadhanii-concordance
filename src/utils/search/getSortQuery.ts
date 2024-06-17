@@ -1,7 +1,7 @@
 import type { Query } from "../types";
 
 import { sortInput } from "../viewInputsData";
-import { getStringFromSearchParams } from "./getStringFromSearchParams";
+import { getStringFromSearchParams } from "./searchParams";
 
 export type SortQuery = {
   sort: string;

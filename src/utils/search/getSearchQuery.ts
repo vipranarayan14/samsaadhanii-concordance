@@ -5,7 +5,7 @@ import Sanscript from "@indic-transliteration/sanscript";
 import { removeSvaras, removeLastVirama } from "../utils";
 
 import { searchInput } from "@/utils/viewInputsData";
-import { getStringFromSearchParams } from "./getStringFromSearchParams";
+import { getStringFromSearchParams } from "./searchParams";
 
 type Keyword = string;
 

@@ -5,7 +5,7 @@ import { getFilterQuery } from "@/utils/search/getFilterQuery";
 import { filterData } from "@/utils/search/filterData";
 import { getSortQuery } from "@/utils/search/getSortQuery";
 import { sortData } from "@/utils/search/sortData";
-import { getStringFromSearchParams } from "@/utils/search/getStringFromSearchParams";
+import { getStringFromSearchParams } from "@/utils/search/searchParams";
 import { getDhatupatha } from "@/utils/getDhatupatha";
 
 import type { Query } from "@/utils/types";

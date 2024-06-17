@@ -1,4 +1,5 @@
 import type { DhatuDetails } from "../types";
+import { isArrayEmpty } from "../utils";
 import { FilterQuery } from "./getFilterQuery";
 
 const getVrittiProp = (vritti: string) =>
@@ -8,17 +9,24 @@ const getVrittiProp = (vritti: string) =>
     धातुप्रदीपः: "dhatupradipaId",
   }[vritti]);
 
-const filterByVritti = (dhatuList: DhatuDetails[], vrittiName: string) =>
-  dhatuList.filter((dhatuDetails) => {
-    const vrittiProp = getVrittiProp(vrittiName) as keyof DhatuDetails;
+const filterByVritti = (dhatuList: DhatuDetails[], vrittiNames: string[]) => {
+  if (!vrittiNames || isArrayEmpty(vrittiNames)) return dhatuList;
 
-    return vrittiName && vrittiProp ? dhatuDetails[vrittiProp] !== "-" : true;
-  });
+  return dhatuList.filter((dhatuDetails) =>
+    vrittiNames.some((vrittiName) => {
+      const vrittiProp = getVrittiProp(vrittiName) as keyof DhatuDetails;
+
+      return vrittiProp ? dhatuDetails[vrittiProp] !== "-" : true;
+    })
+  );
+};
 
 const filterByProp = (dhatuList: DhatuDetails[], propQuery: FilterQuery) =>
   dhatuList.filter((dhatuDetails) =>
     Object.entries(propQuery).every(([prop, value]) =>
-      value ? dhatuDetails[prop as keyof DhatuDetails] === value : true
+      !isArrayEmpty(value)
+        ? value.includes(dhatuDetails[prop as keyof DhatuDetails])
+        : true
     )
   );
 
