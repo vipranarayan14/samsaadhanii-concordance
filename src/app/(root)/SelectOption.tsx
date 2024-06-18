@@ -22,28 +22,31 @@ export function SelectOption({ label, option, selected, onChange }: Props) {
   const className = selected ? selectedClassName : unselectedClassName;
 
   return (
-    <ToggleButton
-      id={id}
-      type="checkbox"
-      checked={selected}
-      value={option}
-      onChange={(e) => onChange(option, e.currentTarget.checked)}
-      className={`position-relative bg-white text-body ${className}`}
-      style={{ marginRight: "0.7rem", marginTop: "0.7rem" }}
-    >
-      {label}
+    // NOTE: Wrapper needed to avoid scroll-jumping on btn toggle
+    <div className="d-inline-block">
+      <ToggleButton
+        id={id}
+        type="checkbox"
+        checked={selected}
+        value={option}
+        onChange={(e) => onChange(option, e.currentTarget.checked)}
+        className={`position-relative bg-white text-body ${className}`}
+        style={{ marginRight: "0.7rem", marginTop: "0.7rem" }}
+      >
+        {label}
 
-      {selected && (
-        <Badge
-          bg="success"
-          className="position-absolute top-0 start-0 translate-middle p-1 rounded-circle"
-        >
-          <Icon>
-            <BsCheckLg />
-          </Icon>
-          <span className="visually-hidden">Selected</span>
-        </Badge>
-      )}
-    </ToggleButton>
+        {selected && (
+          <Badge
+            bg="success"
+            className="position-absolute top-0 start-0 translate-middle p-1 rounded-circle"
+          >
+            <Icon>
+              <BsCheckLg />
+            </Icon>
+            <span className="visually-hidden">Selected</span>
+          </Badge>
+        )}
+      </ToggleButton>
+    </div>
   );
 }

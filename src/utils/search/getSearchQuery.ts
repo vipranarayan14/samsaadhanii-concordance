@@ -5,7 +5,7 @@ import Sanscript from "@indic-transliteration/sanscript";
 import { removeSvaras, removeLastVirama } from "../utils";
 
 import { searchInput } from "@/utils/viewInputsData";
-import { getStringFromSearchParams } from "./searchParams";
+import { getStringFromQueryValue } from "./queryValue";
 
 type Keyword = string;
 
@@ -33,7 +33,7 @@ export type SearchQuery = {
 };
 
 export const getSearchQuery = (query: Query): SearchQuery | null => {
-  const searchString = getStringFromSearchParams(query[searchInput.name]);
+  const searchString = getStringFromQueryValue(query[searchInput.name]);
 
   if (!searchString) return null;
 

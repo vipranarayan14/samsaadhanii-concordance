@@ -1,20 +1,16 @@
 import type { DhatuDetails } from "../types";
-import { isArrayEmpty } from "../utils";
-import { FilterQuery } from "./getFilterQuery";
+import { isArrayEmpty, translitToWX } from "../utils";
 
-const getVrittiProp = (vritti: string) =>
-  ({
-    माधवीयधातुवृत्तिः: "madhaviyaId",
-    क्षीरतरङ्गिणी: "kshirataranginiId",
-    धातुप्रदीपः: "dhatupradipaId",
-  }[vritti]);
+import { featureFilters } from "./featureFilters";
+import { FilterQuery } from "./getFilterQuery";
+import { vrittiProps } from "./vrittiProps";
 
 const filterByVritti = (dhatuList: DhatuDetails[], vrittiNames: string[]) => {
   if (!vrittiNames || isArrayEmpty(vrittiNames)) return dhatuList;
 
   return dhatuList.filter((dhatuDetails) =>
     vrittiNames.some((vrittiName) => {
-      const vrittiProp = getVrittiProp(vrittiName) as keyof DhatuDetails;
+      const vrittiProp = vrittiProps[vrittiName] as keyof DhatuDetails;
 
       return vrittiProp ? dhatuDetails[vrittiProp] !== "-" : true;
     })
@@ -24,11 +20,31 @@ const filterByVritti = (dhatuList: DhatuDetails[], vrittiNames: string[]) => {
 const filterByProp = (dhatuList: DhatuDetails[], propQuery: FilterQuery) =>
   dhatuList.filter((dhatuDetails) =>
     Object.entries(propQuery).every(([prop, value]) =>
-      !isArrayEmpty(value)
-        ? value.includes(dhatuDetails[prop as keyof DhatuDetails])
-        : true
+      isArrayEmpty(value)
+        ? true
+        : value.includes(dhatuDetails[prop as keyof DhatuDetails])
     )
   );
+
+const checkFeature = (dhatu: string) => (feature: string) => {
+  const dhatu_wx = translitToWX(dhatu);
+  const featureFilter = featureFilters[feature];
+
+  return featureFilter(dhatu_wx);
+};
+
+const filterByDhatuFeatures = (
+  dhatuList: DhatuDetails[],
+  featureQuery: FilterQuery
+) => {
+  return dhatuList.filter((dhatuDetails) =>
+    Object.values(featureQuery).every((features) =>
+      isArrayEmpty(features)
+        ? true
+        : features.some(checkFeature(dhatuDetails.dhatu))
+    )
+  );
+};
 
 export const filterData = (
   dhatuList: DhatuDetails[],
@@ -36,11 +52,19 @@ export const filterData = (
 ) => {
   if (!filterQuery) return dhatuList;
 
-  const { vritti, ...propQuery } = filterQuery;
+  let filtered = [];
 
-  const filteredByVritti = filterByVritti(dhatuList, vritti);
+  const { vritti, upadesha, gana, padi, it, adi, anta } = filterQuery;
 
-  const filteredByProp = filterByProp(filteredByVritti, propQuery);
+  filtered = filterByVritti(dhatuList, vritti);
 
-  return filteredByProp;
+  const propQuery = { gana, padi, it };
+
+  filtered = filterByProp(filtered, propQuery);
+
+  const featuresQuery = { upadesha, adi, anta };
+
+  filtered = filterByDhatuFeatures(filtered, featuresQuery);
+
+  return filtered;
 };

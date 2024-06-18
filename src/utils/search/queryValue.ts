@@ -1,6 +1,6 @@
-type SearchParam = string | string[] | undefined;
+type queryValue = string | string[] | undefined;
 
-export const getStringFromSearchParams = (searchParam: SearchParam): string => {
+export const getStringFromQueryValue = (searchParam: queryValue): string => {
   if (!searchParam) return "";
 
   if (Array.isArray(searchParam)) return searchParam[0];
@@ -8,9 +8,7 @@ export const getStringFromSearchParams = (searchParam: SearchParam): string => {
   return searchParam;
 };
 
-export const getArrayFromSearchParams = (
-  searchParam: SearchParam
-): string[] => {
+export const getArrayFromQueryValue = (searchParam: queryValue): string[] => {
   if (!searchParam) return [];
 
   if (!Array.isArray(searchParam)) return [searchParam];

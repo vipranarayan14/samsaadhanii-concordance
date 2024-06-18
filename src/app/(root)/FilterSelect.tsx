@@ -22,7 +22,7 @@ export function FilterSelect({ label, options, value, onChange }: Props) {
   };
 
   return (
-    <div className="align-items-center mb-3">
+    <div className="mb-3">
       <div>
         <span className="me-2 fw-bold">{label}</span>
       </div>

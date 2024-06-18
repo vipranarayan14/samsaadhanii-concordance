@@ -10,8 +10,13 @@ export const removeLastVirama = (keyword: string) => keyword.replace(/्$/, "")
 export const removeSvaras = (str: string) =>
   str.replace(new RegExp(svarasRegex, "g"), "");
 
-export const translitToWX = (input: string) =>
-  Sanscript.t(input, "devanagari", "wx");
+export const translitToWX = (input: string) => {
+  const inputWithSvarasConverted = input
+    .replaceAll("॑", "|")
+    .replaceAll("॒", "_");
+
+  return Sanscript.t(inputWithSvarasConverted, "devanagari", "wx");
+};
 
 export const translitToDev = (input: string) =>
   Sanscript.t(input, "wx", "devanagari");
