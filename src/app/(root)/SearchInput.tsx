@@ -5,13 +5,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { BsXLg } from "react-icons/bs";
 
-import { searchInput } from "@/utils/viewInputsData";
-
 import type { Query } from "@/utils/types";
 
-const getInputValueFromQuery = (query: Query) => {
-  return query[searchInput.name] ?? "";
-};
+import { searchInput } from "@/utils/viewInputsData";
+import { getInputValueFromQuery } from "@/utils/getInputValueFromQuery";
 
 type Props = {
   query: Query;

@@ -1,33 +1,15 @@
+import { useState } from "react";
+
 import type { Query, ViewOptions } from "@/utils/types";
 
-import { useState } from "react";
+import { getViewOptionsFromQuery } from "@/utils/getViewOptionsFromQuery";
 
 import { ViewOptionsBtn } from "./ViewOptionsBtn";
 import { ViewOptionsModal } from "./ViewOptionsModal";
 
-import { filterInputs, sortInput } from "@/utils/viewInputsData";
-
 type Props = {
   query: Query;
   setQuery: (query: Query) => void;
-};
-
-const getViewOptionsFromQuery = (query: Query): ViewOptions => {
-  const inputsValues: Record<string, string | string[]> = {};
-
-  inputsValues[sortInput.name] = query[sortInput.name] ?? "";
-
-  for (const { name } of filterInputs) {
-    let value = query[name];
-
-    if (!value) value = [];
-
-    if (!Array.isArray(value)) value = [value];
-
-    inputsValues[name] = value;
-  }
-
-  return inputsValues;
 };
 
 const checkIsViewOptionsSet = (viewOptions: ViewOptions) =>

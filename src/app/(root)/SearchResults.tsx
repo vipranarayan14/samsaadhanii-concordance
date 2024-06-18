@@ -28,14 +28,6 @@ export function SearchResults({ isTyping, query, updateQuery }: Props) {
 
     if (!itemIdToLocate) return null;
 
-    // const itemIndex = dhatupatha.findIndex(
-    //   (dhatuDetails) => dhatuDetails.id === Number(focusId)
-    // );
-
-    // if (itemIndex === -1) return null;
-
-    // return itemIndex;
-
     return itemIdToLocate;
   };
 

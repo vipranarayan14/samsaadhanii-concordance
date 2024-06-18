@@ -9,26 +9,32 @@ import { SearchQuery } from "@/utils/search/getSearchQuery";
 import { DhatuListItem } from "./DhatuListItem";
 import { ScrollToTop } from "@/commons/components/ScrollToTop";
 
-const List = React.forwardRef<any>((props, ref: any) => {
-  return (
-    <ListGroup
-      variant="flush"
-      className="_bg-surface rounded-1 shadow"
-      {...props}
-      ref={ref}
-    />
-  );
-});
+const makeList = () => {
+  return React.forwardRef<any>((props, ref: any) => {
+    return (
+      <ListGroup
+        variant="flush"
+        className="_bg-surface rounded-1 shadow"
+        {...props}
+        ref={ref}
+      />
+    );
+  });
+};
 
-const Item = ({ isLocated, ...props }: { isLocated: boolean }) => {
-  const locatedClassName = isLocated ? "located" : "";
+const makeItem = (locatedItemId: string | null) => {
+  // Remove `item` from props to avoid `item="[Object Object]"` attr in HTML
+  return ({ item, ...props }: any) => {
+    const isLocated = props["data-index"] === parseInt(locatedItemId ?? "");
+    const locatedClassName = isLocated ? "located" : "";
 
-  return (
-    <div
-      {...props}
-      className={`list-group-item list-group-item-action _bg-surface _bg-surface-hover p-1 ${locatedClassName}`}
-    ></div>
-  );
+    return (
+      <div
+        {...props}
+        className={`list-group-item list-group-item-action _bg-surface _bg-surface-hover p-1 ${locatedClassName}`}
+      ></div>
+    );
+  };
 };
 
 type Props = {
@@ -74,16 +80,8 @@ export function DhatuList({
           useWindowScroll
           data={dhatuList}
           components={{
-            List,
-            // Remove `item` from props to avoid `item="[Object Object]"` attr in HTML
-            Item: ({ item: _, ...props }) => (
-              <Item
-                {...props}
-                isLocated={
-                  props["data-index"] === parseInt(locatedItemId ?? "")
-                }
-              />
-            ),
+            List: makeList(),
+            Item: makeItem(locatedItemId),
           }}
           itemContent={(_, dhatuDetails) => (
             <DhatuListItem
