@@ -26,11 +26,13 @@ const filterByProp = (dhatuList: DhatuDetails[], propQuery: FilterQuery) =>
     )
   );
 
-const checkFeature = (dhatu: string) => (feature: string) => {
-  const dhatu_wx = translitToWX(dhatu);
+const checkFeature = (dhatuDetails: DhatuDetails) => (feature: string) => {
+  const dhatuWx = translitToWX(dhatuDetails.dhatu);
+  const muladhatuWx = translitToWX(dhatuDetails.muladhatu);
+
   const featureFilter = featureFilters[feature];
 
-  return featureFilter(dhatu_wx);
+  return featureFilter(dhatuWx, muladhatuWx);
 };
 
 const filterByDhatuFeatures = (
@@ -39,9 +41,7 @@ const filterByDhatuFeatures = (
 ) => {
   return dhatuList.filter((dhatuDetails) =>
     Object.values(featureQuery).every((features) =>
-      isArrayEmpty(features)
-        ? true
-        : features.some(checkFeature(dhatuDetails.dhatu))
+      isArrayEmpty(features) ? true : features.some(checkFeature(dhatuDetails))
     )
   );
 };
