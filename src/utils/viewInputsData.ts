@@ -1,8 +1,10 @@
 import {
   adiFilters,
   antaFilters,
+  svaraFilters,
   upadeshaFilters,
 } from "./search/featureFilters";
+
 import { vrittiProps } from "./search/vrittiProps";
 
 const ganaOptions = [
@@ -42,6 +44,7 @@ export const filterInputs = [
   { name: "padi", label: "पदि", options: padiOptions },
   { name: "it", label: "इट्", options: itOptions },
   { name: "upadesha", label: "उपदेशः", options: Object.keys(upadeshaFilters) },
+  { name: "svara", label: "स्वरः", options: Object.keys(svaraFilters) },
   { name: "adi", label: "आदिवर्णः", options: Object.keys(adiFilters) },
   { name: "anta", label: "अन्त्यवर्णः", options: Object.keys(antaFilters) },
 ];

@@ -3,8 +3,11 @@ type Filters = Record<string, (dhatu: string, muladhatu: string) => boolean>;
 export const upadeshaFilters: Filters = {
   षोपदेशः: (dhatu) => /^R/.test(dhatu),
   णोपदेशः: (dhatu) => /^N/.test(dhatu),
-  उदात्तोपदेशः: (_, muladhatu) => /\|/.test(muladhatu),
-  अनुदात्तोपदेशः: (_, muladhatu) => /_/.test(muladhatu),
+};
+
+export const svaraFilters: Filters = {
+  उदात्तः: (_, muladhatu) => /\|/.test(muladhatu),
+  अनुदात्तः: (_, muladhatu) => /_/.test(muladhatu),
 };
 
 export const adiFilters: Filters = {
@@ -113,6 +116,7 @@ export const antaFilters: Filters = {
 
 export const featureFilters: Filters = {
   ...upadeshaFilters,
+  ...svaraFilters,
   ...adiFilters,
   ...antaFilters,
 };

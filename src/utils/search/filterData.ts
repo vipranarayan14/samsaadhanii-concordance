@@ -54,7 +54,7 @@ export const filterData = (
 
   let filtered = [];
 
-  const { vritti, upadesha, gana, padi, it, adi, anta } = filterQuery;
+  const { vritti, upadesha, svara, gana, padi, it, adi, anta } = filterQuery;
 
   filtered = filterByVritti(dhatuList, vritti);
 
@@ -62,7 +62,7 @@ export const filterData = (
 
   filtered = filterByProp(filtered, propQuery);
 
-  const featuresQuery = { upadesha, adi, anta };
+  const featuresQuery = { upadesha, svara, adi, anta };
 
   filtered = filterByDhatuFeatures(filtered, featuresQuery);
 
