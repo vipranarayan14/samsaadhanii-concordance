@@ -3,6 +3,7 @@ import {
   antaFilters,
   svaraFilters,
   upadeshaFilters,
+  upadhaFilters,
 } from "./search/featureFilters";
 
 import { vrittiProps } from "./search/vrittiProps";
@@ -38,15 +39,30 @@ export const sortInput = {
   options: [sortOptions.gana, sortOptions.dhatu, sortOptions.artha],
 };
 
-export const filterInputs = [
-  { name: "vritti", label: "वृत्तिः", options: Object.keys(vrittiProps) },
+export const vrittiFilterInput = {
+  name: "vritti",
+  label: "वृत्तिः",
+  options: Object.keys(vrittiProps),
+};
+
+export const propFilterInputs = [
   { name: "gana", label: "गणः", options: ganaOptions },
   { name: "padi", label: "पदि", options: padiOptions },
   { name: "it", label: "इट्", options: itOptions },
+];
+
+export const featureFilterInputs = [
   { name: "upadesha", label: "उपदेशः", options: Object.keys(upadeshaFilters) },
   { name: "svara", label: "स्वरः", options: Object.keys(svaraFilters) },
   { name: "adi", label: "आदिवर्णः", options: Object.keys(adiFilters) },
   { name: "anta", label: "अन्त्यवर्णः", options: Object.keys(antaFilters) },
+  { name: "upadha", label: "उपधावर्णः", options: Object.keys(upadhaFilters) },
+];
+
+export const filterInputs = [
+  vrittiFilterInput,
+  ...propFilterInputs,
+  ...featureFilterInputs,
 ];
 
 export const viewInputsNames = [

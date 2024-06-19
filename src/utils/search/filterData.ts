@@ -1,5 +1,10 @@
 import type { DhatuDetails } from "../types";
 import { isArrayEmpty, translitToWX } from "../utils";
+import {
+  featureFilterInputs,
+  propFilterInputs,
+  vrittiFilterInput,
+} from "../viewInputsData";
 
 import { featureFilters } from "./featureFilters";
 import { FilterQuery } from "./getFilterQuery";
@@ -54,15 +59,19 @@ export const filterData = (
 
   let filtered = [];
 
-  const { vritti, upadesha, svara, gana, padi, it, adi, anta } = filterQuery;
+  const vritti = filterQuery[vrittiFilterInput.name];
 
   filtered = filterByVritti(dhatuList, vritti);
 
-  const propQuery = { gana, padi, it };
+  const propQuery = Object.fromEntries(
+    propFilterInputs.map(({ name }) => [name, filterQuery[name]])
+  );
 
   filtered = filterByProp(filtered, propQuery);
 
-  const featuresQuery = { upadesha, svara, adi, anta };
+  const featuresQuery = Object.fromEntries(
+    featureFilterInputs.map(({ name }) => [name, filterQuery[name]])
+  );
 
   filtered = filterByDhatuFeatures(filtered, featuresQuery);
 
