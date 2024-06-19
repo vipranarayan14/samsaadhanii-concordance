@@ -32,6 +32,9 @@ const filterByProp = (dhatuList: DhatuDetails[], propQuery: FilterQuery) =>
   );
 
 const checkFeature = (dhatuDetails: DhatuDetails) => (feature: string) => {
+  // NOTE: Why WX? Easier to check with regex.
+  //  Eg. i-upadha -> "i" will be same in both "i" and "ciw" dhatus
+  //  whereas in Devanagari one will be a vowel mark and other will be a vowel.
   const dhatuWx = translitToWX(dhatuDetails.dhatu);
   const muladhatuWx = translitToWX(dhatuDetails.muladhatu);
 
