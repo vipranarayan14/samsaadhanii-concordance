@@ -31,7 +31,7 @@ export function SelectOption({ label, option, selected, onChange }: Props) {
         value={option}
         onChange={(e) => onChange(option, e.currentTarget.checked)}
         className={`position-relative bg-white text-body ${className}`}
-        style={{ marginRight: "0.7rem", marginTop: "0.7rem" }}
+        style={{ marginRight: "0.7rem", marginTop: "0.7rem", minWidth: "48px" }}
       >
         {label}
 
