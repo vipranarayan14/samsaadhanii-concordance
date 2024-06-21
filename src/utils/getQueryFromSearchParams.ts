@@ -1,4 +1,3 @@
-"use client";
 import type { Query } from "@/utils/types";
 
 export function getQueryFromSearchParams(searchParams: URLSearchParams) {

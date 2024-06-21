@@ -1,5 +1,5 @@
-import type { DhatuDetails } from "./types";
-import { removeSvaras, translitToWX } from "./utils";
+import type { DhatuDetails } from "@/utils/types";
+import { removeSvaras, translitToWX } from "@/utils/utils";
 
 export const createFormsQuery = (details: DhatuDetails, prayoga: string) => {
   const { dhatuId, muladhatu, padi, gana, meaning } = details;

@@ -5,7 +5,8 @@ import type { ViewOptions } from "@/utils/types";
 
 import { BsCheck2, BsArrowCounterclockwise } from "react-icons/bs";
 
-import { filterInputs, sortInput } from "@/utils/viewInputsData";
+import { viewSort } from "@/utils/search/viewSort";
+import { viewFilters } from "@/utils/search/viewFilters";
 
 import { Icon } from "@/commons/components/Icon";
 
@@ -45,22 +46,22 @@ export function ViewOptionsModal({
       onHide={onHide}
       scrollable
       centered
-      // fullscreen="sm-down"
+      fullscreen="md-down"
       size="lg"
     >
       <Modal.Header closeButton>
         <Modal.Title>Sort & Filter</Modal.Title>
       </Modal.Header>
 
-      <Modal.Body style={{ maxHeight: "50vh" }}>
+      <Modal.Body>
         <SortSelect
-          label={sortInput.label}
-          options={sortInput.options}
-          value={viewOptions[sortInput.name] as string}
-          onChange={(value) => handleChange(sortInput.name, value)}
+          label={viewSort.label}
+          options={viewSort.options}
+          value={viewOptions[viewSort.name] as string}
+          onChange={(value) => handleChange(viewSort.name, value)}
         />
 
-        {filterInputs.map(({ name, label, options }) => (
+        {viewFilters.map(({ name, label, options }) => (
           <FilterSelect
             key={name}
             label={label}

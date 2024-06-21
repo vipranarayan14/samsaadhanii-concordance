@@ -1,58 +1,26 @@
-import type { DhatuDetails } from "../types";
-import { isArrayEmpty, translitToWX } from "../utils";
-import {
-  featureFilterInputs,
-  propFilterInputs,
-  vrittiFilterInput,
-} from "../viewInputsData";
+import type { DhatuDetails } from "@/utils/types";
+import { isArrayEmpty } from "@/utils/utils";
 
-import { featureFilters } from "./featureFilters";
+import { viewFilters } from "./viewFilters";
 import { FilterQuery } from "./getFilterQuery";
-import { vrittiProps } from "./vrittiProps";
 
-const filterByVritti = (dhatuList: DhatuDetails[], vrittiNames: string[]) => {
-  if (!vrittiNames || isArrayEmpty(vrittiNames)) return dhatuList;
+const checkOptions =
+  (filterName: string, dhatuDetails: DhatuDetails) => (optionName: string) => {
+    const filter = viewFilters.find((filter) => filter.name === filterName);
 
-  return dhatuList.filter((dhatuDetails) =>
-    vrittiNames.some((vrittiName) => {
-      const vrittiProp = vrittiProps[vrittiName] as keyof DhatuDetails;
+    const option = filter?.options.find((option) => option.name === optionName);
 
-      return vrittiProp ? dhatuDetails[vrittiProp] !== "-" : true;
-    })
+    const test = option?.test;
+
+    return test?.(dhatuDetails);
+  };
+
+const runFilters = (filterQuery: FilterQuery) => (dhatuDetails: DhatuDetails) =>
+  Object.entries(filterQuery).every(([filterName, optionNames]) =>
+    isArrayEmpty(optionNames)
+      ? true
+      : optionNames.some(checkOptions(filterName, dhatuDetails))
   );
-};
-
-const filterByProp = (dhatuList: DhatuDetails[], propQuery: FilterQuery) =>
-  dhatuList.filter((dhatuDetails) =>
-    Object.entries(propQuery).every(([prop, value]) =>
-      isArrayEmpty(value)
-        ? true
-        : value.includes(dhatuDetails[prop as keyof DhatuDetails])
-    )
-  );
-
-const checkFeature = (dhatuDetails: DhatuDetails) => (feature: string) => {
-  // NOTE: Why WX? Easier to check with regex.
-  //  Eg. i-upadha -> "i" will be same in both "i" and "ciw" dhatus
-  //  whereas in Devanagari one will be a vowel mark and other will be a vowel.
-  const dhatuWx = translitToWX(dhatuDetails.dhatu);
-  const muladhatuWx = translitToWX(dhatuDetails.muladhatu);
-
-  const featureFilter = featureFilters[feature];
-
-  return featureFilter(dhatuWx, muladhatuWx);
-};
-
-const filterByDhatuFeatures = (
-  dhatuList: DhatuDetails[],
-  featureQuery: FilterQuery
-) => {
-  return dhatuList.filter((dhatuDetails) =>
-    Object.values(featureQuery).every((features) =>
-      isArrayEmpty(features) ? true : features.some(checkFeature(dhatuDetails))
-    )
-  );
-};
 
 export const filterData = (
   dhatuList: DhatuDetails[],
@@ -60,23 +28,7 @@ export const filterData = (
 ) => {
   if (!filterQuery) return dhatuList;
 
-  let filtered = [];
-
-  const vritti = filterQuery[vrittiFilterInput.name];
-
-  filtered = filterByVritti(dhatuList, vritti);
-
-  const propQuery = Object.fromEntries(
-    propFilterInputs.map(({ name }) => [name, filterQuery[name]])
-  );
-
-  filtered = filterByProp(filtered, propQuery);
-
-  const featuresQuery = Object.fromEntries(
-    featureFilterInputs.map(({ name }) => [name, filterQuery[name]])
-  );
-
-  filtered = filterByDhatuFeatures(filtered, featuresQuery);
+  const filtered = dhatuList.filter(runFilters(filterQuery));
 
   return filtered;
 };

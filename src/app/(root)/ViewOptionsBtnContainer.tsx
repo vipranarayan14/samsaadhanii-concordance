@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import type { Query, ViewOptions } from "@/utils/types";
 
-import { getViewOptionsFromQuery } from "@/utils/getViewOptionsFromQuery";
+import { getViewOptionsFromQuery } from "@/utils/search/getViewOptionsFromQuery";
 
 import { ViewOptionsBtn } from "./ViewOptionsBtn";
 import { ViewOptionsModal } from "./ViewOptionsModal";

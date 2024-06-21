@@ -1,4 +1,4 @@
-import { LAKARAS_DEV_LIST } from "./consts";
+import { LAKARAS_DEV_LIST } from "@/utils/consts";
 
 type FormDetails = {
   form: string;

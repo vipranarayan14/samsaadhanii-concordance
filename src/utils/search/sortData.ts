@@ -1,24 +1,7 @@
-import type { DhatuDetails } from "../types";
+import type { DhatuDetails } from "@/utils/types";
 
-import { sortOptions } from "../viewInputsData";
-
+import { viewSort } from "./viewSort";
 import { SortQuery } from "./getSortQuery";
-
-type SortFn = (dhatuList: DhatuDetails[]) => DhatuDetails[];
-
-const collator = new Intl.Collator();
-
-const sortByArtha: SortFn = (dhatuList) =>
-  [...dhatuList].sort((dhatuDetailsA, dhatuDetailsB) =>
-    collator.compare(dhatuDetailsA.meaning, dhatuDetailsB.meaning)
-  );
-
-const sortByGana: SortFn = (dhatuList) => dhatuList;
-
-const sortByDhatu: SortFn = (dhatuList) =>
-  [...dhatuList].sort((dhatuDetailsA, dhatuDetailsB) =>
-    collator.compare(dhatuDetailsA.muladhatu, dhatuDetailsB.muladhatu)
-  );
 
 export const sortData = (
   dhatuList: DhatuDetails[],
@@ -26,11 +9,13 @@ export const sortData = (
 ) => {
   if (!sortQuery) return dhatuList;
 
-  const sort = {
-    [sortOptions.dhatu]: sortByDhatu,
-    [sortOptions.gana]: sortByGana,
-    [sortOptions.artha]: sortByArtha,
-  }[sortQuery.sort];
+  const optionName = sortQuery.sort;
 
-  return sort ? sort(dhatuList) : dhatuList;
+  const sortOption = viewSort.options.find(
+    (option) => option.name === optionName
+  );
+
+  const compareFn = sortOption?.compare;
+
+  return dhatuList.slice().sort(compareFn);
 };

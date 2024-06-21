@@ -1,6 +1,6 @@
-import type { Query } from "../types";
+import type { Query } from "@/utils/types";
 
-import { sortInput } from "../viewInputsData";
+import { viewSort } from "./viewSort";
 import { getStringFromQueryValue } from "./queryValue";
 
 export type SortQuery = {
@@ -8,7 +8,7 @@ export type SortQuery = {
 };
 
 export const getSortQuery = (query: Query): SortQuery | null => {
-  const sort = getStringFromQueryValue(query[sortInput.name]);
+  const sort = getStringFromQueryValue(query[viewSort.name]);
 
   if (!sort) return null;
 

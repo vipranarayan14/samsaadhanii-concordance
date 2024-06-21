@@ -1,6 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
-import { DhatuDetails } from "./types";
+
+import { DhatuDetails } from "@/utils/types";
 
 const dhatupathaPath = "public/dhatupatha.json";
 

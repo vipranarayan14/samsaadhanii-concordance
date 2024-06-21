@@ -1,5 +1,5 @@
-import type { DhatuDetails } from "../types";
-import { removeSvaras } from "../utils";
+import type { DhatuDetails } from "@/utils/types";
+import { removeSvaras } from "@/utils/utils";
 
 const createTags = (details: DhatuDetails) => {
   const simplifiedMuladhatu = removeSvaras(details.muladhatu);

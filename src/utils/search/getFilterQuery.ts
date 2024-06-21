@@ -1,18 +1,17 @@
-import type { Query } from "../types";
+import type { Query } from "@/utils/types";
+import { isObjectEmpty } from "@/utils/utils";
 
-import { filterInputs } from "../viewInputsData";
-import { isObjectEmpty } from "../utils";
-
+import { viewFilters } from "./viewFilters";
 import { getArrayFromQueryValue } from "./queryValue";
 
-const filterInputNames = filterInputs.map(({ name }) => name);
+const viewFilterNames = viewFilters.map(({ name }) => name);
 
 export type FilterQuery = Record<string, string[]>;
 
 export const getFilterQuery = (query: Query) => {
   const filterQuery: FilterQuery = {};
 
-  for (const name of filterInputNames) {
+  for (const name of viewFilterNames) {
     filterQuery[name] = getArrayFromQueryValue(query[name]);
   }
 

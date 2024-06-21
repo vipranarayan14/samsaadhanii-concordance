@@ -1,8 +1,10 @@
+import { SortOption } from "@/utils/search/viewSort";
+
 import { SelectOption } from "./SelectOption";
 
 type Props = {
   label: string;
-  options: string[];
+  options: SortOption[];
   value: string;
   onChange: (value: string) => void;
 };
@@ -13,9 +15,9 @@ export function SortSelect({ label, options, value, onChange }: Props) {
 
   const selectedOption = value;
 
-  const handleOptionChange = (option: string, isSelected: boolean) => {
+  const handleOptionChange = (optionName: string, isSelected: boolean) => {
     if (isSelected) {
-      onChange(option);
+      onChange(optionName);
     } else {
       onChange("");
     }
@@ -30,10 +32,10 @@ export function SortSelect({ label, options, value, onChange }: Props) {
       <div className="d-flex flex-wrap">
         {options.map((option) => (
           <SelectOption
-            key={option}
-            label={option}
-            option={option}
-            selected={selectedOption === option}
+            key={option.name}
+            label={option.label}
+            option={option.name}
+            selected={selectedOption === option.name}
             onChange={handleOptionChange}
           />
         ))}

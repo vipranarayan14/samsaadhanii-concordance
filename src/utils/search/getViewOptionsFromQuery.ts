@@ -1,12 +1,14 @@
 import type { Query, ViewOptions } from "@/utils/types";
-import { filterInputs, sortInput } from "@/utils/viewInputsData";
+
+import { viewSort } from "./viewSort";
+import { viewFilters } from "./viewFilters";
 
 export const getViewOptionsFromQuery = (query: Query): ViewOptions => {
   const inputsValues: Record<string, string | string[]> = {};
 
-  inputsValues[sortInput.name] = query[sortInput.name] ?? "";
+  inputsValues[viewSort.name] = query[viewSort.name] ?? "";
 
-  for (const { name } of filterInputs) {
+  for (const { name } of viewFilters) {
     let value = query[name];
 
     if (!value) value = [];

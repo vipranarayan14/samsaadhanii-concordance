@@ -1,4 +1,5 @@
-import { isArrayEmpty, vowelMarksRegex } from "../utils";
+import { isArrayEmpty, vowelMarksRegex } from "@/utils/utils";
+
 import { SearchQuery } from "./getSearchQuery";
 
 const fillVowelMarks = (keyword: string) =>

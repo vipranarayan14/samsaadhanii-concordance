@@ -1,8 +1,10 @@
+import type { FilterOption } from "@/utils/search/viewFilters";
+
 import { SelectOption } from "./SelectOption";
 
 type Props = {
   label: string;
-  options: string[];
+  options: FilterOption[];
   value: string[];
   onChange: (value: string[]) => void;
 };
@@ -13,10 +15,10 @@ export function FilterSelect({ label, options, value, onChange }: Props) {
 
   const selectedOptions = value;
 
-  const handleOptionChange = (option: string, isSelected: boolean) => {
+  const handleOptionChange = (optionName: string, isSelected: boolean) => {
     const newSelectedOptions = isSelected
-      ? [...selectedOptions, option]
-      : selectedOptions.filter((_option) => _option !== option);
+      ? [...selectedOptions, optionName]
+      : selectedOptions.filter((_optionName) => _optionName !== optionName);
 
     onChange(newSelectedOptions);
   };
@@ -30,10 +32,10 @@ export function FilterSelect({ label, options, value, onChange }: Props) {
       <div className="d-flex flex-wrap">
         {options.map((option) => (
           <SelectOption
-            key={option}
-            label={option}
-            option={option}
-            selected={selectedOptions.includes(option)}
+            key={option.name}
+            label={option.label}
+            option={option.name}
+            selected={selectedOptions.includes(option.name)}
             onChange={handleOptionChange}
           />
         ))}
