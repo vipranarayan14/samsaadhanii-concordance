@@ -3,42 +3,14 @@
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import FixedWidthContainer from "@/commons/components/FixedWidthContainer";
 import type { Query } from "@/utils/types";
+
+import FixedWidthContainer from "@/commons/components/FixedWidthContainer";
+import { getQueryFromSearchParams } from "@/utils/getQueryFromSearchParams";
+import { createURLSearchString } from "@/utils/createURLSearchString";
 
 import { Search } from "./Search";
 import { SearchResults, locateQuery } from "./SearchResults";
-
-function getQueryFromSearchParams(searchParams: URLSearchParams) {
-  const query: Query = {};
-
-  for (const [key, value] of searchParams.entries()) {
-    if (!value) {
-      continue;
-    } else if (Array.isArray(value)) {
-      query[key] = value[0];
-    } else {
-      query[key] = value;
-    }
-  }
-
-  return query;
-}
-
-const createURLSearchString = (query: Query, searchParams: URLSearchParams) => {
-  // const params = new URLSearchParams(searchParams);
-  const params = new URLSearchParams("");
-
-  for (const [name, value] of Object.entries(query)) {
-    if (value) {
-      params.set(name, value);
-    } else {
-      params.delete(name);
-    }
-  }
-
-  return params.toString();
-};
 
 export default function Page() {
   const router = useRouter();

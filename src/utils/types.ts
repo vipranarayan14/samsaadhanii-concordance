@@ -13,6 +13,8 @@ export type DhatuDetails = {
   dhatupradipaId: string;
 };
 
-export type Query = Record<string, string>;
+export type Query = Record<string, string | string []>;
+
+export type ViewOptions = Record<string, string | string []>;
 
 export type SearchParams = { [key: string]: string | string[] | undefined };

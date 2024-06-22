@@ -1,11 +1,10 @@
-import type { Query } from "../types";
-
 import Sanscript from "@indic-transliteration/sanscript";
 
-import { removeSvaras, removeLastVirama } from "../utils";
+import type { Query } from "@/utils/types";
+import { viewSearch } from "@/utils/search/viewSearch";
+import { removeSvaras, removeLastVirama } from "@/utils/utils";
 
-import { searchInput } from "@/utils/viewInputsData";
-import { getStringFromSearchParams } from "./getStringFromSearchParams";
+import { getStringFromQueryValue } from "./queryValue";
 
 type Keyword = string;
 
@@ -33,7 +32,7 @@ export type SearchQuery = {
 };
 
 export const getSearchQuery = (query: Query): SearchQuery | null => {
-  const searchString = getStringFromSearchParams(query[searchInput.name]);
+  const searchString = getStringFromQueryValue(query[viewSearch.name]);
 
   if (!searchString) return null;
 

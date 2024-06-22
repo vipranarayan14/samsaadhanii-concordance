@@ -5,13 +5,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { BsXLg } from "react-icons/bs";
 
-import { searchInput } from "@/utils/viewInputsData";
-
 import type { Query } from "@/utils/types";
 
-const getInputValueFromQuery = (query: Query) => {
-  return query[searchInput.name] ?? "";
-};
+import { viewSearch } from "@/utils/search/viewSearch";
+import { getInputValueFromQuery } from "@/utils/search/getInputValueFromQuery";
 
 type Props = {
   query: Query;
@@ -35,7 +32,7 @@ export function SearchInput({ query, updateQuery, setIsTyping }: Props) {
 
     setIsTyping(true);
 
-    debouncedSetQuery({ [searchInput.name]: searchString });
+    debouncedSetQuery({ [viewSearch.name]: searchString });
   };
 
   const isInputEmpty = inputValue === "";

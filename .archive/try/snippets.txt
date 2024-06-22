@@ -1,0 +1,45 @@
+const tabClassName = `_tab p-2`;
+const tabPanelClassName = `flex-grow-1 overflow-scroll`;
+
+<Tabs className="d-flex" selectedTabClassName="active">
+  <TabList className="px-1">
+    <Tab className={tabClassName}>Sort&nbsp;By</Tab>
+    {...filterInputs.map(({ label }) => (
+      <Tab className={tabClassName}>{label}</Tab>
+    ))}
+  </TabList>
+
+  <TabPanel className={tabPanelClassName}>
+    <h2>{sortInput.options}</h2>
+  </TabPanel>
+  {...filterInputs.map(({ options }) => (
+    <TabPanel className={tabPanelClassName}>{options}</TabPanel>
+  ))}
+</Tabs>
+
+
+._tab {
+  list-style-type: none;
+  border-bottom: 1px solid grey;
+  border-radius: 5px;
+}
+
+._tab:not(:last-child) {
+}
+
+._tab.active {
+  border-left: 1px solid black;
+}
+
+
+.Tab {
+  list-style-type: none;
+}
+
+.Tab:not(:last-child) {
+  border-bottom: 1px solid grey;
+}
+
+.Tab.active {
+  border-left: 1px solid black;
+}

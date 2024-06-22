@@ -1,14 +1,14 @@
-import type { Query } from "../types";
+import type { Query } from "@/utils/types";
 
-import { sortInput } from "../viewInputsData";
-import { getStringFromSearchParams } from "./getStringFromSearchParams";
+import { viewSort } from "./viewSort";
+import { getStringFromQueryValue } from "./queryValue";
 
 export type SortQuery = {
   sort: string;
 };
 
 export const getSortQuery = (query: Query): SortQuery | null => {
-  const sort = getStringFromSearchParams(query[sortInput.name]);
+  const sort = getStringFromQueryValue(query[viewSort.name]);
 
   if (!sort) return null;
 

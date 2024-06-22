@@ -1,25 +1,25 @@
-import type { DhatuDetails } from "../types";
+import type { DhatuDetails } from "@/utils/types";
+import { isArrayEmpty } from "@/utils/utils";
+
+import { viewFilters } from "./viewFilters";
 import { FilterQuery } from "./getFilterQuery";
 
-const getVrittiProp = (vritti: string) =>
-  ({
-    माधवीयधातुवृत्तिः: "madhaviyaId",
-    क्षीरतरङ्गिणी: "kshirataranginiId",
-    धातुप्रदीपः: "dhatupradipaId",
-  }[vritti]);
+const checkOptions =
+  (filterName: string, dhatuDetails: DhatuDetails) => (optionName: string) => {
+    const filter = viewFilters.find((filter) => filter.name === filterName);
 
-const filterByVritti = (dhatuList: DhatuDetails[], vrittiName: string) =>
-  dhatuList.filter((dhatuDetails) => {
-    const vrittiProp = getVrittiProp(vrittiName) as keyof DhatuDetails;
+    const option = filter?.options.find((option) => option.name === optionName);
 
-    return vrittiName && vrittiProp ? dhatuDetails[vrittiProp] !== "-" : true;
-  });
+    const test = option?.test;
 
-const filterByProp = (dhatuList: DhatuDetails[], propQuery: FilterQuery) =>
-  dhatuList.filter((dhatuDetails) =>
-    Object.entries(propQuery).every(([prop, value]) =>
-      value ? dhatuDetails[prop as keyof DhatuDetails] === value : true
-    )
+    return test?.(dhatuDetails);
+  };
+
+const runFilters = (filterQuery: FilterQuery) => (dhatuDetails: DhatuDetails) =>
+  Object.entries(filterQuery).every(([filterName, optionNames]) =>
+    isArrayEmpty(optionNames)
+      ? true
+      : optionNames.some(checkOptions(filterName, dhatuDetails))
   );
 
 export const filterData = (
@@ -28,11 +28,7 @@ export const filterData = (
 ) => {
   if (!filterQuery) return dhatuList;
 
-  const { vritti, ...propQuery } = filterQuery;
+  const filtered = dhatuList.filter(runFilters(filterQuery));
 
-  const filteredByVritti = filterByVritti(dhatuList, vritti);
-
-  const filteredByProp = filterByProp(filteredByVritti, propQuery);
-
-  return filteredByProp;
+  return filtered;
 };

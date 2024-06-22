@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 
+import FixedWidthContainer from "@/commons/components/FixedWidthContainer";
 import { getDhatupathaLocal } from "@/utils/getDhatupathaLocal";
+
 import { PageHeader } from "./PageHeader";
 import { DhatuDetailsTable } from "./DetailsTable";
 import { VrittiAccordionsGroup } from "./VrittiAccordionsGroup";
@@ -8,13 +10,7 @@ import { FormsAccordionsGroup } from "./FormsAccordionsGroup";
 import { SectionHeading } from "./SectionHeading";
 import { Graph } from "./Graph";
 
-import FixedWidthContainer from "@/commons/components/FixedWidthContainer";
-
 const dhatupatha = await getDhatupathaLocal();
-
-type Props = {
-  params: { id: string };
-};
 
 export function generateMetadata({ params }: Props): Metadata {
   const { id } = params;
@@ -43,6 +39,10 @@ export async function generateStaticParams() {
 
   return staticParams;
 }
+
+type Props = {
+  params: { id: string };
+};
 
 export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;

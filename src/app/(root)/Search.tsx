@@ -6,7 +6,7 @@ import FixedWidthContainer from "@/commons/components/FixedWidthContainer";
 import type { Query } from "@/utils/types";
 
 import { SearchInput } from "./SearchInput";
-import { ViewOptions } from "./ViewOptions";
+import { ViewOptionsBtnContainer } from "./ViewOptionsBtnContainer";
 
 type Props = {
   setIsTyping: (isTyping: boolean) => void;
@@ -30,7 +30,7 @@ export function Search({ query, updateQuery, setIsTyping }: Props) {
         <Form className="d-flex align-items-center py-2 px-1">
           <div className="flex-fill rounded-1 shadow">
             <div className="input-group rounded-1">
-              <ViewOptions query={query} setQuery={updateQuery} />
+              <ViewOptionsBtnContainer query={query} setQuery={updateQuery} />
 
               <SearchInput
                 query={query}

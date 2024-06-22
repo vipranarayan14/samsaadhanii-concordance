@@ -7,12 +7,12 @@ import {
   PADI_SHORT,
   PV_CHARS_LIST,
   PV_NUM_LIST,
-} from "./consts";
+} from "@/utils/consts";
 
-import { LakaraDetails } from "./restructureFormsData";
-import { chunk, translitToDev, translitToWX } from "./utils";
+import { LakaraDetails } from "@/utils/restructureFormsData";
+import { chunk, translitToDev, translitToWX } from "@/utils/utils";
 
-import type { DhatuDetails } from "./types";
+import type { DhatuDetails } from "@/utils/types";
 
 const exec = util.promisify(childProcess.exec);
 

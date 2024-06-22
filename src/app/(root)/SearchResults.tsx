@@ -1,12 +1,15 @@
 import { Loader } from "@/commons/components/Loader";
-import { getSearchQuery } from "@/utils/search/getSearchQuery";
-import { searchData } from "@/utils/search/searchData";
-import { getFilterQuery } from "@/utils/search/getFilterQuery";
-import { filterData } from "@/utils/search/filterData";
-import { getSortQuery } from "@/utils/search/getSortQuery";
-import { sortData } from "@/utils/search/sortData";
-import { getStringFromSearchParams } from "@/utils/search/getStringFromSearchParams";
+
 import { getDhatupatha } from "@/utils/getDhatupatha";
+import { checkIsQueryEmpty } from "@/utils/search/checkIsQueryEmpty";
+import { filterData } from "@/utils/search/filterData";
+import { getFilterQuery } from "@/utils/search/getFilterQuery";
+import { getSearchQuery } from "@/utils/search/getSearchQuery";
+import { getSortQuery } from "@/utils/search/getSortQuery";
+import { getStringFromQueryValue } from "@/utils/search/queryValue";
+import { searchData } from "@/utils/search/searchData";
+import { sortData } from "@/utils/search/sortData";
+import { isArrayEmpty } from "@/utils/utils";
 
 import type { Query } from "@/utils/types";
 
@@ -24,17 +27,9 @@ export function SearchResults({ isTyping, query, updateQuery }: Props) {
   const { dhatupatha, isError, isLoading } = getDhatupatha();
 
   const getItemIdToLocate = (query: Query) => {
-    const itemIdToLocate = getStringFromSearchParams(query[locateQuery.name]);
+    const itemIdToLocate = getStringFromQueryValue(query[locateQuery.name]);
 
     if (!itemIdToLocate) return null;
-
-    // const itemIndex = dhatupatha.findIndex(
-    //   (dhatuDetails) => dhatuDetails.id === Number(focusId)
-    // );
-
-    // if (itemIndex === -1) return null;
-
-    // return itemIndex;
 
     return itemIdToLocate;
   };
@@ -67,12 +62,31 @@ export function SearchResults({ isTyping, query, updateQuery }: Props) {
 
   const locatedItemId = getItemIdToLocate(query);
 
+  const isQueryEmpty = checkIsQueryEmpty(query);
+
+  if (isArrayEmpty(searchedList)) {
+    return (
+      <div className="text-center my-3">
+        <div className="fw-bold">No entries found</div>
+        <div className="">Try modifying the filters or search keywords</div>
+      </div>
+    );
+  }
+
   return (
-    <DhatuList
-      dhatuList={searchedList}
-      searchQuery={searchQuery}
-      locate={locate}
-      locatedItemId={locatedItemId}
-    />
+    <>
+      {!isQueryEmpty && (
+        <div>
+          <small>Showing {searchedList.length} entries</small>
+        </div>
+      )}
+
+      <DhatuList
+        dhatuList={searchedList}
+        searchQuery={searchQuery}
+        locate={locate}
+        locatedItemId={locatedItemId}
+      />
+    </>
   );
 }

@@ -2,6 +2,11 @@ import { useId } from "react";
 
 import Form from "react-bootstrap/Form";
 
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
+import ToggleButton from "react-bootstrap/ToggleButton";
+
+import { FilterSelectOption } from "./FilterSelectOption";
+
 type Props = {
   name: string;
   label: string;
@@ -10,7 +15,7 @@ type Props = {
   handleChange: (name: string, value: string) => void;
 };
 
-export function FilterSelect({
+export function FilterSelect3({
   name,
   label,
   options,
@@ -20,15 +25,15 @@ export function FilterSelect({
   const id = useId();
 
   return (
-    <div className="align-items-center d-flex my-2">
-      <div style={{ minWidth: "15%" }}>
+    <div className="align-items-center my-2">
+      <div>
         <label htmlFor={id} className="me-2 fw-bold">
           {label}
         </label>
       </div>
 
-      <div className="flex-grow-1">
-        <Form.Select
+      <div className="d-flex flex-wrap">
+        {/* <Form.Select
           id={id}
           name={name}
           className="_border-divider rounded-1"
@@ -42,7 +47,20 @@ export function FilterSelect({
               {option}
             </option>
           ))}
-        </Form.Select>
+
+        </Form.Select> */}
+
+        <ToggleButtonGroup
+          type="checkbox"
+          defaultValue={[1, 3]}
+          className="mb-2"
+        >
+          {options.map((option) => (
+            <ToggleButton id={`${label}-${option}`} value={option}>
+              {option}
+            </ToggleButton>
+          ))}
+        </ToggleButtonGroup>
       </div>
     </div>
   );

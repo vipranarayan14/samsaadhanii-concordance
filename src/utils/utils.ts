@@ -1,5 +1,4 @@
 import Sanscript from "@indic-transliteration/sanscript";
-import { Fetcher } from "swr";
 
 export const vowelMarksRegex = "[्ािीुूृॄेैोौंःँ॒॑]*";
 
@@ -10,8 +9,13 @@ export const removeLastVirama = (keyword: string) => keyword.replace(/्$/, "")
 export const removeSvaras = (str: string) =>
   str.replace(new RegExp(svarasRegex, "g"), "");
 
-export const translitToWX = (input: string) =>
-  Sanscript.t(input, "devanagari", "wx");
+export const translitToWX = (input: string) => {
+  const inputWithSvarasConverted = input
+    .replaceAll("॑", "|")
+    .replaceAll("॒", "_");
+
+  return Sanscript.t(inputWithSvarasConverted, "devanagari", "wx");
+};
 
 export const translitToDev = (input: string) =>
   Sanscript.t(input, "wx", "devanagari");
@@ -34,8 +38,5 @@ export const chunk = (arr: any[], size: number) => {
 export const fetcher = (...args: Parameters<typeof fetch>) =>
   fetch(...args).then((res) => res.json());
 
-// export function* chunk(arr: any[], size: number) {
-//   for (let i = 0, l = arr.length; i < l; i += size) {
-//     yield arr.slice(i, i + size);
-//   }
-// }
+export const sleep = (delay: number) =>
+  new Promise((resolve) => setTimeout(resolve, delay));

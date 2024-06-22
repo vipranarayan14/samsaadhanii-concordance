@@ -1,21 +1,18 @@
-import type { Query } from "../types";
+import type { Query } from "@/utils/types";
+import { isObjectEmpty } from "@/utils/utils";
 
-import { filterInputs } from "../viewInputsData";
-import { isObjectEmpty } from "../utils";
+import { viewFilters } from "./viewFilters";
+import { getArrayFromQueryValue } from "./queryValue";
 
-import { getStringFromSearchParams } from "./getStringFromSearchParams";
+const viewFilterNames = viewFilters.map(({ name }) => name);
 
-const filterInputNames = filterInputs.map(({ name }) => name);
-
-export type FilterQuery = Record<string, string>;
+export type FilterQuery = Record<string, string[]>;
 
 export const getFilterQuery = (query: Query) => {
   const filterQuery: FilterQuery = {};
 
-  for (const [name, value] of Object.entries(query)) {
-    if (filterInputNames.includes(name)) {
-      filterQuery[name] = getStringFromSearchParams(value);
-    }
+  for (const name of viewFilterNames) {
+    filterQuery[name] = getArrayFromQueryValue(query[name]);
   }
 
   return !isObjectEmpty(filterQuery) ? filterQuery : null;

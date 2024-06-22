@@ -1,7 +1,7 @@
 import useSWR from "swr";
 
-import { DhatuDetails } from "./types";
-import { fetcher } from "./utils";
+import { DhatuDetails } from "@/utils/types";
+import { fetcher } from "@/utils/utils";
 
 const dhatupathaPath = "/dhatupatha.json";
 
