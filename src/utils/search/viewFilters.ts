@@ -752,6 +752,17 @@ const upadhaFilter: Filter = {
   label: "उपधावर्णः",
   options: [
     {
+      name: "ac",
+      label: "अज्",
+      test: (dd) => /[aAiIuUqQeEoO].$/.test(translitToWX(dd.dhatu)),
+    },
+    {
+      name: "hal",
+      label: "हल्",
+      test: (dd) =>
+        /[kKgGfcCjJFtTdDNwWxXnpPbBmyvrlSRsh].$/.test(translitToWX(dd.dhatu)),
+    },
+    {
       name: "a",
       label: "अ",
       test: (dd) => /a.$/.test(translitToWX(dd.dhatu)),
