@@ -116,6 +116,131 @@ const svaraFilter: Filter = {
   ],
 };
 
+const anubandhaFilter: Filter = {
+  name: "anubandha",
+  label: "अनुबन्धः",
+  options: [
+    {
+      name: "ugiw",
+      label: "उगित्",
+      test: (dd) => /[uUqQL]z/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "tviw",
+      label: "ट्वित्",
+      test: (dd) => /^tu/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "dwiw",
+      label: "ड्वित्",
+      test: (dd) => /^du/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "FIw",
+      label: "ञीत्",
+      test: (dd) => /^Fi/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "iriw",
+      label: "इरित्",
+      // eg. buXiz|r
+      test: (dd) => /iz\|?r/.test(translitToWX(dd.muladhatu)),
+    },
+    // // NOTE: Should we have this filter? Or have a GatAxi antargana filter?
+    // //  AFAIK, there is no actual miw dhatus in dhatupatha.
+    // {
+    //   name: "miw",
+    //   label: "मित्",
+    //   test: (dd) => /^/.test(translitToWX(dd.muladhatu)),
+    // },
+    {
+      name: "axiw",
+      label: "अदित्",
+      test: (dd) => /az/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "Axiw",
+      label: "आदित्",
+      test: (dd) => /Az/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "ixiw",
+      label: "इदित्",
+      test: (dd) => /iz/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "Ixiw",
+      label: "ईदित्",
+      test: (dd) => /Iz/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "uxiw",
+      label: "उदित्",
+      test: (dd) => /uz/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "Uxiw",
+      label: "ऊदित्",
+      test: (dd) => /Uz/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "qxiw",
+      label: "ऋदित्",
+      test: (dd) => /qz/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "Lqiw",
+      label: "ऌदित्",
+      test: (dd) => /Lz/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "exiw",
+      label: "एदित्",
+      test: (dd) => /ez/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "oxiw",
+      label: "ओदित्",
+      test: (dd) => /oz/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "kiw",
+      label: "कित्",
+      test: (dd) => /k$/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "diw",
+      label: "ङित्",
+      test: (dd) => /f$/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "Fiw",
+      label: "ञित्",
+      test: (dd) => /F$/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "tiw",
+      label: "टित्",
+      test: (dd) => /t$/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "Niw",
+      label: "णित्",
+      test: (dd) => /N$/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "piw",
+      label: "पित्",
+      test: (dd) => /p$/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "Riw",
+      label: "षित्",
+      test: (dd) => /R$/.test(translitToWX(dd.muladhatu)),
+    },
+  ],
+};
+
 const adiFilter: Filter = {
   name: "adi",
   label: "आदिवर्णः",
@@ -859,6 +984,7 @@ export const viewFilters: Filter[] = [
   ...propFilters,
   upadeshaFilter,
   svaraFilter,
+  anubandhaFilter,
   adiFilter,
   antaFilter,
   upadhaFilter,
