@@ -11,8 +11,7 @@ import { viewFilters } from "@/utils/search/viewFilters";
 
 import { Icon } from "@/commons/components/Icon";
 
-import { FilterSelect } from "./FilterSelect";
-import { SortSelect } from "./SortSelect";
+import { ViewSelect } from "./ViewSelect";
 
 type Props = {
   onHide: () => void;
@@ -56,14 +55,17 @@ export function ViewOptionsModal({
 
       <Modal.Body>
         <Stack gap={5}>
-          <SortSelect
+          <ViewSelect
+            type="radio"
             label={viewSort.label}
             options={viewSort.options}
-            value={viewOptions[viewSort.name] as string}
+            value={viewOptions[viewSort.name] as string[]}
             onChange={(value) => handleChange(viewSort.name, value)}
           />
+
           {viewFilters.map(({ name, label, options }) => (
-            <FilterSelect
+            <ViewSelect
+              type="checkbox"
               key={name}
               label={label}
               options={options}

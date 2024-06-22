@@ -13,7 +13,7 @@ type Props = {
   onChange: (option: string, isSelected: boolean) => void;
 };
 
-export function SelectOption({ label, option, selected, onChange }: Props) {
+export function ViewSelectOption({ label, option, selected, onChange }: Props) {
   const id = useId();
 
   const selectedClassName = "border-success";

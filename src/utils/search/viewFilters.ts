@@ -4,7 +4,7 @@ import { translitToWX } from "@/utils/utils";
 export type FilterOption = {
   name: string;
   label: string;
-  test: (DhatuDetails: DhatuDetails) => boolean;
+  test?: (DhatuDetails: DhatuDetails) => boolean;
 };
 
 type Filter = {

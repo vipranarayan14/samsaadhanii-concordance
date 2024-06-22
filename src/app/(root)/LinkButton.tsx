@@ -5,6 +5,7 @@ export const LinkButton: typeof Button = ({ ...props }) => {
     <Button
       variant="link"
       size="sm"
+      className="text-nowrap"
       style={{ textDecorationLine: "none" }}
       {...props}
     />
