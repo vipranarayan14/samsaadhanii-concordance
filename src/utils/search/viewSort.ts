@@ -16,10 +16,6 @@ const collator = new Intl.Collator();
 
 export const sortOptions: SortOption[] = [
   {
-    name: "gana",
-    label: "गणः",
-  },
-  {
     name: "dhatu",
     label: "धातु",
     compare: (ddA, ddB) => collator.compare(ddA.muladhatu, ddB.muladhatu),
