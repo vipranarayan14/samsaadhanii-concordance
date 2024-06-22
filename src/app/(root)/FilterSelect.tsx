@@ -1,6 +1,9 @@
+import Stack from "react-bootstrap/Stack";
+
 import type { FilterOption } from "@/utils/search/viewFilters";
 
 import { SelectOption } from "./SelectOption";
+import { LinkButton } from "./LinkButton";
 
 type Props = {
   label: string;
@@ -15,6 +18,16 @@ export function FilterSelect({ label, options, value, onChange }: Props) {
 
   const selectedOptions = value;
 
+  const handleSelectAll = () => {
+    const newSelectedOptions = options.map(({ name }) => name);
+
+    onChange(newSelectedOptions);
+  };
+
+  const handleClear = () => {
+    onChange([]);
+  };
+
   const handleOptionChange = (optionName: string, isSelected: boolean) => {
     const newSelectedOptions = isSelected
       ? [...selectedOptions, optionName]
@@ -24,12 +37,21 @@ export function FilterSelect({ label, options, value, onChange }: Props) {
   };
 
   return (
-    <div className="mb-3">
-      <div>
-        <span className="me-2 fw-bold">{label}</span>
-      </div>
+    <div>
+      <Stack direction="horizontal" gap={1} className="mb-3">
+        <span className="me-1 fs-5">{label}</span>
+        <span
+          style={{
+            height: "1px",
+            width: "100%",
+            backgroundColor: "var(--bs-border-color)",
+          }}
+        />
+        <LinkButton onClick={handleSelectAll}>Select&nbsp;All</LinkButton>
+        <LinkButton onClick={handleClear}>Clear</LinkButton>
+      </Stack>
 
-      <div className="d-flex flex-wrap">
+      <Stack direction="horizontal" className="flex-wrap" style={{gap: "0.7rem"}}>
         {options.map((option) => (
           <SelectOption
             key={option.name}
@@ -39,7 +61,7 @@ export function FilterSelect({ label, options, value, onChange }: Props) {
             onChange={handleOptionChange}
           />
         ))}
-      </div>
+      </Stack>
     </div>
   );
 }

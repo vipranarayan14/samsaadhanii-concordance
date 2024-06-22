@@ -1,5 +1,6 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import Stack from "react-bootstrap/Stack";
 
 import type { ViewOptions } from "@/utils/types";
 
@@ -54,22 +55,23 @@ export function ViewOptionsModal({
       </Modal.Header>
 
       <Modal.Body>
-        <SortSelect
-          label={viewSort.label}
-          options={viewSort.options}
-          value={viewOptions[viewSort.name] as string}
-          onChange={(value) => handleChange(viewSort.name, value)}
-        />
-
-        {viewFilters.map(({ name, label, options }) => (
-          <FilterSelect
-            key={name}
-            label={label}
-            options={options}
-            value={viewOptions[name] as string[]}
-            onChange={(value) => handleChange(name, value)}
+        <Stack gap={5}>
+          <SortSelect
+            label={viewSort.label}
+            options={viewSort.options}
+            value={viewOptions[viewSort.name] as string}
+            onChange={(value) => handleChange(viewSort.name, value)}
           />
-        ))}
+          {viewFilters.map(({ name, label, options }) => (
+            <FilterSelect
+              key={name}
+              label={label}
+              options={options}
+              value={viewOptions[name] as string[]}
+              onChange={(value) => handleChange(name, value)}
+            />
+          ))}
+        </Stack>
       </Modal.Body>
 
       <Modal.Footer className="flex-row-reverse justify-content-between">

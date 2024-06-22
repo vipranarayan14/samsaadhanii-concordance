@@ -1,3 +1,5 @@
+import Stack from "react-bootstrap/Stack";
+
 import { SortOption } from "@/utils/search/viewSort";
 
 import { SelectOption } from "./SelectOption";
@@ -29,7 +31,11 @@ export function SortSelect({ label, options, value, onChange }: Props) {
         <span className="me-2 fw-bold">{label}</span>
       </div>
 
-      <div className="d-flex flex-wrap">
+      <Stack
+        direction="horizontal"
+        className="flex-wrap"
+        style={{ gap: "0.7rem" }}
+      >
         {options.map((option) => (
           <SelectOption
             key={option.name}
@@ -39,7 +45,7 @@ export function SortSelect({ label, options, value, onChange }: Props) {
             onChange={handleOptionChange}
           />
         ))}
-      </div>
+      </Stack>
     </div>
   );
 }
