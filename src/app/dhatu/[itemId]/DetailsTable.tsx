@@ -92,10 +92,10 @@ export function DhatuDetailsTable({ dhatuDetails }: Props) {
               <td>{it}</td>
             </tr>
             {/* TODO: Show dhatuId only under "Advanced" mode */}
-            <tr>
+            {/* <tr>
               <th>dhatuId</th>
               <td>{dhatuId}</td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
       </Card.Body>
