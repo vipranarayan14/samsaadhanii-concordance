@@ -83,7 +83,7 @@ export default function Page({ params }: Props) {
 
         {dhatuDetails.graphURL && (
           <section>
-            <SectionHeading>कृदन्त-रूपाणि</SectionHeading>
+            <SectionHeading>वृत्तिषु पाठितानि कानिचन कृदन्त-प्रातिपदिकानि</SectionHeading>
 
             <Graph graphURL={dhatuDetails.graphURL} />
           </section>
