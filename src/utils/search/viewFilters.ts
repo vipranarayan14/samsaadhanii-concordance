@@ -121,39 +121,6 @@ const anubandhaFilter: Filter = {
   label: "अनुबन्धः",
   options: [
     {
-      name: "ugiw",
-      label: "उगित्",
-      test: (dd) => /[uUqQL]z/.test(translitToWX(dd.muladhatu)),
-    },
-    {
-      name: "tviw",
-      label: "ट्वित्",
-      test: (dd) => /^tu/.test(translitToWX(dd.muladhatu)),
-    },
-    {
-      name: "dwiw",
-      label: "ड्वित्",
-      test: (dd) => /^du/.test(translitToWX(dd.muladhatu)),
-    },
-    {
-      name: "FIw",
-      label: "ञीत्",
-      test: (dd) => /^Fi/.test(translitToWX(dd.muladhatu)),
-    },
-    {
-      name: "iriw",
-      label: "इरित्",
-      // eg. buXiz|r
-      test: (dd) => /iz\|?r/.test(translitToWX(dd.muladhatu)),
-    },
-    // // NOTE: Should we have this filter? Or have a GatAxi antargana filter?
-    // //  AFAIK, there is no actual miw dhatus in dhatupatha.
-    // {
-    //   name: "miw",
-    //   label: "मित्",
-    //   test: (dd) => /^/.test(translitToWX(dd.muladhatu)),
-    // },
-    {
       name: "axiw",
       label: "अदित्",
       test: (dd) => /az/.test(translitToWX(dd.muladhatu)),
@@ -238,6 +205,39 @@ const anubandhaFilter: Filter = {
       label: "षित्",
       test: (dd) => /R$/.test(translitToWX(dd.muladhatu)),
     },
+    {
+      name: "iriw",
+      label: "इरित्",
+      // eg. buXiz|r
+      test: (dd) => /iz\|?r/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "ugiw",
+      label: "उगित्",
+      test: (dd) => /[uUqQL]z/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "FIw",
+      label: "ञीत्",
+      test: (dd) => /^Fi/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "tviw",
+      label: "ट्वित्",
+      test: (dd) => /^tu/.test(translitToWX(dd.muladhatu)),
+    },
+    {
+      name: "dwiw",
+      label: "ड्वित्",
+      test: (dd) => /^du/.test(translitToWX(dd.muladhatu)),
+    },
+    // // NOTE: Should we have this filter? Or have a GatAxi antargana filter?
+    // //  AFAIK, there is no actual miw dhatus in dhatupatha.
+    // {
+    //   name: "miw",
+    //   label: "मित्",
+    //   test: (dd) => /^/.test(translitToWX(dd.muladhatu)),
+    // },
   ],
 };
 
@@ -500,12 +500,12 @@ const antaFilter: Filter = {
   options: [
     {
       name: "ac",
-      label: "अज्",
+      label: "अच्",
       test: (dd) => /[aAiIuUqQeEoO]$/.test(translitToWX(dd.dhatu)),
     },
     {
       name: "ic",
-      label: "इज्",
+      label: "इच्",
       test: (dd) => /[iIuUqQeEoO]$/.test(translitToWX(dd.dhatu)),
     },
     {
@@ -753,7 +753,7 @@ const upadhaFilter: Filter = {
   options: [
     {
       name: "ac",
-      label: "अज्",
+      label: "अच्",
       test: (dd) => /[aAiIuUqQeEoO].$/.test(translitToWX(dd.dhatu)),
     },
     {
