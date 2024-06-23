@@ -5,7 +5,6 @@ import ListGroup from "react-bootstrap/ListGroup";
 
 import type { DhatuDetails } from "@/utils/types";
 import { getIndexFromItemId } from "@/utils/itemId";
-import { SearchQuery } from "@/utils/search/getSearchQuery";
 import { ScrollToTop } from "@/commons/components/ScrollToTop";
 
 import { DhatuListItem } from "./DhatuListItem";
@@ -43,16 +42,17 @@ const makeItem = (locatedItemIndex: number | null) => {
 
 type Props = {
   dhatuList: DhatuDetails[];
-  locate: (itemId: string) => void;
   locatedItemId: string | null;
-  searchQuery?: SearchQuery | null;
+  isViewChanged: boolean;
+  locate: (itemId: string) => void;
+  hilite: (text: string) => JSX.Element;
 };
 
 export function DhatuList({
   dhatuList,
-  locate,
   locatedItemId,
-  searchQuery,
+  isViewChanged,
+  ...props
 }: Props) {
   const virtuoso = useRef<VirtuosoHandle>(null);
 
@@ -93,8 +93,8 @@ export function DhatuList({
             <DhatuListItem
               key={dhatuDetails.id}
               dhatuDetails={dhatuDetails}
-              searchQuery={searchQuery}
-              locate={locate}
+              showLocator={isViewChanged}
+              {...props}
             />
           )}
         />

@@ -4,11 +4,12 @@ import { getDhatupatha } from "@/utils/getDhatupatha";
 import { checkIsQueryEmpty } from "@/utils/search/checkIsQueryEmpty";
 import { filterData } from "@/utils/search/filterData";
 import { getFilterQuery } from "@/utils/search/getFilterQuery";
-import { getSearchQuery } from "@/utils/search/getSearchQuery";
+import { SearchQuery, getSearchQuery } from "@/utils/search/getSearchQuery";
 import { getSortQuery } from "@/utils/search/getSortQuery";
 import { getStringFromQueryValue } from "@/utils/search/queryValue";
 import { searchData } from "@/utils/search/searchData";
 import { sortData } from "@/utils/search/sortData";
+import { hiliteMatches } from "@/utils/search/hiliteMatches";
 import { locateQuery } from "@/utils/search/viewLocate";
 import { isArrayEmpty } from "@/utils/utils";
 
@@ -36,6 +37,9 @@ export function SearchResults({ isTyping, query, updateQuery }: Props) {
   const locate = async (itemId: string) => {
     updateQuery({ [locateQuery.name]: itemId }, true);
   };
+
+  const hilite = (searchQuery?: SearchQuery | null) => (text: string) =>
+    searchQuery ? hiliteMatches(text, searchQuery) : <>{text}</>;
 
   if (isError) {
     return (
@@ -82,9 +86,10 @@ export function SearchResults({ isTyping, query, updateQuery }: Props) {
 
       <DhatuList
         dhatuList={searchedList}
-        searchQuery={searchQuery}
         locate={locate}
+        hilite={hilite(searchQuery)}
         locatedItemId={locatedItemId}
+        isViewChanged={!isQueryEmpty}
       />
     </>
   );

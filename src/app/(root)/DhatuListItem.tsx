@@ -1,23 +1,25 @@
 import Link from "next/link";
 
-import { BsGeoAltFill } from "react-icons/bs";
-import Button from "react-bootstrap/Button";
-
 import type { DhatuDetails } from "@/utils/types";
-import { SearchQuery } from "@/utils/search/getSearchQuery";
-import { hiliteMatches } from "@/utils/search/hiliteMatches";
 import { createDhatuItemId } from "@/utils/itemId";
 
 import { VrittiInfo } from "@/commons/components/VrittiInfo";
-import { Icon } from "@/commons/components/Icon";
+
+import { LocatorBtn } from "./LocatorBtn";
 
 type Props = {
   dhatuDetails: DhatuDetails;
-  searchQuery?: SearchQuery | null;
+  hilite: (text: string) => JSX.Element;
   locate: (itemId: string) => void;
+  showLocator: boolean;
 };
 
-export function DhatuListItem({ dhatuDetails, searchQuery, locate }: Props) {
+export function DhatuListItem({
+  dhatuDetails,
+  hilite,
+  locate,
+  showLocator,
+}: Props) {
   const {
     muladhatu,
     dhatu,
@@ -30,26 +32,11 @@ export function DhatuListItem({ dhatuDetails, searchQuery, locate }: Props) {
     dhatupradipaId,
   } = dhatuDetails;
 
-  const hilite = (text: string) =>
-    searchQuery ? hiliteMatches(text, searchQuery) : <>{text}</>;
-
   const itemId = createDhatuItemId(dhatuDetails);
 
   return (
     <>
-      {searchQuery && (
-        <Button
-          variant="transparent"
-          onClick={() => locate(itemId)}
-          className="btn-sm position-absolute"
-          style={{ top: "5px", left: "5px" }}
-          title="Locate this on the list"
-        >
-          <Icon>
-            <BsGeoAltFill />
-          </Icon>
-        </Button>
-      )}
+      {showLocator && <LocatorBtn locate={() => locate(itemId)} />}
 
       <Link
         href={`/dhatu/${itemId}`}
