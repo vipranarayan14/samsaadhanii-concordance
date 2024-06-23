@@ -12,7 +12,7 @@ export function PadiTable({ padi, forms }: Props) {
     <Table
       responsive="md"
       striped
-      className={`${styles.formsTable} align-middle text-center w-100`}
+      className={`${styles.formsTable} align-middle text-center w-100 _fs-body-bigger`}
       style={{ minWidth: 400 }}
     >
       <thead>

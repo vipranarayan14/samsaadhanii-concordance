@@ -14,6 +14,7 @@ export async function VrittiContent({ vrittiCode, vrittiId }: Props) {
 
   return (
     <div
+      className="_fs-body-bigger"
       dangerouslySetInnerHTML={{
         __html: vrittiData,
       }}

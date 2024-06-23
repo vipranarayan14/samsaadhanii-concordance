@@ -13,7 +13,7 @@ export function LakaraTable({ lakaraDetails }: Props) {
 
   return (
     <div className="py-4">
-      <Row className="g-0 justify-content-center h5 fw-bold">
+      <Row className="g-0 justify-content-center fs-5 fw-bold">
         <Col lg={10}>{lakaraName}</Col>
       </Row>
 

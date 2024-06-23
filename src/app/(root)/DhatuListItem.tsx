@@ -43,7 +43,7 @@ export function DhatuListItem({
         className="text-decoration-none text-body"
       >
         <div className="align-items-center d-flex flex-column flex-md-row text-center">
-          <div className="p-1 w-100" style={{ fontSize: "1.1rem" }}>
+          <div className="p-1 w-100 _fs-body-bigger">
             <span className="fw-bold">
               {hilite(muladhatu)} ({hilite(dhatu)})
             </span>{" "}
@@ -51,8 +51,7 @@ export function DhatuListItem({
           </div>
 
           <div
-            className="d-flex justify-content-between"
-            style={{ fontSize: "1.1rem" }}
+            className="d-flex justify-content-between _fs-body-bigger"
           >
             <div className="p-2" data-slot="gana">
               {hilite(gana)}
