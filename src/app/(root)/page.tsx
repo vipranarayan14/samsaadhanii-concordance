@@ -8,9 +8,10 @@ import type { Query } from "@/utils/types";
 import FixedWidthContainer from "@/commons/components/FixedWidthContainer";
 import { getQueryFromSearchParams } from "@/utils/getQueryFromSearchParams";
 import { createURLSearchString } from "@/utils/createURLSearchString";
+import { locateQuery } from "@/utils/search/viewLocate";
 
 import { Search } from "./Search";
-import { SearchResults, locateQuery } from "./SearchResults";
+import { SearchResults } from "./SearchResults";
 
 export default function Page() {
   const router = useRouter();

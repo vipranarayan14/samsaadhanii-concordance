@@ -7,6 +7,7 @@ import type { DhatuDetails } from "@/utils/types";
 import { translitToWX } from "@/utils/utils";
 import { SearchQuery } from "@/utils/search/getSearchQuery";
 import { hiliteMatches } from "@/utils/search/hiliteMatches";
+import { createDhatuItemId } from "@/utils/itemId";
 
 import { VrittiInfo } from "@/commons/components/VrittiInfo";
 import { Icon } from "@/commons/components/Icon";
@@ -14,7 +15,7 @@ import { Icon } from "@/commons/components/Icon";
 type Props = {
   dhatuDetails: DhatuDetails;
   searchQuery?: SearchQuery | null;
-  locate: (entryId: string) => void;
+  locate: (itemId: string) => void;
 };
 
 export function DhatuListItem({ dhatuDetails, searchQuery, locate }: Props) {
@@ -34,14 +35,14 @@ export function DhatuListItem({ dhatuDetails, searchQuery, locate }: Props) {
   const hilite = (text: string) =>
     searchQuery ? hiliteMatches(text, searchQuery) : <>{text}</>;
 
-  const itemId = `${id}-${translitToWX(dhatu)}`;
+  const itemId = createDhatuItemId(dhatuDetails);
 
   return (
     <>
       {searchQuery && (
         <Button
           variant="transparent"
-          onClick={() => locate(dhatuDetails.id)}
+          onClick={() => locate(itemId)}
           className="btn-sm position-absolute"
           style={{ top: "5px", left: "5px" }}
           title="Locate this on the list"
@@ -52,7 +53,10 @@ export function DhatuListItem({ dhatuDetails, searchQuery, locate }: Props) {
         </Button>
       )}
 
-      <Link href={`/dhatu/${id}`} className="text-decoration-none text-body">
+      <Link
+        href={`/dhatu/${itemId}`}
+        className="text-decoration-none text-body"
+      >
         <div className="align-items-center d-flex flex-column flex-md-row text-center">
           <div className="p-1 w-100" style={{ fontSize: "1.1rem" }}>
             <span className="fw-bold">

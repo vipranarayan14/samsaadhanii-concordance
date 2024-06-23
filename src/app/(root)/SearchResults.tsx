@@ -9,13 +9,12 @@ import { getSortQuery } from "@/utils/search/getSortQuery";
 import { getStringFromQueryValue } from "@/utils/search/queryValue";
 import { searchData } from "@/utils/search/searchData";
 import { sortData } from "@/utils/search/sortData";
+import { locateQuery } from "@/utils/search/viewLocate";
 import { isArrayEmpty } from "@/utils/utils";
 
 import type { Query } from "@/utils/types";
 
 import { DhatuList } from "./DhatuList";
-
-export const locateQuery = { name: "locate" };
 
 type Props = {
   isTyping: boolean;
@@ -34,8 +33,8 @@ export function SearchResults({ isTyping, query, updateQuery }: Props) {
     return itemIdToLocate;
   };
 
-  const locate = async (entryId: string) => {
-    updateQuery({ [locateQuery.name]: entryId.toString() }, true);
+  const locate = async (itemId: string) => {
+    updateQuery({ [locateQuery.name]: itemId }, true);
   };
 
   if (isError) {

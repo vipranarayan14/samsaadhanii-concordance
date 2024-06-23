@@ -2,6 +2,7 @@ import { Metadata } from "next";
 
 import FixedWidthContainer from "@/commons/components/FixedWidthContainer";
 import { getDhatupathaLocal } from "@/utils/getDhatupathaLocal";
+import { createDhatuItemId, getIdFromItemId } from "@/utils/itemId";
 
 import { PageHeader } from "./PageHeader";
 import { DhatuDetailsTable } from "./DetailsTable";
@@ -10,10 +11,16 @@ import { FormsAccordionsGroup } from "./FormsAccordionsGroup";
 import { SectionHeading } from "./SectionHeading";
 import { Graph } from "./Graph";
 
+type Props = {
+  params: { itemId?: string };
+};
+
 const dhatupatha = await getDhatupathaLocal();
 
 export function generateMetadata({ params }: Props): Metadata {
-  const { id } = params;
+  const { itemId } = params;
+
+  const id = getIdFromItemId(itemId);
 
   const dhatuDetails = dhatupatha.find(
     (dhatuDetails) => dhatuDetails.id === id
@@ -33,26 +40,24 @@ export function generateMetadata({ params }: Props): Metadata {
 }
 
 export async function generateStaticParams() {
-  const staticParams = dhatupatha.map(({ id }) => ({
-    id: id.toString(),
+  const staticParams = dhatupatha.map((dhatuDetails) => ({
+    itemId: createDhatuItemId(dhatuDetails),
   }));
 
   return staticParams;
 }
 
-type Props = {
-  params: { id: string };
-};
+export default function Page({ params }: Props) {
+  const { itemId } = params;
 
-export default function Page({ params }: { params: { id: string } }) {
-  const { id } = params;
+  const id = getIdFromItemId(itemId);
 
   const dhatuDetails = dhatupatha.find(
     (dhatuDetails) => dhatuDetails.id === id
   );
 
   if (!dhatuDetails) {
-    return <p>Page not found.</p>;
+    return <p className="text-center p-2">Page not found.</p>;
   }
 
   return (
