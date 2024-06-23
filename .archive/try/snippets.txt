@@ -43,3 +43,23 @@ const tabPanelClassName = `flex-grow-1 overflow-scroll`;
 .Tab.active {
   border-left: 1px solid black;
 }
+
+---
+
+import Nav from "react-bootstrap/Nav";
+import NavItem from "react-bootstrap/NavItem";
+import NavLink from "react-bootstrap/NavLink";
+import Link from "next/link";
+
+<Nav variant="tabs" defaultActiveKey={`/dhatu/${itemId}/vrittis`}>
+  <NavItem>
+    <Link href={`/dhatu/${itemId}/vrittis`} passHref legacyBehavior>
+      <NavLink>वृत्तयः</NavLink>
+    </Link>
+  </NavItem>
+  <NavItem>
+    <Link href={`/dhatu/${itemId}/forms`} passHref legacyBehavior>
+      <NavLink>रूपाणि</NavLink>
+    </Link>
+  </NavItem>
+</Nav>
