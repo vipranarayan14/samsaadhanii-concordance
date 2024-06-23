@@ -7,7 +7,7 @@ type Props = {
 export function SectionHeading({ children }: Props) {
   return (
     <header>
-      <h2 className="py-2 my-3 fs-5 fw-bold border-bottom">{children}</h2>
+      <h2 className="py-2 my-3 fs-4 border-bottom">{children}</h2>
     </header>
   );
 }
