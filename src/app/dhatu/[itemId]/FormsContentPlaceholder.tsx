@@ -3,8 +3,8 @@ import React from "react";
 import Placeholder from "react-bootstrap/Placeholder";
 
 export function FormsContentPlaceholder() {
-  return Array(5).fill(
-    <div className="py-4">
+  return Array.from({ length: 5 }, (_, i) => (
+    <div key={i} className="py-4">
       <Placeholder animation="glow" as="div" className="w-75 m-auto">
         <Placeholder style={{ width: "30%" }} className="h5 fw-bold" />
         <br />
@@ -25,5 +25,5 @@ export function FormsContentPlaceholder() {
         <Placeholder style={{ width: "83%" }} />
       </Placeholder>
     </div>
-  );
+  ));
 }
