@@ -8,5 +8,9 @@ export function VrittiBadge({ vrittiId }: Props) {
   const bg = vrittiId !== "-" ? "primary" : "danger";
   const vrittiNum = vrittiId !== "-" ? vrittiId : "·";
 
-  return <Badge bg={bg}>{vrittiNum}</Badge>;
+  return (
+    <Badge bg={bg} className="user-select-all">
+      {vrittiNum}
+    </Badge>
+  );
 }
