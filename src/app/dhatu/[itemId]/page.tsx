@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 
+import Stack from "react-bootstrap/Stack";
+
 import FixedWidthContainer from "@/commons/components/FixedWidthContainer";
 import { getDhatupathaLocal } from "@/utils/getDhatupathaLocal";
 import { createDhatuItemId, getIdFromItemId } from "@/utils/itemId";
@@ -65,29 +67,33 @@ export default function Page({ params }: Props) {
       <PageHeader dhatuDetails={dhatuDetails} />
 
       <FixedWidthContainer as={"main"} width={900}>
-        <DhatuDetailsTable dhatuDetails={dhatuDetails} />
+        <Stack gap={4} className="my-3">
+          <DhatuDetailsTable dhatuDetails={dhatuDetails} />
 
-        <section>
-          <SectionHeading>वृत्तयः</SectionHeading>
-          <div>
-            <VrittiAccordionsGroup dhatuDetails={dhatuDetails} />
-          </div>
-        </section>
-
-        <section>
-          <SectionHeading>तिङन्त-रूपाणि</SectionHeading>
-          <div>
-            <FormsAccordionsGroup dhatuDetails={dhatuDetails} />
-          </div>
-        </section>
-
-        {dhatuDetails.graphURL && (
           <section>
-            <SectionHeading>वृत्तिषु पाठितानि कानिचन कृदन्त-प्रातिपदिकानि</SectionHeading>
-
-            <Graph graphURL={dhatuDetails.graphURL} />
+            <SectionHeading>वृत्तयः</SectionHeading>
+            <div>
+              <VrittiAccordionsGroup dhatuDetails={dhatuDetails} />
+            </div>
           </section>
-        )}
+
+          <section>
+            <SectionHeading>तिङन्त-रूपाणि</SectionHeading>
+            <div>
+              <FormsAccordionsGroup dhatuDetails={dhatuDetails} />
+            </div>
+          </section>
+
+          {dhatuDetails.graphURL && (
+            <section>
+              <SectionHeading>
+                वृत्तिषु पाठितानि कानिचन कृदन्त-प्रातिपदिकानि
+              </SectionHeading>
+
+              <Graph graphURL={dhatuDetails.graphURL} />
+            </section>
+          )}
+        </Stack>
       </FixedWidthContainer>
     </div>
   );
