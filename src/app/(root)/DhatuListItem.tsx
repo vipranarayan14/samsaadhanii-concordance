@@ -4,7 +4,6 @@ import { BsGeoAltFill } from "react-icons/bs";
 import Button from "react-bootstrap/Button";
 
 import type { DhatuDetails } from "@/utils/types";
-import { translitToWX } from "@/utils/utils";
 import { SearchQuery } from "@/utils/search/getSearchQuery";
 import { hiliteMatches } from "@/utils/search/hiliteMatches";
 import { createDhatuItemId } from "@/utils/itemId";
@@ -20,7 +19,6 @@ type Props = {
 
 export function DhatuListItem({ dhatuDetails, searchQuery, locate }: Props) {
   const {
-    id,
     muladhatu,
     dhatu,
     meaning,
