@@ -112,8 +112,8 @@ export const getFormsDataLocal = async (
   const formsData = lakarasByPadi.map((lakaraByPadi, i) => {
     const lakaraName = LAKARAS_DEV_LIST[i];
 
-    const parasmaiForms = formatForms(lakaraByPadi[0]);
-    const aatmaneForms = formatForms(lakaraByPadi[1]);
+    const parasmaiForms = formatForms(lakaraByPadi[1]);
+    const aatmaneForms = formatForms(lakaraByPadi[0]);
 
     return {
       lakaraName,
