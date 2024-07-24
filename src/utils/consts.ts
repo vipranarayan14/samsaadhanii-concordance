@@ -21,7 +21,7 @@ export const LAKARAS = {
   LRNG: "lqf",
 };
 
-export const PADI = {
+export const PADIS = {
   ATMANEPADI: "AwmanepaxI",
   PARASMAIPADI: "parasmEpaxI",
 };
@@ -56,6 +56,10 @@ export const LAKARAS_DEV_LIST = [
   "लुङ् (अद्यतन भूत)",
   "लृङ् (भविष्यत्)",
 ];
+
+export const PURUSHAS = ["pra", "ma", "u"];
+
+export const VACANAS = ["eka", "xvi", "bahu"];
 
 export const PV_NUM_LIST = [11, 12, 13, 21, 22, 23, 31, 32, 33];
 

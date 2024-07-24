@@ -1,16 +1,16 @@
 import util from "node:util";
 import childProcess from "node:child_process";
 
+import { LakaraDetails } from "@/utils/restructureFormsData";
+import { product, chunk, translitToDev, translitToWX } from "@/utils/utils";
 import {
   LAKARAS_DEV_LIST,
-  LAKARAS_WX_LIST,
-  PADI_SHORT,
+  LAKARAS,
   PV_CHARS_LIST,
-  PV_NUM_LIST,
+  PADIS,
+  PURUSHAS,
+  VACANAS,
 } from "@/utils/consts";
-
-import { LakaraDetails } from "@/utils/restructureFormsData";
-import { chunk, translitToDev, translitToWX } from "@/utils/utils";
 
 import type { DhatuDetails } from "@/utils/types";
 
@@ -18,8 +18,8 @@ const exec = util.promisify(childProcess.exec);
 
 const verbsGenBinFilePath = "src/assets/verbs_generator.bin";
 
-async function getForms(formsInput: string): Promise<string> {
-  const cmd = `echo '${formsInput}' | lt-proc -gc ${verbsGenBinFilePath}`;
+async function getForms(query: string): Promise<string[]> {
+  const cmd = `echo '${query}' | lt-proc -gc ${verbsGenBinFilePath}`;
 
   const { stdout, stderr } = await exec(cmd);
 
@@ -29,10 +29,14 @@ async function getForms(formsInput: string): Promise<string> {
   }
 
   if (!stdout) {
-    return "";
+    return [];
   }
 
-  return stdout.trim();
+  const result = stdout.trim();
+
+  const forms = result.split("\n");
+
+  return forms;
 }
 
 type Forms = Record<string, string>;
@@ -50,29 +54,58 @@ const formatForms = (forms: string[]): Forms | null => {
   );
 };
 
+const makeAnalysis = (
+  dhatuid: string,
+  gana: string,
+  prayoga: string,
+  lakara: string,
+  padi: string,
+  purusha: string,
+  vacana: string,
+  sanadi?: string
+): string => {
+  let analysis: string;
+
+  if (sanadi) {
+    analysis = `^${dhatuid}<sanAxi_prawyayaH:${sanadi}><prayogaH:${prayoga}><lakAraH:${lakara}><puruRaH:${purusha}><vacanam:${vacana}><paxI:${padi}><gaNaH:${gana}>$`;
+  } else {
+    analysis = `^${dhatuid}<prayogaH:${prayoga}><lakAraH:${lakara}><puruRaH:${purusha}><vacanam:${vacana}><paxI:${padi}><gaNaH:${gana}>$`;
+  }
+
+  return analysis;
+};
+
+const makeQuery = (
+  dhatuId: string,
+  gana: string,
+  prayoga: string,
+  sanadi?: string
+): string => {
+  const props = [LAKARAS, PADIS, PURUSHAS, VACANAS].map(Object.values<string>);
+
+  const analyses = product(...props).map(([lakara, padi, purusha, vacana]) =>
+    makeAnalysis(dhatuId, gana, prayoga, lakara, padi, purusha, vacana, sanadi)
+  );
+
+  const query = analyses.join("\n");
+
+  return query;
+};
+
 export const getFormsDataLocal = async (
   dhatuDetails: DhatuDetails,
-  prayoga: string
+  prayoga: string,
+  sanadi?: string
 ): Promise<LakaraDetails[]> => {
   const { dhatuId, gana } = dhatuDetails;
 
   const ganaInWX = translitToWX(gana);
-  const ganaWithoutH = ganaInWX.slice(0, -1);
 
-  const formsInput = LAKARAS_WX_LIST.flatMap((lakara) =>
-    Object.values(PADI_SHORT).flatMap((padi) =>
-      PV_NUM_LIST.flatMap(
-        (pv) =>
-          `^${dhatuId}<verb><${prayoga}><${lakara}><${pv}><${padi}><${ganaWithoutH}>$`
-      )
-    )
-  ).join("\n");
+  const query = makeQuery(dhatuId, ganaInWX, prayoga, sanadi);
 
-  const formsOutput = await getForms(formsInput);
+  const forms = await getForms(query);
 
-  const formsList = formsOutput.split("\n");
-
-  const lakaras = chunk(formsList, 9);
+  const lakaras = chunk(forms, 9);
 
   const lakarasByPadi = chunk(lakaras, 2);
 
