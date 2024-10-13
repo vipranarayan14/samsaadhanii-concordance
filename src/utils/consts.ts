@@ -14,6 +14,7 @@ export const LAKARAS = {
   LIT: "lit",
   LUT: "lut",
   LRT: "lqt",
+  LOT: "lot",
   LANG: "laf",
   VIDHILING: "viXilif",
   ASHIRLING: "ASIrlif",
