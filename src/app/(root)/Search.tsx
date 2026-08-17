@@ -7,6 +7,10 @@ import type { Query } from "@/utils/types";
 
 import { SearchInput } from "./SearchInput";
 import { ViewOptionsBtnContainer } from "./ViewOptionsBtnContainer";
+import dynamic from "next/dynamic";
+
+// AiChatWidget is a client-only widget (button + window)
+const AiChatWidget = dynamic(() => import("./AiChatWidget"), { ssr: false });
 
 type Props = {
   setIsTyping: (isTyping: boolean) => void;
@@ -37,10 +41,14 @@ export function Search({ query, updateQuery, setIsTyping }: Props) {
                 updateQuery={updateQuery}
                 setIsTyping={setIsTyping}
               />
+
+              <AiChatWidget />
             </div>
           </div>
         </Form>
       </FixedWidthContainer>
+
     </section>
   );
 }
+ 

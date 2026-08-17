@@ -37,3 +37,8 @@ next-env.d.ts
 
 # Local Netlify folder
 .netlify
+
+# Key files
+*.key
+*.key.json
+

@@ -14,6 +14,14 @@ import { Search } from "./Search";
 import { SearchResults } from "./SearchResults";
 
 export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <HomePageContent />
+    </Suspense>
+  );
+}
+
+function HomePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
