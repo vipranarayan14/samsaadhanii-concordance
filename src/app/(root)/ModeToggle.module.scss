@@ -1,0 +1,10 @@
+.navLink {
+  display: flex;
+  align-items: center;
+  color: var(--bs-body-color) !important;
+  font-weight: 500;
+
+  svg {
+    font-size: 1.125rem;
+  }
+}

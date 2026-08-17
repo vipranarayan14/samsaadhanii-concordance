@@ -12,6 +12,7 @@ import { locateQuery } from "@/utils/search/viewLocate";
 
 import { Search } from "./Search";
 import { SearchResults } from "./SearchResults";
+import { ModeToggle } from "./ModeToggle";
 
 export default function Page() {
   return (

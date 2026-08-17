@@ -1,3 +1,12 @@
+"use client";
+
+import { ModeToggle } from "./ModeToggle";
+
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <ModeToggle />
+      {children}
+    </>
+  );
 }
